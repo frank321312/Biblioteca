@@ -18,5 +18,5 @@ public class AdoDapper : IAdo
     }
 
     public List<Autor> ObtenerAutores()
-    =>_conexion.Query<Autor>(_queryAutores).ToList();
+        =>_conexion.Query<Autor>(_queryAutores).ToList();
 }

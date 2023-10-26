@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS Biblioteca;
-CREATE DATABASE Biblioteca;
-USE Biblioteca;
+DROP DATABASE IF EXISTS 5to_Biblioteca;
+CREATE DATABASE 5to_Biblioteca;
+USE 5to_Biblioteca;
 
 CREATE TABLE Titulo 
 (
@@ -126,7 +126,7 @@ $$
 DELIMITER $$
 CREATE PROCEDURE altaAutor(IN unNombre VARCHAR(45),
 						   IN unApellido VARCHAR(45),
-						   IN unIdAutor SMALLINT UNSIGNED)
+						   ON unIdAutor SMALLINT UNSIGNED)
 BEGIN
 	INSERT INTO Autor(nombre, apellido, idAutor)
 		VALUES (unNombre, unApellido, unIdAutor);
