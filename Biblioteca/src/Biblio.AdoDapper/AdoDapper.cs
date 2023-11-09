@@ -19,6 +19,8 @@ public class AdoDapper : IAdo
         ="SELECT * From Editorial ORDER BY nombre";
     private static readonly string _queryLibro
         ="SELECT * From Libro ORDER BY ISBN";
+    private static readonly string _queryTitulo
+        ="SELECT * From Titulo ORDER BY Publicacion";
     public void AltaAutor(Autor autor)
     {
         var parametros = new DynamicParameters();
@@ -54,7 +56,17 @@ public class AdoDapper : IAdo
     }
     public List<Libro>ObtenerLibro()
         =>_conexion.Query<Libro>(_queryLibro).ToList();
+    #endregion 
+    #region Titulo
+    
+    public void AltaTitulo(Titulo titulo)
+    {
+        var parametros = new DynamicParameters();
+        parametros.Add("@unTitulo",direction: ParameterDirection.Output);
+        parametros.Add("@unPublicacion",titulo.Publicacion);
+        parametros.Add("@unIdTitulo",titulo.IdTitulo);
+    }
+    public List<Titulo>ObtenrTitulo()
+        =>_conexion.Query<Titulo>(_queryTitulo).ToList();
     #endregion
-
-
 }

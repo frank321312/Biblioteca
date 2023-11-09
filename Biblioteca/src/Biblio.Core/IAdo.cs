@@ -8,9 +8,9 @@ public interface IAdo
     List<Editorial>ObtenerEditorial();
     void AltaLibro(Libro libro);
     List<Libro>ObtenerLibro();
-    
-    /*void AltaTitulo(Titulo titulo);
+    void AltaTitulo(Titulo titulo);
     List<Titulo>ObtenrTitulo();
+    /*
     void AltaFueraDeCirculacion();*/
 
 
