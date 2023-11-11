@@ -2,6 +2,7 @@ namespace Biblio.Core;
 
 public interface IAdo
 {
+
     void AltaAutor(Autor autor);
     List<Autor>ObtenerAutores();
     void AltaEditorial(Editorial editorial);
@@ -13,6 +14,11 @@ public interface IAdo
     
     void AltaFueraDeCirculacion(FueraCirculacion fueraCirculacion,Libro libro);
     List<FueraCirculacion> ObtenerFueraDeCirculacion();
+    void AltaCurso(Curso curso); 
+    List<Curso>ObtenerCurso();
+    void AltaAlumno(Alumno alumno);
+    List<Alumno> ObtenerAlumnos();    
+
 
 
 }

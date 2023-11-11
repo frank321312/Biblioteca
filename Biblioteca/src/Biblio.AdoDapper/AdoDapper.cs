@@ -22,7 +22,15 @@ public class AdoDapper : IAdo
         ="SELECT * FROM Titulo ORDER BY Publicacion";
 
     private static readonly string _queryFueraDeCirculacion
-        ="SELECT * FROM FueraCirculacion ORDER BY FechaSalida";    
+        ="SELECT * FROM FueraCirculacion ORDER BY FechaSalida";
+    private static readonly string _queryCurso
+        ="SELET * FROM Curso ORDER BY Year";
+    private static readonly string _queryAlumno
+        ="SELET * FROM Alumno ORDER BY Nombre";
+    private static readonly string _querySolicitud
+    ="";
+    private static readonly string _queryPrestamo
+    ="";
     #region Autor
     public void AltaAutor(Autor autor)
     {
@@ -60,6 +68,7 @@ public class AdoDapper : IAdo
     public List<Libro>ObtenerLibro()
         =>_conexion.Query<Libro>(_queryLibro).ToList();
     #endregion 
+    
     #region Titulo
     
     public void AltaTitulo(Titulo titulo)
@@ -73,6 +82,7 @@ public class AdoDapper : IAdo
         =>_conexion.Query<Titulo>(_queryTitulo).ToList();
 
     #endregion
+    
     #region FueraDeCirculacion
     public void AltaFueraDeCirculacion(FueraCirculacion fueraCirculacion,Libro libro)
     {
@@ -85,6 +95,38 @@ public class AdoDapper : IAdo
     public List<FueraCirculacion> ObtenerFueraDeCirculacion()
         =>_conexion.Query<FueraCirculacion>(_queryFueraDeCirculacion).ToList();
     #endregion  
+    
+    #region Curso
+        public void AltaCurso(Curso curso)
+        {
+            var parametros = new DynamicParameters();
+            parametros.Add("@unIdCurso",direction: ParameterDirection.Output);
+            parametros.Add("@unYear",curso.Year);
+            parametros.Add("@unDivision",curso.Division);
+        }
+        public List<Curso>ObtenerCurso()
+            =>_conexion.Query<Curso>(_queryCurso).ToList();
+
+    #endregion
+    #region  Alumno
+        public void AltaAlumno(Alumno alumno)
+        {
+            var parametros = new DynamicParameters();
+            parametros.Add("@unDni",direction: ParameterDirection.Output);
+            parametros.Add("@unNombre ",alumno.Nombre);
+            parametros.Add("@unApellido",alumno.Apellido);
+            parametros.Add("@unCurso  ",alumno.Curso);
+            parametros.Add("@unCelular ",alumno.Celular);
+            parametros.Add("@unEmail  ",alumno.Email);
+            parametros.Add("@unContraseña",alumno.Contraseña);
+        }
+        public List<Alumno>ObtenerAlumnos()
+            => _conexion.Query<Alumno>(_queryAlumno).ToList();
+    #endregion
+
+
+        
+
     
 
 }
