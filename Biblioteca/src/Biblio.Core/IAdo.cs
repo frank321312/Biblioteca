@@ -10,10 +10,9 @@ public interface IAdo
     List<Libro>ObtenerLibro();
     void AltaTitulo(Titulo titulo);
     List<Titulo>ObtenrTitulo();
-    /*
-    void AltaFueraDeCirculacion();*/
-
-
     
+    void AltaFueraDeCirculacion(FueraCirculacion fueraCirculacion,Libro libro);
+    List<FueraCirculacion> ObtenerFueraDeCirculacion();
+
 
 }

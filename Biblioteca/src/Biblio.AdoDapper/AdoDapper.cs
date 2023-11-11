@@ -15,11 +15,14 @@ public class AdoDapper : IAdo
     private static readonly string _queryAutores 
         ="SELECT * FROM Autor ORDER BY apellido ASC,nombre ASC";
     private static readonly string _queryEditorial
-        ="SELECT * From Editorial ORDER BY nombre";
+        ="SELECT * FROM Editorial ORDER BY nombre";
     private static readonly string _queryLibro
-        ="SELECT * From Libro ORDER BY ISBN";
+        ="SELECT * FROM Libro ORDER BY ISBN";
     private static readonly string _queryTitulo
-        ="SELECT * From Titulo ORDER BY Publicacion";
+        ="SELECT * FROM Titulo ORDER BY Publicacion";
+
+    private static readonly string _queryFueraDeCirculacion
+        ="SELECT * FROM FueraCirculacion ORDER BY FechaSalida";    
     #region Autor
     public void AltaAutor(Autor autor)
     {
@@ -68,6 +71,20 @@ public class AdoDapper : IAdo
     }
     public List<Titulo>ObtenrTitulo()
         =>_conexion.Query<Titulo>(_queryTitulo).ToList();
+
     #endregion
+    #region FueraDeCirculacion
+    public void AltaFueraDeCirculacion(FueraCirculacion fueraCirculacion,Libro libro)
+    {
+        var parametros = new DynamicParameters();
+        parametros.Add("@unNumeroCopia",direction: ParameterDirection.Output);
+        parametros.Add("@unISBN",libro.ISBN);
+        parametros.Add("@unFechaSalida",fueraCirculacion.FechaSalida);
+    }
+
+    public List<FueraCirculacion> ObtenerFueraDeCirculacion()
+        =>_conexion.Query<FueraCirculacion>(_queryFueraDeCirculacion).ToList();
+    #endregion  
     
+
 }
