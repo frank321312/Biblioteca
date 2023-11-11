@@ -27,10 +27,6 @@ public class AdoDapper : IAdo
         ="SELET * FROM Curso ORDER BY Year";
     private static readonly string _queryAlumno
         ="SELET * FROM Alumno ORDER BY Nombre";
-    private static readonly string _querySolicitud
-    ="";
-    private static readonly string _queryPrestamo
-    ="";
     #region Autor
     public void AltaAutor(Autor autor)
     {
@@ -108,6 +104,7 @@ public class AdoDapper : IAdo
             =>_conexion.Query<Curso>(_queryCurso).ToList();
 
     #endregion
+   
     #region  Alumno
         public void AltaAlumno(Alumno alumno)
         {
@@ -124,9 +121,5 @@ public class AdoDapper : IAdo
             => _conexion.Query<Alumno>(_queryAlumno).ToList();
     #endregion
 
-
-        
-
-    
 
 }
