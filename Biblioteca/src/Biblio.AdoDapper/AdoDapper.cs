@@ -11,7 +11,6 @@ public class AdoDapper : IAdo
     public AdoDapper(IDbConnection conexion) => this._conexion = conexion;
     public AdoDapper(string cadena)
     =>  _conexion = new MySqlConnection(cadena);
-    #region Autor
 
     private static readonly string _queryAutores 
         ="SELECT * FROM Autor ORDER BY apellido ASC,nombre ASC";
@@ -21,6 +20,7 @@ public class AdoDapper : IAdo
         ="SELECT * From Libro ORDER BY ISBN";
     private static readonly string _queryTitulo
         ="SELECT * From Titulo ORDER BY Publicacion";
+    #region Autor
     public void AltaAutor(Autor autor)
     {
         var parametros = new DynamicParameters();
@@ -69,4 +69,5 @@ public class AdoDapper : IAdo
     public List<Titulo>ObtenrTitulo()
         =>_conexion.Query<Titulo>(_queryTitulo).ToList();
     #endregion
+    
 }

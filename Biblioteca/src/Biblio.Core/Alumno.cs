@@ -10,4 +10,11 @@ public class Alumno
     public required string Email { get; set; }
     public required string Contraseña { get; set; }
     public required Curso IdCurso { get; set; }
+    List<Solicitud>Solicitudes{get; set;}
+    List<Prestamo> Prestamos{get; set;}
+    public Alumno()
+    {
+        this.Solicitudes=new List<Solicitud>();
+        this.Prestamos=new List<Prestamo>();
+    }
 }
