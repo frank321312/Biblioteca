@@ -1,5 +1,5 @@
 namespace Biblio.Test;
 
-public class DapperCurso
+public class TestAdoCurso
 {
 }

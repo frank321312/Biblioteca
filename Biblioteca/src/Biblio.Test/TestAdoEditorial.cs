@@ -1,6 +1,6 @@
 namespace Biblio.Test;
 
-public class DapperEditorialTest:TestAdo
+public class TestAdoEditorial:TestAdo
 {
     [Theory]
     [InlineData("O REILLY")]
