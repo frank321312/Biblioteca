@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Biblio.Core;
 
 public class Titulo
@@ -7,10 +9,14 @@ public class Titulo
     public required uint IdTitulo { get; set; }
     List<Autor> Autores{get;set;}
     List<Libro> Libros{get; set;}
-    public Titulo()
+    [SetsRequiredMembers]
+    public Titulo(string Nombre,uint Publicacion,uint IdTitulo)
     {
-        this.Autores=new List<Autor>();
-        this.Libros=new List<Libro>();
+        this.Nombre=Nombre;
+        this.Publicacion=Publicacion;
+        this.IdTitulo=IdTitulo;
+        Autores=new List<Autor>();
+        Libros=new List<Libro>();
     }
     
 }
