@@ -1,5 +1,5 @@
 namespace Biblio.Test;
 
-public class TestAdoFueraDeCirculacion
+public class TestAdoFueraDeCirculacion:TestAdo
 {
 }

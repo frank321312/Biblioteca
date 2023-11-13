@@ -1,5 +1,5 @@
 namespace Biblio.Test;
 
-public class TestAdoCurso
+public class TestAdoCurso:TestAdo
 {
 }
