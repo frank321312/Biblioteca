@@ -264,7 +264,7 @@ BEGIN
 END
 $$
 
-SELECT 'Generando Inserts' Estado $$
+SELECT 'Generando Inserts' Estado$$
 
 CALL altaTitulo(2004, 'Head First Design Patterns', @idHeadFirst);
 CALL altaEditorial('O REILLY', 1);

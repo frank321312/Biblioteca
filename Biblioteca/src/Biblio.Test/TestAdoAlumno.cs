@@ -15,7 +15,6 @@ public class TestAdoAlumno:TestAdo
         Assert.Contains(alumnos, a => a.Curso==curso );
         Assert.Contains(alumnos, a => a.Celular== celular);
         Assert.Contains(alumnos, a => a.Email==email);
-
         Assert.Contains(alumnos, a => a.IdCurso==idCurso);
 
     }
