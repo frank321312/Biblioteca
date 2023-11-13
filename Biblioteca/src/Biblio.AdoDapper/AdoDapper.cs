@@ -34,6 +34,10 @@ public class AdoDapper : IAdo
         parametros.Add("@unIdAutor",direction: ParameterDirection.Output);
         parametros.Add("@unNombre",autor.Nombre);
         parametros.Add("@unApellido",autor.Apellido);
+
+        _conexion.Execute("altaAutor", parametros, commandType: CommandType.StoredProcedure);
+
+        autor.IdAutor = parametros.Get<ushort>("unIdAutor");
     }
 
     public List<Autor> ObtenerAutores()
@@ -106,7 +110,7 @@ public class AdoDapper : IAdo
     #endregion
    
     #region  Alumno
-        public void AltaAlumno(Alumno alumno)
+        public void AltaAlumno(Alumno alumno, string pass)
         {
             var parametros = new DynamicParameters();
             parametros.Add("@unDni",direction: ParameterDirection.Output);
@@ -115,7 +119,7 @@ public class AdoDapper : IAdo
             parametros.Add("@unCurso  ",alumno.Curso);
             parametros.Add("@unCelular ",alumno.Celular);
             parametros.Add("@unEmail  ",alumno.Email);
-            parametros.Add("@unContraseña",alumno.Contraseña);
+            parametros.Add("@unaContrasena",pass);
         }
         public List<Alumno>ObtenerAlumnos()
             => _conexion.Query<Alumno>(_queryAlumno).ToList();

@@ -1,4 +1,5 @@
 DROP DATABASE IF EXISTS 5to_Biblioteca;
+SELECT 'Creando BD' Estado;
 CREATE DATABASE 5to_Biblioteca;
 USE 5to_Biblioteca;
 
@@ -6,7 +7,7 @@ CREATE TABLE Titulo
 (
 publicacion SMALLINT UNSIGNED NOT NULL,
 titulo VARCHAR(45) NOT NULL,
-idTitulo MEDIUMINT UNSIGNED NOT NULL,
+idTitulo MEDIUMINT UNSIGNED  auto_increment,
 CONSTRAINT PK_Titulo PRIMARY KEY (idTitulo),
 CONSTRAINT UQ_Titulo_titulo UNIQUE (titulo)
 );
@@ -14,7 +15,7 @@ CREATE TABLE Curso
 (
 año TINYINT UNSIGNED NOT NULL,
 division TINYINT UNSIGNED NOT NULL,
-idCurso TINYINT UNSIGNED NOT NULL,
+idCurso TINYINT UNSIGNED auto_increment,
 CONSTRAINT PK_Curso PRIMARY KEY(idCurso),
 CONSTRAINT UQ_Division_año_division UNIQUE (año ,division)
 );
@@ -22,13 +23,13 @@ CREATE TABLE Autor
 (
 nombre VARCHAR(45) NOT NULL,
 apellido VARCHAR(45) NOT NULL,
-idAutor SMALLINT UNSIGNED NOT NULL,
+idAutor SMALLINT UNSIGNED auto_increment,
 CONSTRAINT PK_Autor PRIMARY KEY (idAutor)
 );
 CREATE TABLE Editorial
 (
 nombre VARCHAR(45) NOT NULL,
-idEditorial SMALLINT UNSIGNED NOT NULL,
+idEditorial SMALLINT UNSIGNED auto_increment,
 CONSTRAINT PK_Editorial PRIMARY KEY (idEditorial),
 CONSTRAINT UQ_Editorial_nombre UNIQUE (nombre)
 );
@@ -41,7 +42,7 @@ celular INT UNSIGNED NOT NULL,
 email VARCHAR(45) NOT NULL,
 contraseña CHAR(64) NOT NULL,
 DNI INT UNSIGNED NOT NULL,
-idCurso TINYINT UNSIGNED NOT NULL,
+idCurso TINYINT UNSIGNED NOT null,
 CONSTRAINT PK_Alumno PRIMARY KEY (DNI),
 CONSTRAINT FK_Curso_Alumno FOREIGN KEY (idCurso)
 	REFERENCES Curso (idCurso)
@@ -71,7 +72,7 @@ CONSTRAINT FK_Titulo_Libro FOREIGN KEY(idTitulo)
 CREATE TABLE Solicitud 
 (
 fechaSolicitud DATETIME NOT NULL,
-idSolicitud INT UNSIGNED NOT NULL,
+idSolicitud INT UNSIGNED auto_increment,
 DNI INT UNSIGNED NOT NULL,
 ISBN BIGINT UNSIGNED NOT NULL,
 CONSTRAINT PK_Solicitud PRIMARY KEY(idSolicitud),
@@ -102,11 +103,11 @@ CONSTRAINT FK_Libro_Prestamo FOREIGN KEY(ISBN)
 CONSTRAINT FK_Alumno_Prestamo FOREIGN KEY(DNI)
 	REFERENCES Alumno (DNI)
 );
-
+SELECT 'Creando SPs' Estado;
 DELIMITER $$
 CREATE PROCEDURE altaTitulo(IN unPublicacion VARCHAR(45),
 							IN unTitulo VARCHAR(45),
-                            IN unIdTitulo MEDIUMINT UNSIGNED)
+                            OUT unIdTitulo MEDIUMINT UNSIGNED)
 BEGIN
 	INSERT INTO Titulo(publicacion, titulo, idTitulo)
 		VALUES (unPublicacion, unTitulo, unIdTitulo);
@@ -116,7 +117,7 @@ $$
 DELIMITER $$
 CREATE PROCEDURE altaCurso(IN unAño TINYINT UNSIGNED,
 						   IN unDivision TINYINT UNSIGNED,
-						   IN unIdCurso TINYINT UNSIGNED)
+						   OUT unIdCurso TINYINT UNSIGNED)
 BEGIN
 	INSERT INTO Curso(año, division, idCurso)
 		VALUES (unAño, unDivision, unIdCurso);
@@ -126,7 +127,7 @@ $$
 DELIMITER $$
 CREATE PROCEDURE altaAutor(IN unNombre VARCHAR(45),
 						   IN unApellido VARCHAR(45),
-						   ON unIdAutor SMALLINT UNSIGNED)
+						   OUT unIdAutor SMALLINT UNSIGNED)
 BEGIN
 	INSERT INTO Autor(nombre, apellido, idAutor)
 		VALUES (unNombre, unApellido, unIdAutor);
@@ -135,7 +136,7 @@ $$
 
 DELIMITER $$
 CREATE PROCEDURE altaEditorial(IN unNombre VARCHAR(45),
-							   IN unIdEditorial SMALLINT UNSIGNED)
+							   OUT unIdEditorial SMALLINT UNSIGNED)
 BEGIN
 	INSERT INTO Editorial(nombre, idEditorial)
 		VALUES (unNombre, unIdEditorial);
@@ -149,7 +150,7 @@ CREATE PROCEDURE altaAlumno(IN unNombre VARCHAR(45),
 							IN unCelular INT UNSIGNED,
 							IN unEmail VARCHAR(45),
 							IN unContraseña CHAR(64),
-							IN unDNI INT UNSIGNED,
+							OUT unDNI INT UNSIGNED,
 							IN unIdCurso TINYINT UNSIGNED)
 BEGIN
 	INSERT INTO Alumno(nombre, apellido, curso, celular, email, contraseña, DNI, idCurso)
@@ -169,7 +170,7 @@ $$
 DELIMITER $$
 CREATE PROCEDURE altaLibro(IN unIdTitulo MEDIUMINT UNSIGNED,
 						   IN unIdEditorial SMALLINT UNSIGNED, 
-						   IN unISBN BIGINT UNSIGNED)
+						   OUT unISBN BIGINT UNSIGNED)
 BEGIN
 	INSERT INTO Libro(idTitulo, idEditorial, ISBN, cantidadPrestamo)
 		VALUES (unIdTitulo, unIdEditorial, unISBN, 0);
@@ -221,7 +222,7 @@ BEGIN
     RETURN 	porcentaje;
 END
 $$
-
+SELECT 'Creando Triggers' Estado $$
 DELIMITER $$
 CREATE TRIGGER bfrPrestamo BEFORE INSERT ON Prestamo
 FOR EACH ROW
@@ -260,6 +261,8 @@ BEING
 	SET TEXT_MESAGGE = “Error, el libro no esta disponible”
 END
 $$
+
+SELECT 'Generando Inserts' Estado $$
 
 CALL altaTitulo(2004, 'Head First Design Patterns', 1);
 CALL altaEditorial('O REILLY', 1);

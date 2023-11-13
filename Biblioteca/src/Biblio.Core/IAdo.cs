@@ -21,7 +21,7 @@ public interface IAdo
     void AltaCurso(Curso curso); 
     List<Curso>ObtenerCurso();
     
-    void AltaAlumno(Alumno alumno);
+    void AltaAlumno(Alumno alumno, string pass);
     List<Alumno> ObtenerAlumnos();    
 
 }
