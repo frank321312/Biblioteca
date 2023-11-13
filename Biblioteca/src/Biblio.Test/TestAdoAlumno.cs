@@ -16,6 +16,15 @@ public class TestAdoAlumno:TestAdo
         Assert.Contains(alumnos, a => a.Celular== celular);
         Assert.Contains(alumnos, a => a.Email==email);
         Assert.Contains(alumnos, a => a.IdCurso==idCurso);
+    }
+        [Fact]
+    public void AltaAlumnoTest()
+    {
+        var TitoJ= new Alumno(25,"Tito", "joel",5,11525868,"joeltito@gmail.com");
 
+        Assert.Equal(0, TitoJ.Dni);
+
+        Ado.AltaAlumno(TitoJ);
+        Assert.NotEqual(0, facundoQ.IdAutor);
     }
 }
