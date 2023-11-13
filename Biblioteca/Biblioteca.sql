@@ -109,8 +109,9 @@ CREATE PROCEDURE altaTitulo(IN unPublicacion VARCHAR(45),
 							IN unTitulo VARCHAR(45),
                             OUT unIdTitulo MEDIUMINT UNSIGNED)
 BEGIN
-	INSERT INTO Titulo(publicacion, titulo, idTitulo)
-		VALUES (unPublicacion, unTitulo, unIdTitulo);
+	INSERT INTO Titulo(publicacion, titulo)
+		VALUES (unPublicacion, unTitulo);
+	SET unIdTitulo = LAST_INSERT_ID();
 END 
 $$
 
@@ -170,7 +171,7 @@ $$
 DELIMITER $$
 CREATE PROCEDURE altaLibro(IN unIdTitulo MEDIUMINT UNSIGNED,
 						   IN unIdEditorial SMALLINT UNSIGNED, 
-						   OUT unISBN BIGINT UNSIGNED)
+						   IN unISBN BIGINT UNSIGNED)
 BEGIN
 	INSERT INTO Libro(idTitulo, idEditorial, ISBN, cantidadPrestamo)
 		VALUES (unIdTitulo, unIdEditorial, unISBN, 0);
@@ -224,7 +225,7 @@ END
 $$
 SELECT 'Creando Triggers' Estado $$
 DELIMITER $$
-CREATE TRIGGER bfrPrestamo BEFORE INSERT ON Prestamo
+CREATE TRIGGER fueraPrestamo BEFORE INSERT ON Prestamo
 FOR EACH ROW
 BEGIN
     IF( EXISTS (SELECT 1
@@ -250,21 +251,22 @@ $$
 
 DELIMITER $$
 CREATE TRIGGER bfrPrestamo BEFORE INSERT ON Prestamo FOR EACH ROW
-BEING
-	IF EXISTS( 	SELECT 1
-		       	FROM Prestamo
-	      	WHERE ISBN = NEW.ISBN
-		AND numeroCopia = NEW.numeroCopia
-		AND fechaRegreso IS NULL
-) THEN
-	SQL SIGNAL STATE “45000”
-	SET TEXT_MESAGGE = “Error, el libro no esta disponible”
+BEGIN
+	IF (EXISTS	(SELECT *
+		    	FROM Prestamo
+	      		WHERE ISBN = NEW.ISBN
+				AND numeroCopia = NEW.numeroCopia
+				AND fechaRegreso IS NULL)
+		) THEN
+		SIGNAL SQLSTATE '45000'
+		SET MESSAGE_TEXT = 'Error, el libro no esta disponible';
+	END IF;
 END
 $$
 
 SELECT 'Generando Inserts' Estado $$
 
-CALL altaTitulo(2004, 'Head First Design Patterns', 1);
+CALL altaTitulo(2004, 'Head First Design Patterns', @idHeadFirst);
 CALL altaEditorial('O REILLY', 1);
 CALL altaLibro(1, 1, 596007124);
 CALL altaFueraDeCirculacion(1, 596007124);
