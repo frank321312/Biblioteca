@@ -7,11 +7,14 @@ public class Autor
     public ushort IdAutor { get; set; }
     public required string Nombre { get; set; }
     public required string Apellido { get; set; }
-    
+
     [SetsRequiredMembers]
-    public Autor (string Nombre ,string Apellido)
+    public Autor(string Nombre, string Apellido)
     {
-        this.Nombre=Nombre;
-        this.Apellido=Apellido;
+        this.Nombre = Nombre;
+        this.Apellido = Apellido;
     }
+    [SetsRequiredMembers]
+    public Autor(string Nombre, string Apellido, ushort idAutor) : this(Nombre, Apellido)
+        => IdAutor = idAutor;
 }

@@ -122,6 +122,7 @@ CREATE PROCEDURE altaCurso(IN unAño TINYINT UNSIGNED,
 BEGIN
 	INSERT INTO Curso(año, division, idCurso)
 		VALUES (unAño, unDivision, unIdCurso);
+	SET unIdCurso = LAST_INSERT_ID();
 END
 $$
 
@@ -132,6 +133,8 @@ CREATE PROCEDURE altaAutor(IN unNombre VARCHAR(45),
 BEGIN
 	INSERT INTO Autor(nombre, apellido, idAutor)
 		VALUES (unNombre, unApellido, unIdAutor);
+	SET unIdAutor = LAST_INSERT_ID();
+
 END
 $$
 
@@ -141,6 +144,8 @@ CREATE PROCEDURE altaEditorial(IN unNombre VARCHAR(45),
 BEGIN
 	INSERT INTO Editorial(nombre, idEditorial)
 		VALUES (unNombre, unIdEditorial);
+	SET unIdEditorial = LAST_INSERT_ID();
+
 END
 $$
 
@@ -151,11 +156,13 @@ CREATE PROCEDURE altaAlumno(IN unNombre VARCHAR(45),
 							IN unCelular INT UNSIGNED,
 							IN unEmail VARCHAR(45),
 							IN unContraseña CHAR(64),
-							OUT unDNI INT UNSIGNED,
+							in unDNI INT UNSIGNED,
 							IN unIdCurso TINYINT UNSIGNED)
 BEGIN
 	INSERT INTO Alumno(nombre, apellido, curso, celular, email, contraseña, DNI, idCurso)
 		VALUES (unNombre, unApellido, unCurso, unCelular, unEmail, unContraseña, unDNI, unIdCurso);
+	
+
 END
 $$
 
@@ -165,6 +172,7 @@ CREATE PROCEDURE altaAutorTitulo(IN unIdTitulo MEDIUMINT,
 BEGIN
 	INSERT INTO AutorTitulo(idTitulo, idAutor)
 		VALUES (unIdTitulo, unIdAutor);
+
 END
 $$
 
@@ -267,20 +275,20 @@ $$
 SELECT 'Generando Inserts' Estado$$
 
 CALL altaTitulo(2004, 'Head First Design Patterns', @idHeadFirst);
-CALL altaEditorial('O REILLY', 1);
-CALL altaLibro(1, 1, 596007124);
+CALL altaEditorial('O REILLY', @idHeadEditorial);
+CALL altaLibro(@idHeadEditorial, 1, 596007124);
 CALL altaFueraDeCirculacion(1, 596007124);
-CALL altaAutor('Eric', 'Freeman', 1);
-CALL altaAutor('Elisabeth', 'Robson', 2);
-CALL altaAutor('Bert', 'Bates', 3);
-CALL altaAutor('Kathy', 'Sierra', 4);
-CALL altaAutorTitulo(1, 1);
-CALL altaAutorTitulo(1, 2);
-CALL altaAutorTitulo(1, 3);
-CALL altaAutorTitulo(1, 4);
+CALL altaAutor('Eric', 'Freeman', @IdHeadAutor);
+CALL altaAutor('Elisabeth', 'Robson', @IdHeadAutor1);
+CALL altaAutor('Bert', 'Bates', @IdHeadAutor2);
+CALL altaAutor('Kathy', 'Sierra', @IdHeadAutor3);
+CALL altaAutorTitulo( @idHeadFirst,@IdHeadAutor1);
+CALL altaAutorTitulo( @idHeadFirst,@IdHeadAutor2);
+CALL altaAutorTitulo( @idHeadFirst,@IdHeadAutor3);
+CALL altaAutorTitulo(@idHeadFirst,@IdHeadAutor);
 CALL altaFueraDeCirculacion(2, 596007124);
 
-CALL altaCurso(5, 7, 1);
+CALL altaCurso(5, 7, @IdHeadCurso);
 CALL altaAlumno('Pepito', 'Perez', 5, 1125648696, 'pepito11@gmail.com', 'contraseña', 48186408, 1);
 CALL altaPrestamo('2023-09-08', '2023-09-01', 596007124, 48186408, 3);
 CALL altaPrestamo('2023-09-09', '2023-09-02', 596007124, 48186408, 4);
