@@ -26,7 +26,7 @@ public class AdoDapper : IAdo
     private static readonly string _queryCurso
         ="SELET * FROM Curso ORDER BY Year";
     private static readonly string _queryAlumno
-        ="SELET * FROM Alumno ORDER BY Nombre";
+        ="SELET * FROM Alumno ORDER BY Dni";
     #region Autor
     public void AltaAutor(Autor autor)
     {

@@ -237,7 +237,7 @@ CREATE TRIGGER fueraPrestamo BEFORE INSERT ON Prestamo
 FOR EACH ROW
 BEGIN
     IF( EXISTS (SELECT 1
-				FROM	fueraDeCirculacion
+				FROM	FueraDeCirculacion
                 WHERE	numeroCopia = NEW.numeroCopia 
                 AND		ISBN = NEW.ISBN
                 )) THEN
@@ -277,7 +277,7 @@ SELECT 'Generando Inserts' Estado$$
 CALL altaTitulo(2004, 'Head First Design Patterns', @idHeadFirst);
 CALL altaEditorial('O REILLY', @idHeadEditorial);
 CALL altaLibro(@idHeadEditorial, 1, 596007124);
-CALL altaFueraDeCirculacion(1, 596007124);
+
 CALL altaAutor('Eric', 'Freeman', @IdHeadAutor);
 CALL altaAutor('Elisabeth', 'Robson', @IdHeadAutor1);
 CALL altaAutor('Bert', 'Bates', @IdHeadAutor2);
@@ -286,7 +286,7 @@ CALL altaAutorTitulo( @idHeadFirst,@IdHeadAutor1);
 CALL altaAutorTitulo( @idHeadFirst,@IdHeadAutor2);
 CALL altaAutorTitulo( @idHeadFirst,@IdHeadAutor3);
 CALL altaAutorTitulo(@idHeadFirst,@IdHeadAutor);
-CALL altaFueraDeCirculacion(2, 596007124);
+CALL altaFueraDeCirculacion(1, 596007124);
 
 CALL altaCurso(5, 7, @IdHeadCurso);
 CALL altaAlumno('Pepito', 'Perez', 5, 1125648696, 'pepito11@gmail.com', 'contraseña', 48186408, 1);

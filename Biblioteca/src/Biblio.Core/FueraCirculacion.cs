@@ -3,12 +3,13 @@ namespace Biblio.Core;
 public class FueraCirculacion
 {
     public required byte NumeroCopia { get; set; }
-    public required Libro libro{ get; set; }
-    public required DateOnly FechaSalida { get; set; }
-    public FueraCirculacion(byte NumeroCopia,Libro libro,DateOnly FechaSalida)
+
+    public required ulong ISBN { get; set; }
+    public required DateTime FechaSalida { get; set; }
+    public FueraCirculacion(byte NumeroCopia,ulong ISBN,DateTime FechaSalida)
     {
         this.NumeroCopia=NumeroCopia;
-        this.libro=libro;
+        this.ISBN=ISBN;
         this.FechaSalida=FechaSalida;
     }
 }

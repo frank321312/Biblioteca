@@ -2,7 +2,7 @@ namespace Biblio.Test;
 
 public class TestAdoTitulo:TestAdo
 {
-     public TestAdoTitulo ():base(){}
+    public TestAdoTitulo ():base(){}
     
     public void TraerTitulos(string nombre, uint publicacion,uint idTitulo)
     {
