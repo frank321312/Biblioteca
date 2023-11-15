@@ -13,6 +13,7 @@ public class Alumno
     public required byte IdCurso { get; set; }
     List<Solicitud>Solicitudes{get; set;}
     List<Prestamo> Prestamos{get; set;}
+    
     [SetsRequiredMembers]
     public Alumno(uint Dni,string Nombre,string Apellido,
     byte Curso ,uint Celular , string Email ,byte IdCurso)

@@ -2,8 +2,9 @@ namespace Biblio.Test;
 
 public class TestAdoEditorial:TestAdo
 {
-
     public TestAdoEditorial():base(){}
+
+
     public void TraerEditorial(string nombre,uint idEditorial)
     {
         var editorial = Ado.ObtenerEditorial();

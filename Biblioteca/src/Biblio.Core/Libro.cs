@@ -10,6 +10,7 @@ public class Libro
     List<Solicitud>Solicitudes{get; set;}
     List<FueraCirculacion> FueraCirculaciones{get; set;}
     List<Prestamo>Prestamos{get; set;}
+    
     [SetsRequiredMembers]
     public Libro(Titulo titulo , Editorial Editorial,ulong ISBN)
     {

@@ -9,6 +9,7 @@ public class Titulo
     public required uint IdTitulo { get; set; }
     List<Autor> Autores{get;set;}
     List<Libro> Libros{get; set;}
+    
     [SetsRequiredMembers]
     public Titulo(string Nombre,uint Publicacion,uint IdTitulo)
     {

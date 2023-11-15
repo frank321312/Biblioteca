@@ -13,11 +13,11 @@ CONSTRAINT UQ_Titulo_titulo UNIQUE (titulo)
 );
 CREATE TABLE Curso
 (
-año TINYINT UNSIGNED NOT NULL,
+anio TINYINT UNSIGNED NOT NULL,
 division TINYINT UNSIGNED NOT NULL,
 idCurso TINYINT UNSIGNED auto_increment,
 CONSTRAINT PK_Curso PRIMARY KEY(idCurso),
-CONSTRAINT UQ_Division_año_division UNIQUE (año ,division)
+CONSTRAINT UQ_Division_anio_division UNIQUE (anio ,division)
 );
 CREATE TABLE Autor 
 (
@@ -116,12 +116,12 @@ END
 $$
 
 DELIMITER $$
-CREATE PROCEDURE altaCurso(IN unAño TINYINT UNSIGNED,
+CREATE PROCEDURE altaCurso(IN unanio TINYINT UNSIGNED,
 						   IN unDivision TINYINT UNSIGNED,
 						   OUT unIdCurso TINYINT UNSIGNED)
 BEGIN
-	INSERT INTO Curso(año, division, idCurso)
-		VALUES (unAño, unDivision, unIdCurso);
+	INSERT INTO Curso(anio, division, idCurso)
+		VALUES (unanio, unDivision, unIdCurso);
 	SET unIdCurso = LAST_INSERT_ID();
 END
 $$

@@ -6,28 +6,24 @@ public class TestAdoCurso:TestAdo
 {
     public TestAdoCurso ():base(){}
     [Theory]
-    [InlineData(12,8,5)]
+    [InlineData(5,7)]
     
-    public void TraerCursos(byte idCurso ,byte año ,byte division)
+    public void TraerCursos(byte anio ,byte division)
     {
         var cursos=Ado.ObtenerCurso();
-        
-        Assert.Contains(cursos,a =>a.IdCurso==idCurso);
-        Assert.Contains(cursos,a =>a.año==año);
-        Assert.Contains(cursos,a =>a.Division==division);
+        Assert.Contains(cursos,a =>a.anio==anio && a.Division==division);        
     }
     [Fact]
     public void AltaCurso()
     {
-        byte idcurso=12;
-        var curso8 = new Curso(idcurso,8,5);
+        var curso8 = new Curso(8,5);
         
         var curso =Ado.ObtenerCurso();
-        Assert.DoesNotContain(curso, a => a.IdCurso == idcurso);
+        Assert.DoesNotContain(curso, a =>a.anio == 8 && a.Division == 5  );
         
         Ado.AltaCurso(curso8);
         curso = Ado.ObtenerCurso();
-        Assert.Contains(curso, a=> a.IdCurso == idcurso);
+        Assert.Contains(curso, a=> a.anio == 8 && a.Division == 5  );
     }
     
 }

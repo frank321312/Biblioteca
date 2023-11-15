@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Biblio.Core;
 
 public class FueraCirculacion
@@ -6,6 +8,8 @@ public class FueraCirculacion
 
     public required ulong ISBN { get; set; }
     public required DateTime FechaSalida { get; set; }
+    
+    [SetsRequiredMembers]
     public FueraCirculacion(byte NumeroCopia,ulong ISBN,DateTime FechaSalida)
     {
         this.NumeroCopia=NumeroCopia;
