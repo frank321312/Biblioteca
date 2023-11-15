@@ -15,18 +15,18 @@ public class AdoDapper : IAdo
     private static readonly string _queryAutores 
         ="SELECT * FROM Autor ORDER BY apellido ASC,nombre ASC";
     private static readonly string _queryEditorial
-        ="SELECT * FROM Editorial ORDER BY nombre";
+        ="SELECT * FROM Editorial ORDER BY nombre ASC";
     private static readonly string _queryLibro
-        ="SELECT * FROM Libro ORDER BY ISBN";
+        ="SELECT * FROM Libro ORDER BY ISBN ASC";
     private static readonly string _queryTitulo
-        ="SELECT * FROM Titulo ORDER BY Publicacion";
+        ="SELECT * FROM Titulo ORDER BY Publicacion ASC";
 
     private static readonly string _queryFueraDeCirculacion
-        ="SELECT * FROM FueraCirculacion ORDER BY FechaSalida";
+        ="SELECT * FROM FueraCirculacion ORDER BY FechaSalida ASC";
     private static readonly string _queryCurso
-        ="SELET * FROM Curso ORDER BY Year";
+        ="SELECT * FROM Curso ORDER BY Year ASC";
     private static readonly string _queryAlumno
-        ="SELET * FROM Alumno ORDER BY Dni";
+        ="SELECT * FROM Alumno ORDER BY Dni ASC";
     #region Autor
     public void AltaAutor(Autor autor)
     {
