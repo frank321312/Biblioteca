@@ -8,12 +8,12 @@ public class TestAdoCurso:TestAdo
     [Theory]
     [InlineData(12,8,5)]
     
-    public void TraerCursos(byte idCurso ,byte year ,byte division)
+    public void TraerCursos(byte idCurso ,byte año ,byte division)
     {
         var cursos=Ado.ObtenerCurso();
         
         Assert.Contains(cursos,a =>a.IdCurso==idCurso);
-        Assert.Contains(cursos,a =>a.Year==year);
+        Assert.Contains(cursos,a =>a.año==año);
         Assert.Contains(cursos,a =>a.Division==division);
     }
     [Fact]

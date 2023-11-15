@@ -101,7 +101,7 @@ public class AdoDapper : IAdo
         {
             var parametros = new DynamicParameters();
             parametros.Add("@unIdCurso",direction: ParameterDirection.Output);
-            parametros.Add("@unYear",curso.Year);
+            parametros.Add("@unYear",curso.año);
             parametros.Add("@unDivision",curso.Division);
         }
         public List<Curso>ObtenerCurso()
