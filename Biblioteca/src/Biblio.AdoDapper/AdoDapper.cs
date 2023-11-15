@@ -24,7 +24,7 @@ public class AdoDapper : IAdo
     private static readonly string _queryFueraDeCirculacion
         ="SELECT * FROM FueraCirculacion ORDER BY FechaSalida ASC";
     private static readonly string _queryCurso
-        ="SELECT * FROM Curso ORDER BY Year ASC";
+        ="SELECT * FROM Curso ORDER BY IdCurso ASC";
     private static readonly string _queryAlumno
         ="SELECT * FROM Alumno ORDER BY Dni ASC";
     #region Autor
@@ -108,7 +108,7 @@ public class AdoDapper : IAdo
             =>_conexion.Query<Curso>(_queryCurso).ToList();
 
     #endregion
-   
+
     #region  Alumno
         public void AltaAlumno(Alumno alumno, string pass)
         {
