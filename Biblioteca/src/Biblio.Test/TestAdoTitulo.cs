@@ -1,15 +1,29 @@
+using Biblio.Core;
+
 namespace Biblio.Test;
 
 public class TestAdoTitulo:TestAdo
 {
+
     public TestAdoTitulo ():base(){}
-    
-    public void TraerTitulos(string nombre, uint publicacion,uint idTitulo)
+
+    [Fact]
+    public void TraerTitulos()
     {
-        var titulos=Ado.ObtenrTitulo();
+        var titulos=Ado.ObtenerTitulo();
         
-        Assert.Contains(titulos,a =>a.Nombre==nombre);
-        Assert.Contains(titulos,a =>a.Publicacion==publicacion);
-        Assert.Contains(titulos,a =>a.IdTitulo==idTitulo);
+        Assert.Contains(titulos,
+                        a =>    a.titulo=="Head First Design Patterns"
+                                && a.Publicacion==2004);
+    }
+    [Fact]
+    public void AltaTitulos()
+    {
+        var autores = Ado.ObtenerAutores();
+        Assert.NotEmpty(autores);
+        var Guardia= new Titulo(2320,"Guardia! Guardia! Guardia!");
+        var AltaTitulo(Guardia); 
+        
+
     }
 }

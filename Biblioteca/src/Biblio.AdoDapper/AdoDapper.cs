@@ -27,6 +27,8 @@ public class AdoDapper : IAdo
         ="SELECT * FROM Curso ORDER BY IdCurso ASC";
     private static readonly string _queryAlumno
         ="SELECT * FROM Alumno ORDER BY Dni ASC";
+    private readonly string queryInsertAutorTitulo
+    ="	INSERT INTO AutorTitulo(idTitulo, idAutor)VALUES (unIdTitulo, unIdAutor)";
     #region Autor
     public void AltaAutor(Autor autor)
     {
@@ -77,8 +79,33 @@ public class AdoDapper : IAdo
         parametros.Add("@unTitulo",direction: ParameterDirection.Output);
         parametros.Add("@unPublicacion",titulo.Publicacion);
         parametros.Add("@unIdTitulo",titulo.IdTitulo);
+
+        _conexion.Open();
+    using (var transaccion = _conexion.BeginTransaction())
+    {
+        try
+            {
+                _conexion.Execute("altaTitulo", parametros, commandType: CommandType.StoredProcedure, transaction: transaccion);
+                titulo.IdTitulo = parametros.Get<uint>("@unIdTitulo");
+                
+                var paraTitulo = titulo.Autores.
+                    Select(a => new { unIdTitulo = titulo.IdTitulo, unIdAutor = a.IdAutor }).
+                    ToList();
+
+                _conexion.Execute(queryInsertAutorTitulo, paraTitulo, commandType: CommandType.StoredProcedure, transaction: transaccion);
+
+                //Como todo se ejecuto ok, confirmo los cambios
+                transaccion.Commit();
+            }
+        catch (MySqlException e)
+            {
+                //Si hubo algun problema, doy marcha atras con los posibles cambios
+                transaccion.Rollback();
+                throw new InvalidOperationException(e.Message, e);
+            }    
     }
-    public List<Titulo>ObtenrTitulo()
+    }
+    public List<Titulo>ObtenerTitulo()
         =>_conexion.Query<Titulo>(_queryTitulo).ToList();
 
     #endregion

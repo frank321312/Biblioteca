@@ -4,16 +4,16 @@ namespace Biblio.Core;
 
 public class Titulo
 {
-    public required string Nombre { get; set; }
-    public required uint Publicacion { get; set; }
+    public required string titulo { get; set; }
+    public required ushort Publicacion { get; set; }
     public required uint IdTitulo { get; set; }
-    List<Autor> Autores{get;set;}
+    public List<Autor> Autores{get;set;}
     List<Libro> Libros{get; set;}
     
     [SetsRequiredMembers]
-    public Titulo(string Nombre,uint Publicacion,uint IdTitulo)
+    public Titulo(ushort Publicacion, string titulo)
     {
-        this.Nombre=Nombre;
+        this.titulo=titulo;
         this.Publicacion=Publicacion;
         this.IdTitulo=IdTitulo;
         Autores=new List<Autor>();
