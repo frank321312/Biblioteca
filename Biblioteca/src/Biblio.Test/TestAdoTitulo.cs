@@ -22,7 +22,7 @@ public class TestAdoTitulo:TestAdo
         var autores = Ado.ObtenerAutores();
         Assert.NotEmpty(autores);
         var Guardia= new Titulo(2320,"Guardia! Guardia! Guardia!");
-        var AltaTitulo(Guardia); 
+        Ado.AltaTitulo(Guardia); 
         
 
     }
