@@ -76,9 +76,9 @@ public class AdoDapper : IAdo
     public void AltaTitulo(Titulo titulo)
     {
         var parametros = new DynamicParameters();
-        parametros.Add("@unTitulo",direction: ParameterDirection.Output);
         parametros.Add("@unPublicacion",titulo.Publicacion);
-        parametros.Add("@unIdTitulo",titulo.IdTitulo);
+        parametros.Add("@unTitulo",titulo.titulo);
+        parametros.Add("@unIdTitulo",direction: ParameterDirection.Output);
 
         _conexion.Open();
     using (var transaccion = _conexion.BeginTransaction())

@@ -19,11 +19,13 @@ public class TestAdoTitulo:TestAdo
     [Fact]
     public void AltaTitulos()
     {
+        var Guardia= new Titulo(2320,"Guardia! Guardia! Guardia!"); 
         var autores = Ado.ObtenerAutores();
         Assert.NotEmpty(autores);
-        var Guardia= new Titulo(2320,"Guardia! Guardia! Guardia!");
+        var titulo = Ado.ObtenerTitulo();
         Ado.AltaTitulo(Guardia); 
         
-
+        titulo= Ado.ObtenerTitulo();
+        Assert.Contains(titulo, a=> a.IdTitulo ==Guardia.IdTitulo);
     }
 }
