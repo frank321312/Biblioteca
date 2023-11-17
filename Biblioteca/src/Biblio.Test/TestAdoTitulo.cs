@@ -24,7 +24,7 @@ public class TestAdoTitulo:TestAdo
         Assert.NotEmpty(autores);
         var titulo = Ado.ObtenerTitulo();
         Ado.AltaTitulo(Guardia); 
-        
+
         titulo= Ado.ObtenerTitulo();
         Assert.Contains(titulo, a=> a.IdTitulo ==Guardia.IdTitulo);
     }
