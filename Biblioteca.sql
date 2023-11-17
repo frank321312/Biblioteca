@@ -288,7 +288,6 @@ CALL altaAutorTitulo( @idHeadFirst,@IdHeadAutor3);
 CALL altaAutorTitulo(@idHeadFirst,@IdHeadAutor);
 CALL altaFueraDeCirculacion(1, 596007124);
 CALL altaAutor("Tito","joel",@IdHeadAutor5);
-call altaAutorTitulo(2,5);
 CALL altaCurso(5, 7, @IdHeadCurso);
 CALL altaAlumno('Pepito', 'Perez', 5, 1125648696, 'pepito11@gmail.com', 'contraseña', 48186408, 1);
 CALL altaPrestamo('2023-09-08', '2023-09-01', 596007124, 48186408, 3);

@@ -27,8 +27,7 @@ public class AdoDapper : IAdo
         ="SELECT * FROM Curso ORDER BY IdCurso ASC";
     private static readonly string _queryAlumno
         ="SELECT * FROM Alumno ORDER BY Dni ASC";
-    private readonly string queryInsertAutorTitulo
-    ="	INSERT INTO AutorTitulo(idTitulo, idAutor)VALUES (unIdTitulo, unIdAutor)";
+    
     #region Autor
     public void AltaAutor(Autor autor)
     {
@@ -72,7 +71,8 @@ public class AdoDapper : IAdo
     #endregion 
     
     #region Titulo
-    
+    private readonly string queryInsertAutorTitulo
+    ="	INSERT INTO AutorTitulo(idTitulo, idAutor)VALUES (@unIdTitulo, @unIdAutor)";
     public void AltaTitulo(Titulo titulo)
     {
         var parametros = new DynamicParameters();
@@ -92,7 +92,7 @@ public class AdoDapper : IAdo
                     Select(a => new { unIdTitulo = titulo.IdTitulo, unIdAutor = a.IdAutor }).
                     ToList();
 
-                _conexion.Execute(queryInsertAutorTitulo, paraTitulo, commandType: CommandType.StoredProcedure, transaction: transaccion);
+                _conexion.Execute(queryInsertAutorTitulo, paraTitulo, transaction: transaccion);
 
                 //Como todo se ejecuto ok, confirmo los cambios
                 transaccion.Commit();
