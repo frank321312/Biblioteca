@@ -11,7 +11,7 @@ public class Titulo
     List<Libro> Libros{get; set;}
     
     [SetsRequiredMembers]
-    public Titulo(ushort Publicacion, string titulo)
+    public Titulo(ushort Publicacion, string titulo, uint IdTitulo = 0)
     {
         this.titulo=titulo;
         this.Publicacion=Publicacion;
