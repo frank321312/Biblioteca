@@ -37,7 +37,7 @@ CREATE TABLE Alumno
 (
 nombre VARCHAR(45) NOT NULL,
 apellido VARCHAR(45) NOT NULL,
-curso TINYINT UNSIGNED,
+
 celular INT UNSIGNED NOT NULL,
 email VARCHAR(45) NOT NULL,
 contraseña CHAR(64) NOT NULL,
@@ -152,15 +152,14 @@ $$
 DELIMITER $$
 CREATE PROCEDURE altaAlumno(IN unNombre VARCHAR(45),
 							IN unApellido VARCHAR(45),
-							IN unCurso TINYINT UNSIGNED,
 							IN unCelular INT UNSIGNED,
 							IN unEmail VARCHAR(45),
 							IN unContraseña CHAR(64),
 							in unDNI INT UNSIGNED,
 							IN unIdCurso TINYINT UNSIGNED)
 BEGIN
-	INSERT INTO Alumno(nombre, apellido, curso, celular, email, contraseña, DNI, idCurso)
-		VALUES (unNombre, unApellido, unCurso, unCelular, unEmail, unContraseña, unDNI, unIdCurso);
+	INSERT INTO Alumno(nombre, apellido,  celular, email, contraseña, DNI, idCurso)
+		VALUES (unNombre, unApellido,  unCelular, unEmail, unContraseña, unDNI, unIdCurso);
 	
 
 END
@@ -289,7 +288,7 @@ CALL altaAutorTitulo(@idHeadFirst,@IdHeadAutor);
 CALL altaFueraDeCirculacion(1, 596007124);
 CALL altaAutor("Tito","joel",@IdHeadAutor5);
 CALL altaCurso(5, 7, @IdHeadCurso);
-CALL altaAlumno('Pepito', 'Perez', 5, 1125648696, 'pepito11@gmail.com', 'contraseña', 48186408, 1);
+CALL altaAlumno('Pepito', 'Perez', 1125648696, 'pepito11@gmail.com', 'contraseña', 48186408, 1);
 CALL altaPrestamo('2023-09-08', '2023-09-01', 596007124, 48186408, 3);
 CALL altaPrestamo('2023-09-09', '2023-09-02', 596007124, 48186408, 4);
 CALL altaPrestamo('2023-09-10', '2023-09-03', 596007124, 48186408, 5);
