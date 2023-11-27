@@ -21,6 +21,7 @@ public class TestAdoAutor : TestAdo
         Assert.Equal(0, facundoQ.IdAutor);
 
         Ado.AltaAutor(facundoQ);
+        
         Assert.NotEqual(0, facundoQ.IdAutor);
     }
     

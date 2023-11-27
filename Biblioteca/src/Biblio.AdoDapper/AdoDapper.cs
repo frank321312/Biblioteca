@@ -53,6 +53,7 @@ public class AdoDapper : IAdo
         parametros.Add("@unIdEditorial", direction: ParameterDirection.Output);
         parametros.Add("@unNombre", editorial.Nombre);
 
+        _conexion.Execute("altaEditorial", parametros, commandType: CommandType.StoredProcedure);
     }
     public List<Editorial> ObtenerEditorial()
         => _conexion.Query<Editorial>(_queryEditorial).ToList();
@@ -62,9 +63,11 @@ public class AdoDapper : IAdo
     public void AltaLibro(Libro libro)
     {
         var parametros = new DynamicParameters();
-        parametros.Add("@unISBN", direction: ParameterDirection.Output);
+        parametros.Add("@unISBN", libro.ISBN);
         parametros.Add("@unIdTitulo", libro.Titulo.IdTitulo);
         parametros.Add("@unIdEditorial", libro.Editorial.IdEditorial);
+        
+        _conexion.Execute("altaLibro", parametros, commandType: CommandType.StoredProcedure);
     }
     public List<Libro> ObtenerLibro()
         => _conexion.Query<Libro>(_queryLibro).ToList();

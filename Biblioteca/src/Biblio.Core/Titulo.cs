@@ -9,6 +9,11 @@ public class Titulo
     public required uint IdTitulo { get; set; }
     public List<Autor> Autores{get;set;}
     List<Libro> Libros{get; set;}
+
+    public Titulo()
+    {
+        
+    }
     
     [SetsRequiredMembers]
     public Titulo(ushort Publicacion, string titulo, uint IdTitulo = 0)

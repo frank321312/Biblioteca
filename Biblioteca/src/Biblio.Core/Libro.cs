@@ -10,11 +10,16 @@ public class Libro
     List<Solicitud>Solicitudes{get; set;}
     List<FueraCirculacion> FueraCirculaciones{get; set;}
     List<Prestamo>Prestamos{get; set;}
+
+    public Libro()
+    {
+        
+    }
     
     [SetsRequiredMembers]
     public Libro(Titulo titulo , Editorial Editorial,ulong ISBN)
     {
-        this.Titulo=Titulo;
+        this.Titulo=titulo;
         this.Editorial=Editorial;
         this.ISBN=ISBN;
         Prestamos=new List<Prestamo>();
