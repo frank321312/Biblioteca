@@ -26,4 +26,10 @@ public class TestAdoLibro:TestAdo
         var libro_1 = new Libro(titulo, editorial, 321234);
         Ado.AltaLibro(libro_1);
     }
+
+    [Fact]
+    public void DetalleLibro()
+    {
+        Ado.ObtenerLibroPorISBN(596007124);
+    }
 }

@@ -71,6 +71,14 @@ public class AdoDapper : IAdo
     }
     public List<Libro> ObtenerLibro()
         => _conexion.Query<Libro>(_queryLibro).ToList();
+    
+    public void ObtenerLibroPorISBN(ulong isbn)
+    {
+        var parametros = new DynamicParameters();
+        parametros.Add("@unIsbn", isbn);
+        
+        _conexion.Query("obtenerLibroISBN", parametros, commandType: CommandType.StoredProcedure);
+    }
     #endregion
 
     #region Titulo

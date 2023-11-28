@@ -218,6 +218,17 @@ END
 $$
 
 DELIMITER $$
+CREATE PROCEDURE obtenerLibroISBN(IN unIsbn INT UNSIGNED)
+BEGIN
+	SELECT 	*
+	FROM	Libro
+	INNER JOIN Editorial ON Libro.idEditorial = Editorial.idEditorial
+	INNER JOIN Titulo ON Libro.idTitulo = Titulo.idTitulo
+	WHERE 	ISBN = unIsbn;
+END
+$$
+
+DELIMITER $$
 CREATE FUNCTION PorcentajeFuera(unISBN BIGINT UNSIGNED)
 								RETURNS DECIMAL(5, 2)
                                 READS SQL DATA
