@@ -10,8 +10,5 @@ public class TestAdoFueraDeCirculacion:TestAdo
         var fueraDeCirculacion = Ado.ObtenerFueraDeCirculacion();
         Assert.Contains(fueraDeCirculacion, a => a.NumeroCopia==numeroCopia);
         Assert.Contains(fueraDeCirculacion, a => a.ISBN==ISBN);
-
-
-
     }
 }

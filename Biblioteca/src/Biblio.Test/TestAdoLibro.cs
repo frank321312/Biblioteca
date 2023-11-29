@@ -17,14 +17,18 @@ public class TestAdoLibro:TestAdo
     [Fact]
     public void AltaLibroTest()
     {
+        ulong ISBN = 321234;
         var editorial = Ado.ObtenerEditorial().First(e => e.IdEditorial == 1);
         Assert.NotNull(editorial);
 
         var titulo = Ado.ObtenerTitulo().First(t => t.IdTitulo == 1);
         Assert.NotNull(titulo);
 
-        var libro_1 = new Libro(titulo, editorial, 321234);
-        Ado.AltaLibro(libro_1);
+        var libro1 = new Libro(titulo, editorial, ISBN);
+        Ado.AltaLibro(libro1);
+
+        var mismoLibro = Ado.ObtenerLibroPorISBN(321234);
+        Assert.NotNull(mismoLibro);
     }
 
     [Fact]

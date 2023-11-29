@@ -11,11 +11,8 @@ public class Libro
     List<FueraCirculacion> FueraCirculaciones{get; set;}
     List<Prestamo>Prestamos{get; set;}
 
-    public Libro()
-    {
-        
-    }
-    
+    public Libro(ulong ISBN) => this.ISBN = ISBN;
+
     [SetsRequiredMembers]
     public Libro(Titulo titulo , Editorial Editorial,ulong ISBN)
     {

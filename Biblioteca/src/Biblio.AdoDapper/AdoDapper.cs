@@ -1,4 +1,4 @@
-﻿using System.Data;
+﻿﻿using System.Data;
 using Biblio.Core;
 using Dapper;
 using MySqlConnector;
@@ -71,13 +71,41 @@ public class AdoDapper : IAdo
     }
     public List<Libro> ObtenerLibro()
         => _conexion.Query<Libro>(_queryLibro).ToList();
-    
+    /*
     public void ObtenerLibroPorISBN(ulong isbn)
     {
         var parametros = new DynamicParameters();
         parametros.Add("@unIsbn", isbn);
         
-        _conexion.Query("obtenerLibroISBN", parametros, commandType: CommandType.StoredProcedure);
+        _conexion.Query<Libro>("obtenerLibroISBN", parametros, commandType: CommandType.StoredProcedure);
+    }*/
+
+
+    private static readonly string _queryLibroISBN
+        = @"SELECT  ISBN,
+                    Libro.idTitulo, publicacion, titulo,
+                    Libro.idEditorial, nombre
+            FROM    Libro
+            INNER JOIN Titulo ON Libro.idTitulo = Titulo.idTitulo
+            INNER JOIN Editorial ON Libro.idEditorial = Editorial.idEditorial
+            WHERE   ISBN = @unIsbn
+            LIMIT 1";
+    public Libro? ObtenerLibroPorISBN(ulong isbn)
+    {
+        var libro = _conexion.Query<Libro, Titulo, Editorial, Libro>
+            (_queryLibroISBN, 
+                (libro, titulo, editorial) => 
+                    {
+                        libro.Titulo = titulo;
+                        libro.Editorial = editorial;
+
+                        return libro;
+                    },
+                new {unIsbn = isbn},
+                splitOn: "idTitulo, idEditorial").
+                FirstOrDefault();
+
+        return libro;
     }
     #endregion
 

@@ -24,5 +24,5 @@ public interface IAdo
     void AltaAlumno(Alumno alumno, string pass);
     List<Alumno> ObtenerAlumnos();    
 
-    void ObtenerLibroPorISBN(ulong isbn);
+    Libro? ObtenerLibroPorISBN(ulong isbn);
 }
