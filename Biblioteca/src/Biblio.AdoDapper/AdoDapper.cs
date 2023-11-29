@@ -107,6 +107,34 @@ public class AdoDapper : IAdo
 
         return libro;
     }
+
+
+    private static readonly string _queryLibroTituloEditorial
+        = @"SELECT  *
+            FROM    Libro
+            INNER JOIN Titulo ON Libro.idTitulo = Titulo.idTitulo
+            INNER JOIN Editorial ON Libro.idEditorial = Editorial.idEditorial
+            WHERE   ISBN = @unIsbn";
+    public Libro? ObtenerLibroPorISBN2(ulong isbn)
+    {
+        var libro = _conexion.Query<Libro, Titulo, Editorial, Libro>
+            (_queryLibroTituloEditorial, 
+                (libro, titulo, editorial) => 
+                    {
+                        libro.Titulo = titulo;
+                        libro.Editorial = editorial;
+
+                        return libro;
+                    },
+                new {unIsbn = isbn},
+                splitOn: "ISBN").
+                FirstOrDefault();
+
+        if (libro is null)
+            return null;
+        
+        return libro;
+    }
     #endregion
 
     #region Titulo
