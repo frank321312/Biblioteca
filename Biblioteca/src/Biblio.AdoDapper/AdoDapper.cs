@@ -108,30 +108,38 @@ public class AdoDapper : IAdo
         return libro;
     }
 
-
-    private static readonly string _queryLibroTituloEditorial
-        = @"SELECT  *
-            FROM    Libro
-            INNER JOIN Titulo ON Libro.idTitulo = Titulo.idTitulo
-            INNER JOIN Editorial ON Libro.idEditorial = Editorial.idEditorial
-            WHERE   ISBN = @unIsbn";
-    public Libro? ObtenerLibroPorISBN2(ulong isbn)
+    private static readonly string _queryAutorISBN
+        = @"SELECT 	ISBN,
+                    Libro.idTitulo, publicacion, titulo,
+                    Libro.idEditorial, Editorial.nombre,
+                    Autor.idAutor, Autor.nombre, Autor.apellido
+	        FROM	Libro
+            JOIN Editorial USING (idEditorial)
+            JOIN Titulo USING (idTitulo)
+            JOIN AutorTitulo USING (idTitulo)
+            JOIN Autor USING (idAutor)
+            WHERE 	ISBN = @unIsbn";
+    public Libro? ObtenerAutorPorISBN(ulong isbn)
     {
-        var libro = _conexion.Query<Libro, Titulo, Editorial, Libro>
-            (_queryLibroTituloEditorial, 
-                (libro, titulo, editorial) => 
+        var libro = _conexion.Query<Libro, Titulo, Editorial, Autor, Libro>
+            (_queryAutorISBN,
+                (libro, titulo, editorial, autor) => 
                     {
                         libro.Titulo = titulo;
                         libro.Editorial = editorial;
+                        
+                        if (titulo.Autores == null)
+                        {
+                            titulo.Autores = new List<Autor>();
+                        }
+
+                        titulo.Autores.Add(autor);
 
                         return libro;
                     },
-                new {unIsbn = isbn},
-                splitOn: "ISBN").
-                FirstOrDefault();
-
-        if (libro is null)
-            return null;
+                    new {unIsbn = isbn},
+                    splitOn: "idTitulo, idEditorial, idAutor").
+                    FirstOrDefault();
         
         return libro;
     }

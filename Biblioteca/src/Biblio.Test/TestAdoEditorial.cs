@@ -16,9 +16,9 @@ public class TestAdoEditorial:TestAdo
     [Fact]
     public void AltaEditorialTest()
     {
-        var editorial_1 = new Editorial("Editorial_1");
+        var editorial1 = new Editorial("Editorial_1");
 
-        Ado.AltaEditorial(editorial_1);
+        Ado.AltaEditorial(editorial1);
     }
 }
 

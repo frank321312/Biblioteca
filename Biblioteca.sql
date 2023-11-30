@@ -160,8 +160,6 @@ CREATE PROCEDURE altaAlumno(IN unNombre VARCHAR(45),
 BEGIN
 	INSERT INTO Alumno(nombre, apellido,  celular, email, contraseña, DNI, idCurso)
 		VALUES (unNombre, unApellido,  unCelular, unEmail, unContraseña, unDNI, unIdCurso);
-	
-
 END
 $$
 
@@ -214,17 +212,6 @@ CREATE PROCEDURE altaPrestamo(IN unfechaRegreso DATETIME,
 BEGIN
     INSERT INTO Prestamo(fechaRegreso, fechaEgreso, ISBN, DNI, numeroCopia)
         VALUES  (unfechaRegreso, unfechaEgreso, unISBN, unDNI, unNumeroCopia);
-END
-$$
-
-DELIMITER $$
-CREATE PROCEDURE obtenerLibroISBN(IN unIsbn INT UNSIGNED)
-BEGIN
-	SELECT 	*
-	FROM	Libro
-	INNER JOIN Editorial ON Libro.idEditorial = Editorial.idEditorial
-	INNER JOIN Titulo ON Libro.idTitulo = Titulo.idTitulo
-	WHERE 	ISBN = unIsbn;
 END
 $$
 

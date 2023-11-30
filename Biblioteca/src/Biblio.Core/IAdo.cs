@@ -25,4 +25,5 @@ public interface IAdo
     List<Alumno> ObtenerAlumnos();    
 
     Libro? ObtenerLibroPorISBN(ulong isbn);
+    Libro? ObtenerAutorPorISBN(ulong isbn);
 }
