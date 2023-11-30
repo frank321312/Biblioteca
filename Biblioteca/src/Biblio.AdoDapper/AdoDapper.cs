@@ -104,6 +104,8 @@ public class AdoDapper : IAdo
                 new {unIsbn = isbn},
                 splitOn: "idTitulo, idEditorial").
                 FirstOrDefault();
+        if (libro is not null)
+            libro.Titulo.Autores = ObtenerAutorPorISBN(isbn).Titulo.Autores;
 
         return libro;
     }
@@ -118,7 +120,8 @@ public class AdoDapper : IAdo
             JOIN Titulo USING (idTitulo)
             JOIN AutorTitulo USING (idTitulo)
             JOIN Autor USING (idAutor)
-            WHERE 	ISBN = @unIsbn";
+            WHERE 	ISBN = @unIsbn
+            ORDER BY apellido ASC, nombre ASC";
     public Libro? ObtenerAutorPorISBN(ulong isbn)
     {
         var libro = _conexion.Query<Libro, Titulo, Editorial, Autor, Libro>

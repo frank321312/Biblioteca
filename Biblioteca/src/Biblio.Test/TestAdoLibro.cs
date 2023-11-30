@@ -27,11 +27,12 @@ public class TestAdoLibro:TestAdo
         var libro1 = new Libro(titulo, editorial, ISBN);
         Ado.AltaLibro(libro1);
 
-        var mismoLibro = Ado.ObtenerLibroPorISBN(321234);
+        var mismoLibro = Ado.ObtenerLibroPorISBN(ISBN);
         Assert.NotNull(mismoLibro);
 
-        var mismoAutor = Ado.ObtenerAutorPorISBN(321234);
-        Assert.NotNull(mismoAutor);
+        Assert.NotNull(mismoLibro.Editorial);
+        Assert.NotNull(mismoLibro.Titulo);
+        Assert.NotEmpty(mismoLibro.Titulo.Autores);
     }
 
     [Fact]
@@ -40,8 +41,3 @@ public class TestAdoLibro:TestAdo
         Ado.ObtenerLibroPorISBN(596007124);
     }
 }
-
-	// -- INNER JOIN Editorial ON Libro.idEditorial = Editorial.idEditorial
-	// -- INNER JOIN Titulo ON Libro.idTitulo = Titulo.idTitulo
-	// -- INNER JOIN AutorTitulo ON Titulo.idTitulo = AutorTitulo.idTitulo
-	// -- INNER JOIN Autor ON AutorTitulo.idAutor = Autor.idAutor

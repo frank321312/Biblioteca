@@ -22,4 +22,6 @@ public class Autor
     [SetsRequiredMembers]
     public Autor(string Nombre, string Apellido, ushort idAutor) : this(Nombre, Apellido)
         => IdAutor = idAutor;
+    public override string ToString()
+        => $"{Apellido}, {Nombre}";
 }
