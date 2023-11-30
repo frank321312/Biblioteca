@@ -121,7 +121,7 @@ public class AdoDapper : IAdo
             JOIN AutorTitulo USING (idTitulo)
             JOIN Autor USING (idAutor)
             WHERE 	ISBN = @unIsbn
-            ORDER BY apellido ASC, nombre ASC";
+            ORDER BY Autor.apellido ASC, Autor.nombre ASC";
     public Libro? ObtenerAutorPorISBN(ulong isbn)
     {
         var libro = _conexion.Query<Libro, Titulo, Editorial, Autor, Libro>
