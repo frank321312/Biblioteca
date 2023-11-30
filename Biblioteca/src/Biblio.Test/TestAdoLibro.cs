@@ -41,3 +41,5 @@ public class TestAdoLibro:TestAdo
         Ado.ObtenerLibroPorISBN(596007124);
     }
 }
+
+// Verificar
