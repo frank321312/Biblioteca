@@ -2,7 +2,6 @@ namespace Biblio.Core;
 
 public interface IAdo
 {
-
     void AltaAutor(Autor autor);
     List<Autor>ObtenerAutores();
     
@@ -26,4 +25,30 @@ public interface IAdo
 
     Libro? ObtenerLibroPorISBN(ulong isbn);
     Libro? ObtenerAutorPorISBN(ulong isbn);
+    #region Methodasync
+    Task AltaAutorAsync(Autor autor);
+    Task<List<Autor>> ObtenerAutoresAsync();
+    
+    Task AltaEditorialAsync(Editorial editorial);
+    Task<List<Editorial>> ObtenerEditorialAsync();
+
+
+    Task AltaLibroAsync(Libro libro);
+    Task<List<Libro>>ObtenerLibroAsync();
+
+    Task AltaTituloAsync(Titulo titulo);
+    Task<List<Titulo>>ObtenerTituloAsync();
+    
+    Task AltaFueraDeCirculacionAsync(FueraCirculacion fueraCirculacion,Libro libro);
+    Task<List<FueraCirculacion>> ObtenerFueraDeCirculacionAsync();
+    
+    Task AltaCursoAsync(Curso curso); 
+    Task<List<Curso>>ObtenerCursoAsync();
+    
+    Task AltaAlumnoAsync(Alumno alumno, string pass);
+    Task<List<Alumno>> ObtenerAlumnosAsync();    
+
+    Task<Libro?> ObtenerLibroPorISBNAsync(ulong isbn);
+    Task<Libro?> ObtenerAutorPorISBNAsync(ulong isbn);
+    #endregion
 }
