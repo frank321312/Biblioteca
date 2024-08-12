@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblio.AdoDapper", "Biblio.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblio.Test", "Biblio.Test\Biblio.Test.csproj", "{9DA5C962-60C0-4F75-9CB5-57B759E2889D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblio.Mvc", "Biblio.Mvc\Biblio.Mvc.csproj", "{B26467BC-3E3D-45EC-9375-97F5481A0DBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{9DA5C962-60C0-4F75-9CB5-57B759E2889D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DA5C962-60C0-4F75-9CB5-57B759E2889D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DA5C962-60C0-4F75-9CB5-57B759E2889D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B26467BC-3E3D-45EC-9375-97F5481A0DBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B26467BC-3E3D-45EC-9375-97F5481A0DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B26467BC-3E3D-45EC-9375-97F5481A0DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B26467BC-3E3D-45EC-9375-97F5481A0DBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
