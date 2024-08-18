@@ -1,6 +1,10 @@
+using Biblio.Core;
+using Biblio.AdoDapper;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+// builder.Services.AddScoped<IAdo, AdoDapper>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
