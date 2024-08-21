@@ -10,9 +10,7 @@ public class AutorController : Controller
     {
         Ado = new Biblio.AdoDapper.AdoDapper(_cadena);
     }
-
-    [HttpGet("/autor")]
-    public async Task<ViewResult> ObtenerAutores()
+    public async Task<IActionResult> ObtenerAutores()
     {
         var autores = await Ado.ObtenerAutoresAsync();
         AutorModal autor = new AutorModal();
@@ -21,10 +19,10 @@ public class AutorController : Controller
         return View("../Author/Autor", autor);
     }
 
-    [HttpPost("/autor")]
-    public async Task<ViewResult> AltaAutor(Autor autor)
+    [HttpPost]
+    public async Task<IActionResult> AltaAutor(Autor autor)
     {
         await Ado.AltaAutorAsync(autor);
-        return await ObtenerAutores();
+        return RedirectToAction(nameof(ObtenerAutores));
     }
 }

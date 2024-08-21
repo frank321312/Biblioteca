@@ -1,60 +1,50 @@
 @model Biblio.Mvc.Controllers.AutorModal
-@{ 
-    Layout = null;
-}
-<html>
-    <head>
-        <title>Autor</title>
-        <link rel="stylesheet" href="~/css/autor/style.css">
-    </head>
-    <body>
-        @* <h1>Agregue Autor</h1>
-        @foreach (var item in Model)
-        {
-            <div>@item</div>
-        } *@
-        <header>
-            <h1>Autores</h1>
-        </header>
-        <div class="container-form">
-            <form asp-action="AltaAutor" method="post" class="form">
-                <input type="text" value="" asp-for="Nombre" placeholder="Nombre" class="input in-nombre">
-                <input type="text" value="" asp-for="Apellido" placeholder="Apellido" class="input in-apellido">
-                <button type="submit" class="btn">Agregar</button>
-            </form>
+
+@* <h1>Agregue Autor</h1>
+@foreach (var item in Model)
+{
+<div>@item</div>
+} *@
+<header>
+    <h1>Autores</h1>
+</header>
+<div class="container-form">
+    <form asp-action="AltaAutor" method="post" class="form">
+        <input type="text" value="" asp-for="Nombre" placeholder="Nombre" class="input in-nombre">
+        <input type="text" value="" asp-for="Apellido" placeholder="Apellido" class="input in-apellido">
+        <button type="submit" class="btn">Agregar</button>
+    </form>
+</div>
+<div class="container-autor">
+    <div class="fila">
+        <ul class="cabecera">
+            <li class="item">Id</li>
+            <li class="item">Nombre</li>
+            <li class="item">Apellido</li>
+        </ul>
+    </div>
+    @foreach (var item in Model.autores!)
+    {
+        <div class="fila">
+            <ul class="lista">
+                <li class="item">@item.IdAutor</li>
+                <li class="item">@item.Nombre</li>
+                <li class="item">@item.Apellido</li>
+            </ul>
         </div>
-        <div class="container-autor">
-            <div class="fila">
-                <ul class="cabecera">
-                    <li class="item">Id</li>
-                    <li class="item">Nombre</li>
-                    <li class="item">Apellido</li>
-                </ul>
-            </div>
-            @foreach (var item in Model.autores!)
-            {
-                <div class="fila">
-                    <ul class="lista">
-                        <li class="item">@item.IdAutor</li>
-                        <li class="item">@item.Nombre</li>
-                        <li class="item">@item.Apellido</li>
-                    </ul>
-                </div>     
-            }
-            @* <div class="fila">
-                <ul class="lista">
-                    <li class="item">1</li>
-                    <li class="item">Joel</li>
-                    <li class="item">Tito</li>
-                </ul>
-            </div>
-            <div class="fila">
-                <ul class="lista">
-                    <li class="item">1</li>
-                    <li class="item">Joel</li>
-                    <li class="item">Tito</li>
-                </ul>
-            </div> *@
-        </div>
-    </body>
-</html>
+    }
+    @* <div class="fila">
+    <ul class="lista">
+    <li class="item">1</li>
+    <li class="item">Joel</li>
+    <li class="item">Tito</li>
+    </ul>
+    </div>
+    <div class="fila">
+    <ul class="lista">
+    <li class="item">1</li>
+    <li class="item">Joel</li>
+    <li class="item">Tito</li>
+    </ul>
+    </div> *@
+</div>
