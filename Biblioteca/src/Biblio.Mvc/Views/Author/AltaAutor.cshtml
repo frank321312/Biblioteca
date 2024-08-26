@@ -1,0 +1,13 @@
+@model Biblio.Mvc.Controllers.AutorModal
+
+@{
+    ViewData["Title"] = "Alta autor";
+}
+
+<div class="container-form">
+    <form asp-action="AltaAutor" method="post" class="form">
+        <input type="text" value="" required asp-for="Nombre" placeholder="Nombre" class="input in-nombre">
+        <input type="text" value="" required asp-for="Apellido" placeholder="Apellido" class="input in-apellido">
+        <button type="submit" class="btn">Agregar</button>
+    </form>
+</div>
