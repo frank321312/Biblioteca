@@ -5,7 +5,7 @@ namespace Biblio.Mvc.Controllers;
 
 public class AlumnoController: Controller
 {
- protected readonly IAdo Ado;
+    protected readonly IAdo Ado;
     private static readonly string _cadena =
         @"Server=localhost;Database=5to_Biblioteca;Uid=5to_agbd;pwd=Trigg3rs!;Allow User Variables=True";
     public AlumnoController()
@@ -16,9 +16,14 @@ public class AlumnoController: Controller
     public async Task<IActionResult> ObtenerAlumnos()
     {
         var alumnos = await Ado.ObtenerAlumnosAsync();
-        AlumnoModal alumno = new AlumnoModal();
         var orderAlumno = alumnos.OrderBy(x => x.Dni).ToList();
-        alumno.SetAlumnos(orderAlumno);
-        return View("../student/Alumno", alumno);
+        return View("../student/Alumno", orderAlumno);
+    }
+    [HttpPost]
+    public async Task<IActionResult> altaAlumno(Alumno alumno,string pass)
+    {
+        await Ado.AltaAlumnoAsync(alumno,pass);
+        // return RedirectToAction(nameof(ObtenerAutores));
+        return View("../Author/AltaAutor");
     }
 }
