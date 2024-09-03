@@ -4,10 +4,26 @@
     ViewData["Title"] = "Alta autor";
 }
 
-<div class="container-form">
-    <form asp-action="AltaAutor" method="post" class="form">
-        <input type="text" value="" required asp-for="Nombre" placeholder="Nombre" class="input in-nombre">
-        <input type="text" value="" required asp-for="Apellido" placeholder="Apellido" class="input in-apellido">
-        <button type="submit" class="btn">Agregar</button>
+<div class="container">
+    <form asp-action="AltaAutor" method="post" class="was-validated">
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <input type="text"  value="" required asp-for="Nombre" placeholder="Nombre" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <input type="text"  value="" required asp-for="Apellido" placeholder="Apellido" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <button type="submit" class="btn btn-success px-4">Agregar</button>
+            </div>
+        </div>
     </form>
 </div>

@@ -3,22 +3,20 @@
 <header>
     <h1>Autores</h1>
 </header>
-<div class="container-autor">
-    <div class="fila">
-        <ul class="cabecera">
-            <li class="item">Id</li>
-            <li class="item">Nombre</li>
-            <li class="item">Apellido</li>
-        </ul>
-    </div>
-    @foreach (var item in Model.autores!)
-    {
-        <div class="fila">
-            <ul class="lista">
-                <li class="item">@item.IdAutor</li>
-                <li class="item">@item.Nombre</li>
-                <li class="item">@item.Apellido</li>
-            </ul>
-        </div>
-    }
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <tr class="bg-dark text-white">
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+        </tr>
+        @foreach (var autor in Model.autores!)
+        {
+            <tr>
+                <td>@autor.IdAutor</td>
+                <td>@autor.Nombre</td>
+                <td>@autor.Apellido</td>
+            </tr>
+        }
+    </table>
 </div>

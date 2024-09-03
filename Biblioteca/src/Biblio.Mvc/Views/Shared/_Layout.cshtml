@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Biblio.Mvc.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/autor/style.css">
 </head>
 
 <body>
@@ -40,9 +39,9 @@
                                 Alumno
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarLigaMenu">
-                                <li><a class="dropdown-item" asp-controller="Liga" asp-action="Index"><i
+                                <li><a class="dropdown-item" asp-controller="Alumno" asp-action="ObtenerAlumnos"><i
                                             class="bi bi-list-nested"></i> Listado</a></li>
-                                <li><a class="dropdown-item" asp-controller="Liga" asp-action="Alta"><i
+                                <li><a class="dropdown-item" asp-controller="Alumno" asp-action="GetAltaAlumno"><i
                                             class="bi bi-plus-circle"></i> Alta</a></li>
                             </ul>
                         </li>
