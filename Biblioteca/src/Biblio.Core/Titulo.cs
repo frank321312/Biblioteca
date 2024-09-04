@@ -21,5 +21,4 @@ public class Titulo
         Autores=new List<Autor>();
         Libros=new List<Libro>();
     }
-    
 }

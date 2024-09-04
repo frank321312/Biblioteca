@@ -1,0 +1,19 @@
+@model IEnumerable<Biblio.Core.Editorial>
+<header>
+    <h1>Editoriales</h1>
+</header>
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <tr class="bg-dark text-white">
+            <th>Id</th>
+            <th>Editorial</th>
+        </tr>
+        @foreach (var editorial in Model)
+        {
+            <tr>
+                <td>@editorial.IdEditorial</td>
+                <td>@editorial.Nombre</td>
+            </tr>
+        }
+    </table>
+</div>

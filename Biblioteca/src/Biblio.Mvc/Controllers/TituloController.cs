@@ -31,6 +31,32 @@ public class TituloController : Controller
         tituloModal.autores = orderAutores;
         return View("../Title/AltaTitulo", tituloModal);
     }
+// Comentario
+    [HttpGet]
+    public async Task<IActionResult> ObtenerTitulosAutores()
+    {
+        var titulos = await Ado.ObtenerTituloAsync();
+        var orderTitulos = titulos.OrderBy(x => x.IdTitulo).ToList();
+        // var autores = await Ado.ObtenerAutoresAsync();
+        // var orderAutores = autores.OrderBy(x => x.IdAutor).ToList();
+        var tituloModal = new TituloModal
+        {
+            titulos = orderTitulos
+        };
+        foreach (var item in orderTitulos)
+        {
+            System.Console.WriteLine(item.Autores);
+        }
+        // foreach (var item in tituloModal.titulos)
+        // {
+        //     foreach (var icon in item.Autores)
+        //     {
+        //         System.Console.WriteLine(icon.Nombre);
+        //     }
+        // }
+
+        return View("../Title/AutorTitulo", tituloModal);
+    }
 
     [HttpPost]
     public async Task<IActionResult> AltaTitulo(TituloModal titleModal)
