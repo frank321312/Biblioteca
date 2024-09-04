@@ -8,10 +8,7 @@ public class Autor
     public required string Nombre { get; set; }
     public required string Apellido { get; set; }
 
-    public Autor()
-    {
-        
-    }
+    public Autor() {}
 
     [SetsRequiredMembers]
     public Autor(string Nombre, string Apellido)

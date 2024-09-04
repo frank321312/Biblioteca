@@ -1,0 +1,22 @@
+@model IEnumerable<Biblio.Core.Curso>
+
+<header>
+    <h1>Cursos</h1>
+</header>
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <tr class="bg-dark text-white">
+            <th>IdCurso</th>
+            <th>Año</th>
+            <th>Division</th>
+        </tr>
+        @foreach (var curso in Model)
+        {
+            <tr>
+                <td>@curso.IdCurso</td>
+                <td>@curso.anio</td>
+                <td>@curso.Division</td>
+            </tr>
+        }
+    </table>
+</div>

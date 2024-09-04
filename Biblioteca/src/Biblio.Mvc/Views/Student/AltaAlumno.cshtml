@@ -43,7 +43,20 @@
         </div>
         <div class="row mb-2">
             <div class="col-sm-5 col-12">
-                <input type="text" value="" required asp-for="Pass" placeholder="Pass" class="form-control">
+                <input type="password" value="" required asp-for="Pass" placeholder="Pass" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <select asp-for="idCurso" class="form-control">
+                    <option>Elija el curso</option>
+                    @foreach (var curso in Model.cursos!)
+                    {
+                        <option value="@curso.IdCurso">@curso.anio - @curso.Division</option>
+                    }
+                </select>
                 <div class="valid-feedback">Valido</div>
                 <div class="invalid-feedback">Debe llenar el campo.</div>
             </div>

@@ -22,16 +22,20 @@ public class AlumnoController: Controller
     }
 
     [HttpGet]
-    public IActionResult GetAltaAlumno()
+    public async Task<IActionResult> GetAltaAlumno()
     {
-        return View("../Student/AltaAlumno");
+        var cursos = await Ado.ObtenerCursoAsync();
+        var orderCursos = cursos.OrderBy(x => x.IdCurso).ToList();
+        AlumnoModal alumnoModal = new AlumnoModal();
+        alumnoModal.SetCursos(orderCursos);
+        return View("../Student/AltaAlumno", alumnoModal);
     }
 
     [HttpPost]
     public async Task<IActionResult> AltaAlumno(Alumno alumno,string pass)
     {
-        await Ado.AltaAlumnoAsync(alumno,pass);
-        // return RedirectToAction(nameof(ObtenerAutores));
-        return View("../Student/AltaAlumno");
+        await Ado.AltaAlumnoAsync(alumno, pass);
+        return RedirectToAction(nameof(GetAltaAlumno));
+        // return View("../Student/AltaAlumno");
     }
 }

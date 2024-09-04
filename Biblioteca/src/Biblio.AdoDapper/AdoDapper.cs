@@ -253,7 +253,7 @@ public class AdoDapper : IAdo
         parametros.Add("@unApellido", alumno.Apellido);
         parametros.Add("@unCelular ", alumno.Celular);
         parametros.Add("@unEmail", alumno.Email);
-        parametros.Add("@unContraseña", pass);
+        parametros.Add("@unContrasena", pass);
         parametros.Add("@unIdCurso", alumno.IdCurso);
         return parametros;
     }
@@ -413,7 +413,7 @@ public class AdoDapper : IAdo
         parametros.Add("@unIdCurso", direction: ParameterDirection.Output);
         parametros.Add("@unanio", curso.anio);
         parametros.Add("@unDivision", curso.Division);
-        _conexion.Execute("altaCurso", parametros, commandType: CommandType.StoredProcedure);
+        // _conexion.Execute("altaCurso", parametros, commandType: CommandType.StoredProcedure);
         return parametros;
     }
 

@@ -1,5 +1,4 @@
-@model Biblio.Mvc.Controllers.AutorModal
-
+@model IEnumerable<Biblio.Core.Autor>
 <header>
     <h1>Autores</h1>
 </header>
@@ -10,7 +9,7 @@
             <th>Nombre</th>
             <th>Apellido</th>
         </tr>
-        @foreach (var autor in Model.autores!)
+        @foreach (var autor in Model)
         {
             <tr>
                 <td>@autor.IdAutor</td>

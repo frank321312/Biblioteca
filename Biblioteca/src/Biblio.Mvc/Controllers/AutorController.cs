@@ -17,10 +17,8 @@ public class AutorController : Controller
     public async Task<IActionResult> ObtenerAutores()
     {
         var autores = await Ado.ObtenerAutoresAsync();
-        AutorModal autor = new AutorModal();
         var orderAutores = autores.OrderBy(x => x.IdAutor).ToList();
-        autor.SetAutores(orderAutores);
-        return View("../Author/Autor", autor);
+        return View("../Author/Autor", orderAutores);
     }
 
     [HttpGet]

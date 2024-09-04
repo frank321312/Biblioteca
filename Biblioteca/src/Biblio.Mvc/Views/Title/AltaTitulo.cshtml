@@ -1,0 +1,73 @@
+@model Biblio.Mvc.Controllers.Modal.TituloModal
+
+@{
+    ViewData["Title"] = "Alta titulo";
+}
+
+<div class="container">
+    <form asp-action="AltaTitulo" method="post" class="was-validated">
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <input type="text" value="" required asp-for="titulo" placeholder="Titulo" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <input type="number" value="" required asp-for="Publicacion" placeholder="Año de publicación"
+                    class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="container-select">
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-10 col-10">
+                <button type="submit" class="btn btn-success px-4">Agregar</button>
+                <button class="btn btn-success px-4 agregarAutor">Agregar autor</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    const agregarAutor = document.querySelector(".agregarAutor");
+    agregarAutor.addEventListener("click", () => {
+        document.querySelector(".container-select").innerHTML += 
+        `
+            <div class="row mb-2">
+                <div class="col-sm-5 col-12">
+                    <label for="select-autor" class="form-label">Elija el autor</label>
+                    <select asp-for="autores" id="select-autor" class="form-control">
+                        @foreach (var item in Model.autores)
+                        {
+                            <option value="@item.IdAutor">@item.Nombre</option>
+                        }
+                    </select>
+                    <div class="valid-feedback">Valido</div>
+                    <div class="invalid-feedback">Debe llenar el campo.</div>
+                </div>
+            </div>
+        `
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelector(".container-select").innerHTML += 
+        `
+            <div class="row mb-2">
+                <div class="col-sm-5 col-12">
+                    <label for="select-autor" class="form-label">Elija el autor</label>
+                    <select asp-for="autores" id="select-autor" class="form-control">
+                        @foreach (var item in Model.autores)
+                        {
+                            <option value="@item.IdAutor">@item.Nombre</option>
+                        }
+                    </select>
+                    <div class="valid-feedback">Valido</div>
+                    <div class="invalid-feedback">Debe llenar el campo.</div>
+                </div>
+            </div>
+        `
+    });
+</script>

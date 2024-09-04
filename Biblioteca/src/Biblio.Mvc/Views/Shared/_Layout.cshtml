@@ -57,6 +57,30 @@
                                             class="bi bi-plus-circle"></i> Alta</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarEquipoMenu" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Curso
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarEquipoMenu">
+                                <li><a class="dropdown-item" asp-controller="Curso" asp-action="ObtenerCursos"><i
+                                            class="bi bi-list-nested"></i> Listado</a></li>
+                                <li><a class="dropdown-item" asp-controller="Curso" asp-action="GetAltaCurso"><i
+                                            class="bi bi-plus-circle"></i> Alta</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarEquipoMenu" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Titulo
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarEquipoMenu">
+                                <li><a class="dropdown-item" asp-controller="Titulo" asp-action="ObtenerTitulos"><i
+                                            class="bi bi-list-nested"></i> Listado</a></li>
+                                <li><a class="dropdown-item" asp-controller="Titulo" asp-action="GetAltaTitulo"><i
+                                            class="bi bi-plus-circle"></i> Alta</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
         </nav>

@@ -16,4 +16,6 @@ public class Curso
         this.Division=Division;
         this.Alumnos=new List<Alumno>();
     }
+
+    public Curso() {}
 }

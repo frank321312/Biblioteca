@@ -3,10 +3,7 @@ namespace Biblio.Mvc.Controllers;
 
 public class AutorModal
 {
-    public string? Nombre { get; set; }
-    public string? Apellido { get; set; }
-    public List<Autor>? autores;
+    public required string Nombre { get; set; }
+    public required string Apellido { get; set; }
     public AutorModal() {}
-    public void SetAutores(List<Autor> autors)
-        => autores = autors;
 }
