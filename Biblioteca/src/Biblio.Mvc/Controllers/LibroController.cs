@@ -19,9 +19,8 @@ namespace Biblio.Mvc.Controllers
         {
             var libro = await Ado.ObtenerLibroAsync();
             var ordenarlibro = libro.OrderBy(x => x.ISBN).ToList();
-            return View("../Title/AltaTitulo",ordenarlibro);
+            return View("../Book/Libro",ordenarlibro);
         }
         
-
     }
 }
