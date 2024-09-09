@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // builder.Services.AddScoped<IAdo, AdoDapper>();
 builder.Services.AddControllersWithViews();
+var cadenaConexion = builder.Configuration.GetConnectionString("MySQL")!;
+builder.Services.AddTransient<IAdo, AdoDapper>(s => new AdoDapper(cadenaConexion));
 
 var app = builder.Build();
 

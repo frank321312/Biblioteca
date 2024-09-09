@@ -18,7 +18,10 @@ public class AdoDapper : IAdo
     private static readonly string _queryEditorial
         = "SELECT * FROM Editorial ORDER BY nombre ASC";
     private static readonly string _queryLibro
-        = "SELECT * FROM Libro ORDER BY ISBN ASC";
+        = @"SELECT  ISBN,
+                    Libro.idEditorial, nombre
+            FROM    Libro
+            INNER JOIN Editorial ON Libro.idEditorial = Editorial.idEditorial";
     private static readonly string _queryTitulo
         = "SELECT * FROM Titulo ORDER BY Publicacion ASC";
 
@@ -93,6 +96,14 @@ public class AdoDapper : IAdo
 
     public async Task<List<Libro>> ObtenerLibroAsync()
         => (await _conexion.QueryAsync<Libro>(_queryLibro)).ToList();
+
+    private static readonly string _queryLibroDetalle
+        = @"SELECT  ISBN,
+                    Libro.idTitulo, publicacion, titulo,
+                    Libro.idEditorial, nombre
+            FROM    Libro
+            INNER JOIN Titulo ON Libro.idTitulo = Titulo.idTitulo
+            INNER JOIN Editorial ON Libro.idEditorial = Editorial.idEditorial";
     /*
     public void ObtenerLibroPorISBN(ulong isbn)
     {

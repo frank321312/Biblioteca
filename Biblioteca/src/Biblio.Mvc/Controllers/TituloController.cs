@@ -6,13 +6,7 @@ namespace Biblio.Mvc.Controllers;
 public class TituloController : Controller
 {
     protected readonly IAdo Ado;
-    private static readonly string _cadena =
-        // @"Server=localhost;Database=5to_Biblioteca;Uid=5to_agbd;pwd=Trigg3rs!;Allow User Variables=True";
-        @"Server=localhost;Database=5to_Biblioteca;Uid=root;pwd=root;Allow User Variables=True";
-    public TituloController()
-    {
-        Ado = new Biblio.AdoDapper.AdoDapper(_cadena);
-    }
+    public TituloController(IAdo ado) => Ado = ado;
 
     [HttpGet]
     public async Task<IActionResult> ObtenerTitulos()

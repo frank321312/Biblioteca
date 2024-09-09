@@ -3,16 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Biblio.Mvc.Controllers;
 
-public class AlumnoController: Controller
+public class AlumnoController : Controller
 {
     protected readonly IAdo Ado;
-    private static readonly string _cadena =
-        // @"Server=localhost;Database=5to_Biblioteca;Uid=5to_agbd;pwd=Trigg3rs!;Allow User Variables=True";
-        @"Server=localhost;Database=5to_Biblioteca;Uid=root;pwd=root;Allow User Variables=True";
-    public AlumnoController()
-    {
-        Ado = new Biblio.AdoDapper.AdoDapper(_cadena);
-    }   
+    public AlumnoController(IAdo ado) => Ado = ado;
+    
     [HttpGet]
     public async Task<IActionResult> ObtenerAlumnos()
     {
@@ -32,7 +27,7 @@ public class AlumnoController: Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> AltaAlumno(Alumno alumno,string pass)
+    public async Task<IActionResult> AltaAlumno(Alumno alumno, string pass)
     {
         await Ado.AltaAlumnoAsync(alumno, pass);
         return RedirectToAction(nameof(GetAltaAlumno));

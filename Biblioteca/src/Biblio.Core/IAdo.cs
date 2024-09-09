@@ -32,7 +32,6 @@ public interface IAdo
     Task AltaEditorialAsync(Editorial editorial);
     Task<List<Editorial>> ObtenerEditorialAsync();
 
-
     Task AltaLibroAsync(Libro libro);
     Task<List<Libro>>ObtenerLibroAsync();
 

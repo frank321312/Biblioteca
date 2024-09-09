@@ -5,13 +5,7 @@ namespace Biblio.Mvc.Controllers;
 public class EditorialController: Controller
 {
     protected readonly IAdo Ado;
-    private static readonly string _cadena =
-        // @"Server=localhost;Database=5to_Biblioteca;Uid=5to_agbd;pwd=Trigg3rs!;Allow User Variables=True";
-        @"Server=localhost;Database=5to_Biblioteca;Uid=root;pwd=root;Allow User Variables=True";
-    public EditorialController()
-    {
-        Ado = new Biblio.AdoDapper.AdoDapper(_cadena);
-    }
+    public EditorialController(IAdo ado) => Ado = ado;
 
     [HttpGet]
     public async Task<IActionResult> ObtenerEditoriales()

@@ -7,9 +7,9 @@ public class Libro
     public required Editorial Editorial { get; set; }
     public required ulong ISBN { get; set; }
 
-    List<Solicitud>Solicitudes{get; set;} = [];
+    List<Solicitud>Solicitudes{get; set;}
     List<FueraCirculacion> FueraCirculaciones{get; set;}
-    List<Prestamo>Prestamos{get; set;} = [];
+    List<Prestamo>Prestamos{get; set;}
 
     public Libro(ulong ISBN) => this.ISBN = ISBN;
 
@@ -23,4 +23,6 @@ public class Libro
         FueraCirculaciones=new List<FueraCirculacion>();
         Solicitudes=new List<Solicitud>();
     }
+
+    public Libro() {}
 }
