@@ -17,11 +17,15 @@ public class AdoDapper : IAdo
         = "SELECT * FROM Autor ORDER BY apellido ASC,nombre ASC";
     private static readonly string _queryEditorial
         = "SELECT * FROM Editorial ORDER BY nombre ASC";
+    /// <summary>
+    /// Esta consulta tengo que trar el isbn nombre del titulo y nombre de la editorial
+    /// </summary>
     private static readonly string _queryLibro
-        = @"SELECT  ISBN,
-                    Libro.idEditorial, nombre
-            FROM    Libro
-            INNER JOIN Editorial ON Libro.idEditorial = Editorial.idEditorial";
+        = @"SELECT *
+            FROM  Libro
+            INNER JOIN Editorial USING (idEditorial)
+            INNER JOIN Titulo USING (idtitulo)";
+
     private static readonly string _queryTitulo
         = "SELECT * FROM Titulo ORDER BY Publicacion ASC";
 
@@ -97,13 +101,27 @@ public class AdoDapper : IAdo
     public async Task<List<Libro>> ObtenerLibroAsync()
         => (await _conexion.QueryAsync<Libro>(_queryLibro)).ToList();
 
+    //https://github.com/ET12DE1Computacion/SuperMercado/blob/Dapper/src/cSharp/Super.Dapper/AdoDapper.cs#L142
     private static readonly string _queryLibroDetalle
-        = @"SELECT  ISBN,
-                    Libro.idTitulo, publicacion, titulo,
-                    Libro.idEditorial, nombre
+        =@"SELECT  *
             FROM    Libro
-            INNER JOIN Titulo ON Libro.idTitulo = Titulo.idTitulo
-            INNER JOIN Editorial ON Libro.idEditorial = Editorial.idEditorial";
+            WHERE   ISBN= @unIsbn
+
+            SELECT  IdSolicitud, fechaSolitud
+            FROM    Solicitud
+            JOIN    Alumno USING (idSolicitud)
+            WHERE   ISBN = @unIsbn;
+
+            SELECT  
+            FROM    Alumno
+            JOIN Curso USING (idCurso)
+            WHERE   DNI = @unDni;
+            
+            SELECT  
+            FROM    Curso
+            WHERE   idCurso = @unIdCurso;
+            
+";
     /*
     public void ObtenerLibroPorISBN(ulong isbn)
     {
