@@ -292,4 +292,4 @@ CALL altaPrestamo('2023-09-09', '2023-09-02', 596007124, 48186408, 4);
 CALL altaPrestamo('2023-09-10', '2023-09-03', 596007124, 48186408, 5);
 
 -- SELECT PorcentajeFuera(596007124) FROM FueraDeCirculacion LIMIT 1;
-SELECT * FROM Libro;
+SELECT * FROM `FueraDeCirculacion`;

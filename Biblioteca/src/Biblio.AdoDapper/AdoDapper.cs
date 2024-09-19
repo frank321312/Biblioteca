@@ -37,7 +37,7 @@ public class AdoDapper : IAdo
             ORDER BY t.Publicacion ASC";
 
     private static readonly string _queryFueraDeCirculacion
-        = "SELECT * FROM FueraCirculacion ORDER BY FechaSalida ASC";
+        = "SELECT * FROM FueraDeCirculacion ORDER BY fechaEgreso ASC";
     private static readonly string _queryCurso
         = "SELECT * FROM Curso ORDER BY IdCurso ASC";
     private static readonly string _queryAlumno
@@ -285,9 +285,10 @@ public class AdoDapper : IAdo
     private static DynamicParameters ParametrosParaAltaFueraDeCirculacion(FueraCirculacion fueraCirculacion, Libro libro)
     {
         var parametros = new DynamicParameters();
-        parametros.Add("@unNumeroCopia", direction: ParameterDirection.Output);
+        // parametros.Add("@unNumeroCopia", direction: ParameterDirection.Output);
+        parametros.Add("@unNumeroCopia", fueraCirculacion.NumeroCopia);
         parametros.Add("@unISBN", libro.ISBN);
-        parametros.Add("@unFechaSalida", fueraCirculacion.FechaSalida);
+        // parametros.Add("@unFechaSalida", fueraCirculacion.FechaSalida);
         return parametros;
     }
 

@@ -1,0 +1,23 @@
+@model IEnumerable<Biblio.Mvc.Controllers.Modal.FueraCirculacionModal>
+@* @model IEnumerable<Biblio.Core.FueraCirculacion> *@
+
+<header>
+    <h1>Fuera de circulacion</h1>
+</header>
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <tr class="bg-dark text-white">
+            <th>ISBN</th>
+            <th>numeroCopia</th>
+            <th>fechaEgreso</th>
+        </tr>
+        @foreach (var outCirculation in Model)
+        {
+            <tr>
+                <td>@outCirculation.ISBN</td>
+                <td>@outCirculation.NumeroCopia</td>
+                <td>@outCirculation.fechaEgreso</td>
+            </tr>
+        }
+    </table>
+</div>

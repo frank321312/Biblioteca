@@ -1,0 +1,36 @@
+@model Biblio.Mvc.Controllers.Modal.FueraCirculacionModal
+
+@{
+    ViewData["Title"] = "Alta fuera circulacion";
+}
+
+<div class="container">
+    <form asp-action="AltaFueraCirculacion" method="post" class="was-validated submit">
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <input type="number" value="" required asp-for="NumeroCopia" placeholder="Numero copia"
+                    class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <select asp-for="ISBN" class="form-control">
+                    <option>Elija el libro</option>
+                    @foreach (var libro in Model.libros!)
+                    {
+                        <option value="@libro.ISBN">@libro.ISBN</option>
+                    }
+                </select>
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-10 col-10">
+                <button type="submit" class="btn btn-success px-4">Agregar</button>
+            </div>
+        </div>
+    </form>
+</div>
