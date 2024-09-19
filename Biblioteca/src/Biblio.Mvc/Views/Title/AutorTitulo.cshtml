@@ -1,4 +1,4 @@
-@model Biblio.Mvc.Controllers.Modal.TituloModal
+@model IEnumerable<Biblio.Core.Titulo>
 
 <header>
     <h1>AutoresTitulos</h1>
@@ -9,18 +9,15 @@
             <th>IdTitulo</th>
             <th>IdAutor</th>
         </tr>
-        @foreach (var titulo in Model.titulos)
+        @foreach (var titulo in Model)
         {
-            <tr>
-                <td>@titulo.IdTitulo</td>
-            </tr>
-            @* @foreach (var autor in titulo.Autores)
-            {
-                <tr>
-                    <td>@titulo.IdTitulo</td>
-                    <td>@autor.IdAutor</td>
-                </tr>
-            } *@
+                @foreach (var autor in titulo.Autores)
+                {
+                    <tr>
+                        <td>@titulo.IdTitulo</td>
+                        <td>@autor.IdAutor</td>
+                    </tr>
+                }
         }
     </table>
 </div>

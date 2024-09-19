@@ -6,10 +6,10 @@ USE 5to_Biblioteca;
 CREATE TABLE Titulo 
 (
 publicacion SMALLINT UNSIGNED NOT NULL,
-titulo VARCHAR(45) NOT NULL,
+nombre VARCHAR(45) NOT NULL,
 idTitulo MEDIUMINT UNSIGNED  auto_increment,
 CONSTRAINT PK_Titulo PRIMARY KEY (idTitulo),
-CONSTRAINT UQ_Titulo_titulo UNIQUE (titulo)
+CONSTRAINT UQ_Titulo_titulo UNIQUE (nombre)
 );
 CREATE TABLE Curso
 (
@@ -106,11 +106,11 @@ CONSTRAINT FK_Alumno_Prestamo FOREIGN KEY(DNI)
 SELECT 'Creando SPs' Estado;
 DELIMITER $$
 CREATE PROCEDURE altaTitulo(IN unPublicacion VARCHAR(45),
-							IN unTitulo VARCHAR(45),
+							IN unNombre VARCHAR(45),
                             OUT unIdTitulo MEDIUMINT UNSIGNED)
 BEGIN
-	INSERT INTO Titulo(publicacion, titulo)
-		VALUES (unPublicacion, unTitulo);
+	INSERT INTO Titulo(publicacion, nombre)
+		VALUES (unPublicacion, unNombre);
 	SET unIdTitulo = LAST_INSERT_ID();
 END 
 $$

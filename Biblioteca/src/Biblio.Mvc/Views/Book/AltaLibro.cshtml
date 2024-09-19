@@ -1,0 +1,89 @@
+@model Biblio.Mvc.Controllers.Modal.LibroModal
+
+@{
+    ViewData["Title"] = "Alta libro";
+}
+
+<div class="container">
+    <form asp-action="AltaLibro" method="post" class="was-validated">
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <input type="text" value="" required asp-for="ISBN" placeholder="ISBN" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="select-title" class="form-label">Elija el titulo</label>
+                <select asp-for="idTitulo" id="select-title" class="form-control">
+                    @foreach (var item in Model.titulos)
+                    {
+                        <option value="@item.IdTitulo">@item.nombre</option>
+                    }
+                </select>
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="select-editorial" class="form-label">Elija la editorial</label>
+                <select asp-for="idEditorial" id="select-editorial" class="form-control">
+                    @foreach (var item in Model.editoriales)
+                    {
+                        <option value="@item.IdEditorial">@item.Nombre</option>
+                    }
+                </select>
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        @* <div class="container-select-title"></div>
+        <div class="container-select-editorial"></div> *@
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <button type="submit" class="btn btn-success px-4">Agregar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    const agregarAutor = document.querySelector(".agregarAutor");
+    const codeHtmlTitle = `
+            <div class="row mb-2">
+                <div class="col-sm-5 col-12">
+                    <label for="select-title" class="form-label">Elija el titulo</label>
+                    <select asp-for="idTitulo" id="select-title" class="form-control">
+    @foreach (var item in Model.titulos)
+    {
+                                <option value="@item.IdTitulo">@item.nombre</option>
+    }
+                    </select>
+                    <div class="valid-feedback">Valido</div>
+                    <div class="invalid-feedback">Debe llenar el campo.</div>
+                </div>
+            </div>
+        `
+
+    const codeHtmlEditorial = `
+            <div class="row mb-2">
+                <div class="col-sm-5 col-12">
+                    <label for="select-editorial" class="form-label">Elija la editorial</label>
+                    <select asp-for="idEditorial" id="select-editorial" class="form-control">
+    @foreach (var item in Model.editoriales)
+    {
+                                <option value="@item.IdEditorial">@item.Nombre</option>
+    }
+                    </select>
+                    <div class="valid-feedback">Valido</div>
+                    <div class="invalid-feedback">Debe llenar el campo.</div>
+                </div>
+            </div>
+        `
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelector(".container-select-title").innerHTML += codeHtmlTitle;
+        document.querySelector(".container-select-editorial").innerHTML += codeHtmlEditorial;
+    });
+</script>

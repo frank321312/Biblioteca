@@ -14,7 +14,29 @@ public class LibroController : Controller
     {
         var libro = await Ado.ObtenerLibroAsync();
         var ordenarlibro = libro.OrderBy(x => x.ISBN).ToList();
-        var select = ordenarlibro.Select(x => x.Titulo).ToList();
-        return View("../Book/Libro", select);
+        return View("../Book/Libro", ordenarlibro);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAltaLibro()
+    {
+        var titulos = await Ado.ObtenerTituloAsync();
+        var editoriales = await Ado.ObtenerEditorialAsync();
+        var libro = new LibroModal();
+        libro.editoriales = editoriales;
+        libro.titulos = titulos;
+        return View("../Book/AltaLibro", libro);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AltaLibro(LibroModal bookModal)
+    {
+        var titulos = await Ado.ObtenerTituloAsync();
+        var editoriales = await Ado.ObtenerEditorialAsync();
+        var titulo = titulos.First(x => x.IdTitulo == bookModal.idTitulo);
+        var editorial = editoriales.First(x => x.IdEditorial == bookModal.idEditorial);
+        Libro libro = new Libro(titulo, editorial, bookModal.ISBN);
+        await Ado.AltaLibroAsync(libro);
+        return RedirectToAction(nameof(GetAltaLibro));
     }
 }

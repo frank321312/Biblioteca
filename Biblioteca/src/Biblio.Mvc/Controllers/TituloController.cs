@@ -25,42 +25,36 @@ public class TituloController : Controller
         tituloModal.autores = orderAutores;
         return View("../Title/AltaTitulo", tituloModal);
     }
-// Comentario
+
     [HttpGet]
     public async Task<IActionResult> ObtenerTitulosAutores()
     {
-        var titulos = await Ado.ObtenerTituloAsync();
+        var titulos = await Ado.ObtenerTituloAutorAsync();
         var orderTitulos = titulos.OrderBy(x => x.IdTitulo).ToList();
-        // var autores = await Ado.ObtenerAutoresAsync();
-        // var orderAutores = autores.OrderBy(x => x.IdAutor).ToList();
-        var tituloModal = new TituloModal
-        {
-            titulos = orderTitulos
-        };
-        foreach (var item in orderTitulos)
-        {
-            System.Console.WriteLine(item.Autores);
-        }
-        // foreach (var item in tituloModal.titulos)
-        // {
-        //     foreach (var icon in item.Autores)
-        //     {
-        //         System.Console.WriteLine(icon.Nombre);
-        //     }
-        // }
 
-        return View("../Title/AutorTitulo", tituloModal);
+        return View("../Title/AutorTitulo", orderTitulos);
     }
 
     [HttpPost]
     public async Task<IActionResult> AltaTitulo(TituloModal titleModal)
     {
-        if (titleModal.titulo == null)
+        if (titleModal.nombre == null)
         {
             throw new InvalidOperationException("El nombre no puede ser null");
         }
-        var title = new Titulo(titleModal.Publicacion, titleModal.titulo);
-        title.Autores = titleModal.autores;
+
+        Titulo title = new Titulo(titleModal.Publicacion, titleModal.nombre);
+        var autores = await Ado.ObtenerAutoresAsync();
+        List<int> seleccionados = titleModal.autoresSeleccionadosString
+            .Split(',')
+            .Select(s => Convert.ToInt32(s))
+            .ToList();
+
+        foreach (var a in seleccionados)
+        {
+            Autor autor = autores.First(x => x.IdAutor == a);
+            title.Autores.Add(autor);
+        }
         await Ado.AltaTituloAsync(title);
         return RedirectToAction(nameof(GetAltaTitulo));
     }
