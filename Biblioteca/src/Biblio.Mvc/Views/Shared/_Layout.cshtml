@@ -14,7 +14,9 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Biblio.Mvc</a>
+
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="color: #F5F5DC;">Biblio.Mvc</a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -22,11 +24,11 @@
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarLigaMenu" role="button"
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarAlumnoMenu" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Alumno
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarLigaMenu">
+                            <ul class="dropdown-menu" aria-labelledby="navbarAlumnoMenu">
                                 <li><a class="dropdown-item" asp-controller="Alumno" asp-action="ObtenerAlumnos"><i
                                             class="bi bi-list-nested"></i> Listado</a></li>
                                 <li><a class="dropdown-item" asp-controller="Alumno" asp-action="GetAltaAlumno"><i
@@ -34,11 +36,11 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarEquipoMenu" role="button"
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarAutorMenu" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Autor
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarEquipoMenu">
+                            <ul class="dropdown-menu" aria-labelledby="navbarAutorMenu">
                                 <li><a class="dropdown-item" asp-controller="Autor" asp-action="ObtenerAutores"><i
                                             class="bi bi-list-nested"></i> Listado</a></li>
                                 <li><a class="dropdown-item" asp-controller="Autor" asp-action="GetAltaAutor"><i
@@ -46,11 +48,11 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarEquipoMenu" role="button"
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarCursoMenu" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Curso
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarEquipoMenu">
+                            <ul class="dropdown-menu" aria-labelledby="navbarCursoMenu">
                                 <li><a class="dropdown-item" asp-controller="Curso" asp-action="ObtenerCursos"><i
                                             class="bi bi-list-nested"></i> Listado</a></li>
                                 <li><a class="dropdown-item" asp-controller="Curso" asp-action="GetAltaCurso"><i
@@ -58,11 +60,11 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarEquipoMenu" role="button"
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarTituloMenu" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Titulo
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarEquipoMenu">
+                            <ul class="dropdown-menu" aria-labelledby="navbarTituloMenu">
                                 <li><a class="dropdown-item" asp-controller="Titulo" asp-action="ObtenerTitulos"><i
                                             class="bi bi-list-nested"></i> Listado</a></li>
                                 <li><a class="dropdown-item" asp-controller="Titulo" asp-action="GetAltaTitulo"><i
@@ -72,11 +74,11 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarEquipoMenu" role="button"
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarEditorialMenu" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Editorial
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarEquipoMenu">
+                            <ul class="dropdown-menu" aria-labelledby="navbarEditorialMenu">
                                 <li><a class="dropdown-item" asp-controller="Editorial" asp-action="ObtenerEditoriales"><i
                                             class="bi bi-list-nested"></i> Listado</a></li>
                                 <li><a class="dropdown-item" asp-controller="Editorial" asp-action="GetAltaEditorial"><i
@@ -84,11 +86,11 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarEquipoMenu" role="button"
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarLibroMenu" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Libro
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarEquipoMenu">
+                            <ul class="dropdown-menu" aria-labelledby="navbarLibroMenu">
                                 <li><a class="dropdown-item" asp-controller="Libro" asp-action="ObtenerLibro"><i
                                             class="bi bi-list-nested"></i> Listado</a></li>
                                 <li><a class="dropdown-item" asp-controller="Libro" asp-action="GetAltaLibro"><i
@@ -96,11 +98,11 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarEquipoMenu" role="button"
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarOutMenu" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Fuera de circulación
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarEquipoMenu">
+                            <ul class="dropdown-menu" aria-labelledby="navbarOutMenu">
                                 <li><a class="dropdown-item" asp-controller="FueraCirculacion" asp-action="ObtenerFueraCirculacion"><i
                                             class="bi bi-list-nested"></i> Listado</a></li>
                                 <li><a class="dropdown-item" asp-controller="FueraCirculacion" asp-action="GetAltaFueraCirculacion"><i
@@ -118,7 +120,7 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container footer1">
             &copy; 2024 - Biblio.Mvc - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>

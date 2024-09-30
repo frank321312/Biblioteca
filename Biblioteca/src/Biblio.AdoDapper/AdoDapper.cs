@@ -21,10 +21,10 @@ public class AdoDapper : IAdo
     /// Esta consulta tengo que trar el isbn nombre del titulo y nombre de la editorial
     /// </summary>
     private static readonly string _queryLibro
-        = @"SELECT l.ISBN, l.cantidadPrestamo, t.nombre AS Titulo, e.nombre AS Editorial
-        FROM Libro l
-        JOIN Titulo t ON l.idTitulo = t.idTitulo
-        JOIN Editorial e ON l.idEditorial = e.idEditorial";
+        = @"SELECT *
+            FROM  Libro
+            INNER JOIN Titulo ON Libro.idTitulo = Titulo.idTitulo
+            INNER JOIN Editorial ON Libro.idEditorial = Editorial.idEditorial";
 
     private static readonly string _queryTitulo
         = "SELECT * FROM Titulo ORDER BY Publicacion ASC";
@@ -109,7 +109,6 @@ public class AdoDapper : IAdo
     {
         var libros = (await _conexion.QueryAsync<Libro, Titulo, Editorial, Libro>(_queryLibro, (libro, titulo, editorial) => {
             libro.Titulo = titulo;
-
             libro.Editorial = editorial;
             return libro;
         },

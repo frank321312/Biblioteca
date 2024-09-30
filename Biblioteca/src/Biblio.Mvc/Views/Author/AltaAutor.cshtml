@@ -8,6 +8,7 @@
     <form asp-action="AltaAutor" method="post" class="was-validated">
         <div class="row mb-2">
             <div class="col-sm-5 col-12">
+                <label for="Nombre"><strong>Nombre</strong></label>
                 <input type="text"  value="" required asp-for="Nombre" placeholder="Nombre" class="form-control">
                 <div class="valid-feedback">Valido</div>
                 <div class="invalid-feedback">Debe llenar el campo</div>
@@ -15,6 +16,7 @@
         </div>
         <div class="row mb-2">
             <div class="col-sm-5 col-12">
+                <label for="Apellido"><strong>Apellido</strong></label>
                 <input type="text"  value="" required asp-for="Apellido" placeholder="Apellido" class="form-control">
                 <div class="valid-feedback">Valido</div>
                 <div class="invalid-feedback">Debe llenar el campo.</div>
@@ -22,7 +24,7 @@
         </div>
         <div class="row mb-2">
             <div class="col-sm-5 col-12">
-                <button type="submit" class="btn btn-success px-4">Agregar</button>
+                <button type="submit" class="btn btn-success px-4" >Agregar</button>
             </div>
         </div>
     </form>

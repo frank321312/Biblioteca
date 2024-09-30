@@ -24,8 +24,12 @@ public class AutorController : Controller
     [HttpPost]
     public async Task<IActionResult> AltaAutor(Autor autor)
     {
+        if (ModelState.IsValid)
+        {
         await Ado.AltaAutorAsync(autor);
-        // return RedirectToAction(nameof(ObtenerAutores));
+         return RedirectToAction(nameof(ObtenerAutores));
+        }
+
         return View("../Author/AltaAutor");
     }
 }

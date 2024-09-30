@@ -13,7 +13,7 @@ public class TestAdoTitulo:TestAdo
         var titulos=Ado.ObtenerTitulo();
         
         Assert.Contains(titulos,
-                        a =>    a.nombre=="Head First Design Patterns"
+                        a =>    a.titulo=="Head First Design Patterns"
                                 && a.Publicacion==2004);
     }
     [Fact]
