@@ -4,9 +4,9 @@ namespace Biblio.Core;
 
 public class Titulo
 {
+    public required uint IdTitulo { get; set; }
     public required string nombre { get; set; }
     public required ushort Publicacion { get; set; }
-    public required uint IdTitulo { get; set; }
     public List<Autor> Autores{get;set;}
     public List<Libro> Libros {get; set;}
 

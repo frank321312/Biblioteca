@@ -105,37 +105,39 @@ CONSTRAINT FK_Alumno_Prestamo FOREIGN KEY(DNI)
 );
 SELECT 'Creando SPs' Estado;
 DELIMITER $$
-CREATE PROCEDURE altaTitulo(IN unPublicacion VARCHAR(45),
-							IN unNombre VARCHAR(45),
+CREATE PROCEDURE altaTitulo(IN unPublicacion SMALLINT UNSIGNED, 
+                            IN unNombre VARCHAR(45),
                             OUT unIdTitulo MEDIUMINT UNSIGNED)
 BEGIN
-	INSERT INTO Titulo(publicacion, nombre)
-		VALUES (unPublicacion, unNombre);
-	SET unIdTitulo = LAST_INSERT_ID();
-END 
+    INSERT INTO Titulo(publicacion, nombre)
+    VALUES (unPublicacion, unNombre);
+    SET unIdTitulo = LAST_INSERT_ID();  
+END;
+
 $$
 
 DELIMITER $$
 CREATE PROCEDURE altaCurso(IN unanio TINYINT UNSIGNED,
-						   IN unDivision TINYINT UNSIGNED,
-						   OUT unIdCurso TINYINT UNSIGNED)
+                           IN unDivision TINYINT UNSIGNED,
+                           OUT unIdCurso TINYINT UNSIGNED)
 BEGIN
-	INSERT INTO Curso(anio, division, idCurso)
-		VALUES (unanio, unDivision, unIdCurso);
-	SET unIdCurso = LAST_INSERT_ID();
-END
+    INSERT INTO Curso(anio, division)  
+    VALUES (unanio, unDivision);
+    SET unIdCurso = LAST_INSERT_ID();
+END;
+
 $$
 
 DELIMITER $$
 CREATE PROCEDURE altaAutor(IN unNombre VARCHAR(45),
-						   IN unApellido VARCHAR(45),
-						   OUT unIdAutor SMALLINT UNSIGNED)
+                           IN unApellido VARCHAR(45),
+                           OUT unIdAutor SMALLINT UNSIGNED)
 BEGIN
-	INSERT INTO Autor(nombre, apellido, idAutor)
-		VALUES (unNombre, unApellido, unIdAutor);
-	SET unIdAutor = LAST_INSERT_ID();
+    INSERT INTO Autor(nombre, apellido)
+    VALUES (unNombre, unApellido);
+    SET unIdAutor = LAST_INSERT_ID();
+END;
 
-END
 $$
 
 DELIMITER $$
