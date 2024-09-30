@@ -15,7 +15,7 @@ public class Titulo
     [SetsRequiredMembers]
     public Titulo(ushort Publicacion, string titulo, uint IdTitulo = 0)
     {
-        this.nombre=titulo;
+        nombre=titulo;
         this.Publicacion=Publicacion;
         this.IdTitulo=IdTitulo;
         Autores=new List<Autor>();

@@ -37,7 +37,6 @@ public interface IAdo
 
     Task AltaTituloAsync(Titulo titulo);
     Task<List<Titulo>>ObtenerTituloAsync();
-    Task<List<Titulo>>ObtenerTituloAutorAsync();
 
     Task AltaFueraDeCirculacionAsync(FueraCirculacion fueraCirculacion,Libro libro);
     Task<List<FueraCirculacion>> ObtenerFueraDeCirculacionAsync();

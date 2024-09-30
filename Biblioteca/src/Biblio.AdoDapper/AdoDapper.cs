@@ -29,13 +29,6 @@ public class AdoDapper : IAdo
     private static readonly string _queryTitulo
         = "SELECT * FROM Titulo ORDER BY Publicacion ASC";
 
-    private static readonly string _queryTituloAutor
-        = @"SELECT t.idTitulo, a.idAutor
-            FROM Titulo t
-            INNER JOIN AutorTitulo at ON at.idTitulo = t.idTitulo
-            INNER JOIN Autor a ON a.idAutor = at.idAutor
-            ORDER BY t.Publicacion ASC";
-
     private static readonly string _queryFueraDeCirculacion
         = "SELECT * FROM FueraDeCirculacion ORDER BY fechaEgreso ASC";
     private static readonly string _queryCurso
@@ -112,7 +105,7 @@ public class AdoDapper : IAdo
             libro.Editorial = editorial;
             return libro;
         },
-        splitOn: "idTitulo, idEditorial"
+        splitOn: "idTitulo, idEditorial, nombre, nombre"
         )).ToList();
 
         return libros;
@@ -249,29 +242,6 @@ public class AdoDapper : IAdo
     }
     public async Task<List<Titulo>> ObtenerTituloAsync()
         => (await _conexion.QueryAsync<Titulo>(_queryTitulo)).ToList();
-
-    public async Task<List<Titulo>> ObtenerTituloAutorAsync()
-    {
-        var titulosList = new List<Titulo>();
-        var titulos = (await _conexion.QueryAsync<Titulo, Autor, Titulo>(_queryTituloAutor, (titulo, autor) => {
-            var tituloExiste = titulosList.FirstOrDefault(x => x.IdTitulo == titulo.IdTitulo);
-
-            if (tituloExiste == null)
-            {
-                titulo.Autores = new List<Autor>();
-                titulo.Autores.Add(autor);
-                titulosList.Add(titulo);
-            }
-            else
-            {
-                tituloExiste.Autores.Add(autor);
-            }
-            return titulo;
-        }, splitOn: "idAutor"
-        )).ToList();
-
-        return titulosList;
-    }
 
     #endregion
 

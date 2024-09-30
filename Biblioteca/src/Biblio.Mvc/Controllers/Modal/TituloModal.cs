@@ -9,5 +9,6 @@ public class TituloModal
     public List<Titulo> titulos = new List<Titulo>();
     public List<int> autoresSeleccionados { get; set; } = new List<int>();
     public string autoresSeleccionadosString { get; set; } = string.Empty;
+    public bool error { get; set; } = false;
     public TituloModal() {}
 }

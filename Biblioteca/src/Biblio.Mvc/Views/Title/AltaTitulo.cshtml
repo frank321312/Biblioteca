@@ -9,8 +9,15 @@
         <div class="row mb-2">
             <div class="col-sm-5 col-12">
                 <input type="text" value="" required asp-for="nombre" placeholder="Titulo" class="form-control">
-                <div class="valid-feedback">Valido</div>
-                <div class="invalid-feedback">Debe llenar el campo</div>
+                @if (@Model.error) 
+                {
+                    <div class="invalid-feedback">Ya existe un titulo con ese nombre</div>
+                }
+                else
+                {
+                    <div class="valid-feedback">Valido</div>
+                    <div class="invalid-feedback">Debe llenar el campo</div>
+                }
             </div>
         </div>
         <div class="row mb-2">

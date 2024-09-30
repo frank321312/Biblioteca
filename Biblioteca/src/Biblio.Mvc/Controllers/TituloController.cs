@@ -19,43 +19,49 @@ public class TituloController : Controller
     [HttpGet]
     public async Task<IActionResult> GetAltaTitulo()
     {
+        var titleModal = await CrearTituloModal();
+        return View("../Title/AltaTitulo", titleModal);
+    }
+
+    public async Task<TituloModal> CrearTituloModal()
+    {
         var autores = await Ado.ObtenerAutoresAsync();
         var orderAutores = autores.OrderBy(x => x.IdAutor).ToList();
         var tituloModal = new TituloModal();
         tituloModal.autores = orderAutores;
-        return View("../Title/AltaTitulo", tituloModal);
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> ObtenerTitulosAutores()
-    {
-        var titulos = await Ado.ObtenerTituloAutorAsync();
-        var orderTitulos = titulos.OrderBy(x => x.IdTitulo).ToList();
-
-        return View("../Title/AutorTitulo", orderTitulos);
+        return tituloModal;
     }
 
     [HttpPost]
     public async Task<IActionResult> AltaTitulo(TituloModal titleModal)
     {
-        if (titleModal.nombre == null)
+        try
         {
-            throw new InvalidOperationException("El nombre no puede ser null");
+            if (titleModal.nombre == null)
+            {
+                throw new InvalidOperationException("El nombre no puede ser null");
+            }
+
+            Titulo title = new Titulo(titleModal.Publicacion, titleModal.nombre);
+            var autores = await Ado.ObtenerAutoresAsync();
+            List<int> seleccionados = titleModal.autoresSeleccionadosString
+                .Split(',')
+                .Select(s => Convert.ToInt32(s))
+                .ToList();
+
+            foreach (var a in seleccionados)
+            {
+                Autor autor = autores.First(x => x.IdAutor == a);
+                title.Autores.Add(autor);
+            }
+            await Ado.AltaTituloAsync(title);
+            return RedirectToAction(nameof(ObtenerTitulos));
         }
-
-        Titulo title = new Titulo(titleModal.Publicacion, titleModal.nombre);
-        var autores = await Ado.ObtenerAutoresAsync();
-        List<int> seleccionados = titleModal.autoresSeleccionadosString
-            .Split(',')
-            .Select(s => Convert.ToInt32(s))
-            .ToList();
-
-        foreach (var a in seleccionados)
+        catch (InvalidOperationException)
         {
-            Autor autor = autores.First(x => x.IdAutor == a);
-            title.Autores.Add(autor);
+            var tituloModal = await CrearTituloModal();
+            tituloModal.error = true;
+            return View("../Title/AltaTitulo", tituloModal);
         }
-        await Ado.AltaTituloAsync(title);
-        return RedirectToAction(nameof(GetAltaTitulo));
     }
 }
