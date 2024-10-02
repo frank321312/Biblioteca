@@ -8,6 +8,7 @@
     <form asp-action="AltaFueraCirculacion" method="post" class="was-validated submit">
         <div class="row mb-2">
             <div class="col-sm-5 col-12">
+                <label for="NumeroCopia"><strong>Numero de copia</strong></label>
                 <input type="number" value="" required asp-for="NumeroCopia" placeholder="Numero copia"
                     class="form-control">
                 <div class="valid-feedback">Valido</div>
@@ -16,6 +17,7 @@
         </div>
         <div class="row mb-2">
             <div class="col-sm-5 col-12">
+                <label for="ISBN"><strong>ISBN</strong></label>
                 <select asp-for="ISBN" class="form-control">
                     <option>Elija el libro</option>
                     @foreach (var libro in Model.libros!)

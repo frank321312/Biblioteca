@@ -29,11 +29,7 @@ public class AlumnoController : Controller
     [HttpPost]
     public async Task<IActionResult> AltaAlumno(Alumno alumno, string pass)
     {
-        if(ModelState.IsValid)
-        {
         await Ado.AltaAlumnoAsync(alumno, pass);
         return RedirectToAction(nameof(ObtenerAlumnos));
-        }
-        return View("../Student/AltaAlumno");
     }
 }

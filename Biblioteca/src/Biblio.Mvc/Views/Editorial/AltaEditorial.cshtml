@@ -8,9 +8,18 @@
     <form asp-action="PostEditorial" method="post" class="was-validated">
         <div class="row mb-2">
             <div class="col-sm-5 col-12">
-                <input type="text"  value="" required asp-for="Nombre" placeholder="Nombre" class="form-control">
-                <div class="valid-feedback">Valido</div>
-                <div class="invalid-feedback">Debe llenar el campo</div>
+                <label for="Nombre"><strong>Nombre</strong></label>
+                <input type="text" value="" required asp-for="Nombre" placeholder="Nombre" class="form-control">
+                @if (@Model.Error)
+                {
+                    <div class="valid-feedback">Valido</div>
+                    <div class="invalid-feedback">Ya existe esa editorial</div>
+                }
+                else
+                {
+                    <div class="valid-feedback">Valido</div>
+                    <div class="invalid-feedback">Debe llenar el campo</div>
+                }
             </div>
         </div>
         <div class="row mb-2">

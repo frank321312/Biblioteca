@@ -6,14 +6,12 @@
 <div class="table-responsive">
     <table class="table table-striped table-hover">
         <tr class="bg-dark text-white">
-            <th>IdTitulo</th>
             <th>Año</th>
             <th>Titulo</th>
         </tr>
         @foreach (var titulo in Model)
         {
             <tr>
-                <td>@titulo.IdTitulo</td>
                 <td>@titulo.Publicacion</td>
                 <td>@titulo.nombre</td>
             </tr>

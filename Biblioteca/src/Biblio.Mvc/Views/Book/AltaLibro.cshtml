@@ -8,6 +8,7 @@
     <form asp-action="AltaLibro" method="post" class="was-validated">
         <div class="row mb-2">
             <div class="col-sm-5 col-12">
+                <label for="ISBN"><strong>ISBN</strong></label>
                 <input type="text" value="" required asp-for="ISBN" placeholder="ISBN" class="form-control">
                 <div class="valid-feedback">Valido</div>
                 <div class="invalid-feedback">Debe llenar el campo</div>
@@ -15,7 +16,7 @@
         </div>
         <div class="row mb-2">
             <div class="col-sm-5 col-12">
-                <label for="select-title" class="form-label">Elija el titulo</label>
+                <label for="select-title" class="form-label"><strong>Elija el titulo</strong></label>
                 <select asp-for="idTitulo" id="select-title" class="form-control">
                     @foreach (var item in Model.titulos)
                     {
@@ -28,7 +29,7 @@
         </div>
         <div class="row mb-2">
             <div class="col-sm-5 col-12">
-                <label for="select-editorial" class="form-label">Elija la editorial</label>
+                <label for="select-editorial" class="form-label"><strong>Elija la editorial</strong></label>
                 <select asp-for="idEditorial" id="select-editorial" class="form-control">
                     @foreach (var item in Model.editoriales)
                     {

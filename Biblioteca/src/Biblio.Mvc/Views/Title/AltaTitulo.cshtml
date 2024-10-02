@@ -8,10 +8,12 @@
     <form asp-action="AltaTitulo" method="post" class="was-validated submit">
         <div class="row mb-2">
             <div class="col-sm-5 col-12">
-                <input type="text" value="" required asp-for="nombre" placeholder="Titulo" class="form-control">
+                <label for="titulo"><strong>Titulo</strong></label>
+                <input type="text" value="" id="titulo" required asp-for="nombre" placeholder="Titulo" class="form-control">
                 @if (@Model.error) 
                 {
                     <div class="invalid-feedback">Ya existe un titulo con ese nombre</div>
+                    <div class="valid-feedback">Valido</div>
                 }
                 else
                 {
@@ -22,7 +24,8 @@
         </div>
         <div class="row mb-2">
             <div class="col-sm-5 col-12">
-                <input type="number" value="" required asp-for="Publicacion" placeholder="Año de publicación"
+                <label for="publicacion"><strong>Publicacion</strong></label>
+                <input type="number" value="" id="publicacion" required asp-for="Publicacion" placeholder="Año de publicación"
                     class="form-control">
                 <div class="valid-feedback">Valido</div>
                 <div class="invalid-feedback">Debe llenar el campo.</div>
@@ -54,7 +57,7 @@ function agregarSelectAutor() {
     const selectHtml = `
             <div class="row mb-2">
                 <div class="col-sm-5 col-12">
-                    <label for="select-autor" class="form-label">Elija el autor</label>
+                    <label for="select-autor" class="form-label"><strong>Elija el autor</strong></label>
                     <select asp-for="autoresSeleccionados" id="select-autor" class="form-control select">
                             @foreach (var autor in Model.autores)
                             {

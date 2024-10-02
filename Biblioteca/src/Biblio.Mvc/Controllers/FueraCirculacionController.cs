@@ -34,6 +34,6 @@ public class FueraCirculacionController: Controller
         var outCirculation = new FueraCirculacion(fueraCirculacion.NumeroCopia, fueraCirculacion.ISBN);
         var libro = libros.First(x => x.ISBN == fueraCirculacion.ISBN);
         await Ado.AltaFueraDeCirculacionAsync(outCirculation, libro);
-        return RedirectToAction(nameof(GetAltaFueraCirculacion));
+        return RedirectToAction(nameof(ObtenerFueraCirculacion));
     }
 }

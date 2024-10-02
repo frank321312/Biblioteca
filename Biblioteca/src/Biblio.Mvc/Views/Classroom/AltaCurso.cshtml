@@ -8,6 +8,7 @@
     <form asp-action="AltaCurso" method="post" class="was-validated">
         <div class="row mb-2">
             <div class="col-sm-5 col-12">
+                <label for="Anio"><strong>Año</strong></label>
                 <input type="number"  value="" required asp-for="Anio" placeholder="Año" class="form-control">
                 <div class="valid-feedback">Valido</div>
                 <div class="invalid-feedback">Debe llenar el campo</div>
@@ -15,6 +16,7 @@
         </div>
         <div class="row mb-2">
             <div class="col-sm-5 col-12">
+                <label for="Division"><strong>Division</strong></label>
                 <input type="number"  value="" required asp-for="Division" placeholder="Division" class="form-control">
                 <div class="valid-feedback">Valido</div>
                 <div class="invalid-feedback">Debe llenar el campo.</div>
