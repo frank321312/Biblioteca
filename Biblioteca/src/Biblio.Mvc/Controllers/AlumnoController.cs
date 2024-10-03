@@ -29,7 +29,18 @@ public class AlumnoController : Controller
     [HttpPost]
     public async Task<IActionResult> AltaAlumno(Alumno alumno, string pass)
     {
-        await Ado.AltaAlumnoAsync(alumno, pass);
+        try
+        {
+            await Ado.AltaAlumnoAsync(alumno, pass);
+        }
+        catch (System.Exception e)
+        {
+            if (e.Message.Contains("Duplicate entry"))
+            {
+                RedirectToAction(nameof(GetAltaAlumno));
+            }
+            throw;
+        }
         return RedirectToAction(nameof(ObtenerAlumnos));
     }
 }
