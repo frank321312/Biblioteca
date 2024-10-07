@@ -28,7 +28,7 @@ public interface IAdo
     #region Methodasync
     Task AltaAutorAsync(Autor autor);
     Task<List<Autor>> ObtenerAutoresAsync();
-    
+    public Task<List<Alumno>> BuscarAlumno(string text);
     Task AltaEditorialAsync(Editorial editorial);
     Task<List<Editorial>> ObtenerEditorialAsync();
 

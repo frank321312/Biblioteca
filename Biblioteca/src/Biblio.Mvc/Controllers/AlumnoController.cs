@@ -1,3 +1,4 @@
+using System.IO.Compression;
 using Biblio.Core;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,5 +43,11 @@ public class AlumnoController : Controller
             throw;
         }
         return RedirectToAction(nameof(ObtenerAlumnos));
+    }
+
+    public IActionResult BuscarAlumno(string search) 
+    {
+        var alumnos = Ado.BuscarAlumno(search);
+        return View("../Student/Alumno", alumnos);
     }
 }

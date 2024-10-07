@@ -36,6 +36,8 @@ public class AdoDapper : IAdo
     private static readonly string _queryAlumno
         = "SELECT nombre ,apellido ,celular ,email ,DNI ,idCurso FROM Alumno ORDER BY Dni ASC";
 
+    private static readonly string _querySearchAlumno
+        = "SELECT nombre ,apellido ,celular ,email ,DNI ,idCurso FROM Alumno WHERE LIKE %@search%";
 
     #region AutorAsync
     public async Task AltaAutorAsync(Autor autor)
@@ -100,7 +102,8 @@ public class AdoDapper : IAdo
 
     public async Task<List<Libro>> ObtenerLibroAsync()
     {
-        var libros = (await _conexion.QueryAsync<Libro, Titulo, Editorial, Libro>(_queryLibro, (libro, titulo, editorial) => {
+        var libros = (await _conexion.QueryAsync<Libro, Titulo, Editorial, Libro>(_queryLibro, (libro, titulo, editorial) =>
+        {
             libro.Titulo = titulo;
             libro.Editorial = editorial;
             return libro;
@@ -113,7 +116,7 @@ public class AdoDapper : IAdo
 
     //https://github.com/ET12DE1Computacion/SuperMercado/blob/Dapper/src/cSharp/Super.Dapper/AdoDapper.cs#L142
     private static readonly string _queryLibroDetalle
-        =@"SELECT  *
+        = @"SELECT  *
             FROM    Libro
             WHERE   ISBN= @unIsbn
 
@@ -470,5 +473,13 @@ public class AdoDapper : IAdo
     }
     public List<Alumno> ObtenerAlumnos()
         => _conexion.Query<Alumno>(_queryAlumno).ToList();
+
+    public Task<List<Alumno>> BuscarAlumno(string text)
+    {
+        var parameters = new { Search = text };
+        var sql = "SELECT * from Alumno where  = @Search or apellido = @Search or DNI = @Search";
+        var result = _conexion.Query(sql, parameters);
+        return (Task<List<Alumno>>)result;
+    }
     #endregion
 }
