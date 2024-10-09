@@ -1,5 +1,4 @@
 ﻿﻿using System.Data;
-using System.Runtime.CompilerServices;
 using Biblio.Core;
 using Dapper;
 using MySqlConnector;
@@ -36,9 +35,22 @@ public class AdoDapper : IAdo
     private static readonly string _queryAlumno
         = "SELECT nombre ,apellido ,celular ,email ,DNI ,idCurso FROM Alumno ORDER BY Dni ASC";
 
-    private static readonly string _querySearchAlumno
-        = "SELECT nombre ,apellido ,celular ,email ,DNI ,idCurso FROM Alumno WHERE LIKE %@search%";
-
+    private readonly string _searchAlumno
+        = @"SELECT *
+        FROM Alumno
+        WHERE nombre LIKE @unNombre
+        OR apellido LIKE @unApellido  ";
+    private readonly string _searchAutor
+        = @"SELECT *
+        FROM Autor
+        WHERE nombre LIKE @unNombre
+        OR apellido LIKE @unApellido ";
+    private readonly string _searchCurso
+    =@" SELECT *
+        FROM Curso
+        WHERE anio LIKE @anio
+        OR division LIKE @unDivision 
+    ";
     #region AutorAsync
     public async Task AltaAutorAsync(Autor autor)
     {
@@ -474,12 +486,23 @@ public class AdoDapper : IAdo
     public List<Alumno> ObtenerAlumnos()
         => _conexion.Query<Alumno>(_queryAlumno).ToList();
 
-    public Task<List<Alumno>> BuscarAlumno(string text)
+    public async Task<IEnumerable<Alumno>> BuscarAlumnoAsync(string busqueda)
     {
-        var parameters = new { Search = text };
-        var sql = "SELECT * from Alumno where  = @Search or apellido = @Search or DNI = @Search";
-        var result = _conexion.Query(sql, parameters);
-        return (Task<List<Alumno>>)result;
+
+        var parametros = new { unNombre = "%" + busqueda + "%", unApellido = "%" + busqueda + "%" };
+        return await _conexion.QueryAsync<Alumno>(_searchAlumno, parametros);
+    }
+
+    public async Task<IEnumerable<Autor>> BuscarAutorAsync(string busqueda)
+    {
+        var parametros = new { unNombre = "%" + busqueda + "%", unApellido = "%" + busqueda + "%" };
+        return await _conexion.QueryAsync<Autor>(_searchAutor, parametros);
+    }
+
+    public async Task<IEnumerable<Curso>> BuscarCursoAsync(string busqueda)
+    {
+        var parametros = new { unanio = "%" + busqueda + "%", unDivision = "%" + busqueda + "%" };
+        return await _conexion.QueryAsync<Curso>(_searchCurso, parametros);
     }
     #endregion
 }

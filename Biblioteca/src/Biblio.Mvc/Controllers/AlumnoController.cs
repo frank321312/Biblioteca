@@ -8,7 +8,7 @@ public class AlumnoController : Controller
 {
     protected readonly IAdo Ado;
     public AlumnoController(IAdo ado) => Ado = ado;
-    
+
     [HttpGet]
     public async Task<IActionResult> ObtenerAlumnos()
     {
@@ -45,9 +45,20 @@ public class AlumnoController : Controller
         return RedirectToAction(nameof(ObtenerAlumnos));
     }
 
-    public IActionResult BuscarAlumno(string search) 
+    [HttpGet]
+    public async Task<IActionResult> BuscarAlumno(string? busqueda)
     {
-        var alumnos = Ado.BuscarAlumno(search);
-        return View("../Student/Alumno", alumnos);
+        var _alumno = await Ado.ObtenerAlumnosAsync();
+        if (busqueda == null)
+            return View("../Student/BusquedaAlumno", _alumno);
+        IEnumerable<Alumno>? alumno = null;
+        if (!string.IsNullOrEmpty(busqueda))
+        {
+            alumno = await Ado.BuscarAlumnoAsync(busqueda);
+            if (alumno.Count() == 0)
+                return View("../Student/Alumno");
+        }
+        alumno = alumno ?? new List<Alumno>();
+        return View("../Student/Alumno", alumno);
     }
 }
