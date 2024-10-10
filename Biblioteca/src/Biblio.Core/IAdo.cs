@@ -28,13 +28,15 @@ public interface IAdo
     #region Methodasync
     Task AltaAutorAsync(Autor autor);
     Task<List<Autor>> ObtenerAutoresAsync();
-    Task AltaEditorialAsync(Editorial editorial);
     Task<IEnumerable<Autor>>BuscarAutorAsync(string busqueda);
+
+    Task AltaEditorialAsync(Editorial editorial);
     Task<List<Editorial>> ObtenerEditorialAsync();
+    Task<IEnumerable<Editorial>>BuscarEditorialAsync(string busqueda);
 
     Task AltaLibroAsync(Libro libro);
     Task<List<Libro>>ObtenerLibroAsync();
-
+    Task<IEnumerable<Libro>>BuscarLibroAsync(string busqueda);
     Task AltaTituloAsync(Titulo titulo);
     Task<List<Titulo>>ObtenerTituloAsync();
 
@@ -44,6 +46,7 @@ public interface IAdo
     Task AltaCursoAsync(Curso curso); 
     Task<List<Curso>>ObtenerCursoAsync();
     Task<IEnumerable<Curso>>BuscarCursoAsync(string busqueda);
+
     Task AltaAlumnoAsync(Alumno alumno, string pass);
     Task<List<Alumno>> ObtenerAlumnosAsync();    
     Task<IEnumerable<Alumno>>BuscarAlumnoAsync(string busqueda);

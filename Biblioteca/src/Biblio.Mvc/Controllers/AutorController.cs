@@ -27,4 +27,21 @@ public class AutorController : Controller
         await Ado.AltaAutorAsync(autor);
         return RedirectToAction(nameof(ObtenerAutores));
     }
+    
+    [HttpGet]
+    public async Task<IActionResult> BuscarAutor(string? busqueda)
+    {
+        var _autor = await Ado.ObtenerAutoresAsync();
+        if (busqueda == null)
+            return View("../Author/BusquedaAutor", _autor);
+        IEnumerable<Autor>? autor = null;
+        if (!string.IsNullOrEmpty(busqueda))
+        {
+            autor = await Ado.BuscarAutorAsync(busqueda);
+            if (autor.Count() == 0)
+                return View("../Author/Autor");
+        }
+        autor = autor ?? new List<Autor>();
+        return View("../Author/Autor", autor);
+    }
 }

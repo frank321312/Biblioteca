@@ -27,4 +27,21 @@ public class CursoController : Controller
         await Ado.AltaCursoAsync(curso);
         return RedirectToAction(nameof(ObtenerCursos));
     }
+        
+    [HttpGet]
+    public async Task<IActionResult> BuscarCurso(string? busqueda)
+    {
+        var _curso = await Ado.ObtenerCursoAsync();
+        if (busqueda == null)
+            return View("../Classroom/BusquedaCurso", _curso);
+        IEnumerable<Curso>? curso = null;
+        if (!string.IsNullOrEmpty(busqueda))
+        {
+            curso = await Ado.BuscarCursoAsync(busqueda);
+            if (curso.Count() == 0)
+                return View("../Classroom/Curso");
+        }
+        curso = curso ?? new List<Curso>();
+        return View("../Classroom/BusquedaCurso", curso);
+    }
 }

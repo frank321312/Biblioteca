@@ -51,6 +51,21 @@ public class AdoDapper : IAdo
         WHERE anio LIKE @anio
         OR division LIKE @unDivision 
     ";
+    private readonly string _searchEditorial
+    =@" SELECT *
+        FROM Editorial
+        WHERE nombre LIKE @unNombre
+        OR  idEditorial LIKE @unIdEditorial 
+    ";
+    private readonly string _searchLibro
+    =@" SELECT *
+        FROM Libro L 
+        INNER JOIN Titulo T ON Libro.idTitulo = Titulo.idTitulo
+        INNER JOIN Editorial  E ON Libro.idEditorial = Editorial.idEditorial
+        WHERE T.nombre LIKE @unNombre
+        AND  E.nombre LIKE @unEditorial 
+    ";
+    
     #region AutorAsync
     public async Task AltaAutorAsync(Autor autor)
     {
@@ -504,5 +519,18 @@ public class AdoDapper : IAdo
         var parametros = new { unanio = "%" + busqueda + "%", unDivision = "%" + busqueda + "%" };
         return await _conexion.QueryAsync<Curso>(_searchCurso, parametros);
     }
+
+    public async Task<IEnumerable<Editorial>> BuscarEditorialAsync(string busqueda)
+    {
+        var parametros = new { unNombre = "%" + busqueda + "%", unIdEditorial = "%" + busqueda + "%" };
+        return await _conexion.QueryAsync<Editorial>(_searchEditorial, parametros);
+    }
+
+    public async Task<IEnumerable<Libro>> BuscarLibroAsync(string busqueda)
+    {
+        var parametros = new { unNombre = "%" + busqueda + "%", uneditorial = "%" + busqueda + "%" };
+        return await _conexion.QueryAsync<Libro>(_searchLibro, parametros);
+    }
+
     #endregion
 }
