@@ -11,6 +11,8 @@ public class AlumnoModal
     public string? Pass { get; set; }
     public byte idCurso { get; set; }
     public List<Curso>? cursos { get; set; }
+    public List<Alumno> alumnos { get; set; }
+    public string busqueda { get; set; } = string.Empty;
     // public List<Solicitud>? Solicitudes { get; set; }
     // public List<Prestamo>? Prestamos { get; set; }
     // public List<Alumno>? alumnos;

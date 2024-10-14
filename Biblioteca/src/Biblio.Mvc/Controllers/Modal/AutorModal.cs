@@ -3,7 +3,9 @@ namespace Biblio.Mvc.Controllers;
 
 public class AutorModal
 {
-    public required string Nombre { get; set; }
-    public required string Apellido { get; set; }
+    public  string Nombre { get; set; }
+    public string Apellido { get; set; }
+    public List<Autor> autores { get; set; } = [];
+    public string busqueda { get; set; } = string.Empty;
     public AutorModal() {}
 }

@@ -14,7 +14,11 @@ public class AlumnoController : Controller
     {
         var alumnos = await Ado.ObtenerAlumnosAsync();
         var orderAlumno = alumnos.OrderBy(x => x.Dni).ToList();
-        return View("../Student/Alumno", orderAlumno);
+        var alumnoModal = new AlumnoModal
+        {
+            alumnos = orderAlumno
+        };
+        return View("../Student/BusquedaAlumno", alumnoModal);
     }
 
     [HttpGet]
@@ -49,16 +53,23 @@ public class AlumnoController : Controller
     public async Task<IActionResult> BuscarAlumno(string? busqueda)
     {
         var _alumno = await Ado.ObtenerAlumnosAsync();
+        var alumnoModal = new AlumnoModal();
         if (busqueda == null)
-            return View("../Student/BusquedaAlumno", _alumno);
+        {
+            alumnoModal.alumnos = _alumno;
+            return View("../Student/BusquedaAlumno", alumnoModal);
+        }
+
         IEnumerable<Alumno>? alumno = null;
         if (!string.IsNullOrEmpty(busqueda))
         {
             alumno = await Ado.BuscarAlumnoAsync(busqueda);
+            alumnoModal.alumnos = alumno.ToList();
             if (alumno.Count() == 0)
-                return View("../Student/Alumno");
+                return View("../Student/BusquedaAlumno", alumnoModal);
         }
         alumno = alumno ?? new List<Alumno>();
-        return View("../Student/Alumno", alumno);
+        alumnoModal.alumnos = alumno.ToList();
+        return View("../Student/BusquedaAlumno", alumnoModal);
     }
 }
