@@ -40,9 +40,12 @@ public interface IAdo
     Task AltaTituloAsync(Titulo titulo);
     Task<List<Titulo>>ObtenerTituloAsync();
 
+    Task<IEnumerable<Titulo>>BuscarTituloAsync(string busqueda);
+
     Task AltaFueraDeCirculacionAsync(FueraCirculacion fueraCirculacion,Libro libro);
     Task<List<FueraCirculacion>> ObtenerFueraDeCirculacionAsync();
     
+    Task<IEnumerable<FueraCirculacion>>BuscarFueraCirculacionAsync(string busqueda);
     Task AltaCursoAsync(Curso curso); 
     Task<List<Curso>>ObtenerCursoAsync();
     Task<IEnumerable<Curso>>BuscarCursoAsync(string busqueda);

@@ -64,4 +64,28 @@ public class TituloController : Controller
             return View("../Title/AltaTitulo", tituloModal);
         }
     }
+
+    [HttpGet]
+    public async Task<IActionResult> BuscarTitulo(string? busqueda)
+    {
+        var _titulo = await Ado.ObtenerTituloAsync();
+        var tituloModal = new TituloModal();
+        if (busqueda == null)
+        {
+            tituloModal.titulos = _titulo;
+            return View("../Student/BusquedaAlumno", tituloModal);
+        }
+
+        IEnumerable<Titulo>? titulo = null;
+        if (!string.IsNullOrEmpty(busqueda))
+        {
+            titulo = await Ado.BuscarTituloAsync(busqueda);
+            tituloModal.titulos = titulo.ToList();
+            if (titulo.Count() == 0)
+                return View("../Student/BusquedaAlumno", tituloModal);
+        }
+        titulo = titulo ?? new List<Titulo>();
+        tituloModal.titulos = titulo.ToList();
+        return View("../Student/BusquedaAlumno", tituloModal);
+    }
 }

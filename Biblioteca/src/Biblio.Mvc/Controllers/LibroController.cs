@@ -39,4 +39,27 @@ public class LibroController : Controller
         await Ado.AltaLibroAsync(libro);
         return RedirectToAction(nameof(ObtenerLibro));
     }
+    
+    [HttpGet]
+    public async Task<IActionResult> BuscarLibro(string? busqueda)
+    {
+        var _libro = await Ado.ObtenerLibroAsync();
+        var libroModal = new LibroModal();
+        if (busqueda == null)
+        {
+            libroModal.libros= _libro;
+            return View("../Student/BusquedaAlumno", libroModal);
+        }
+        IEnumerable<Libro>? libro = null;
+        if (!string.IsNullOrEmpty(busqueda))
+        {
+            libro = await Ado.BuscarLibroAsync(busqueda);
+            libroModal.libros= libro.ToList();
+            if (libro.Count() == 0)
+                return View("../Student/BusquedaAlumno", libroModal);
+        }
+        libro = libro ?? new List<Libro>();
+        libroModal.libros= libro.ToList();
+        return View("../Student/BusquedaAlumno", libroModal);
+    }
 }

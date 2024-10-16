@@ -34,7 +34,26 @@ public class AdoDapper : IAdo
         = "SELECT * FROM Curso ORDER BY IdCurso ASC";
     private static readonly string _queryAlumno
         = "SELECT nombre ,apellido ,celular ,email ,DNI ,idCurso FROM Alumno ORDER BY Dni ASC";
-
+    private static readonly string _searchFueraCirculacion
+        =@"SELECT  F.numeroCopia, F.ISBN, T.nombre
+        FROM Libro L
+        INNER JOIN Titulo T ON Libro.idTitulo = Titulo.idTitulo
+        INNER JOIN FueraDeCirculacion F ON L.ISB = F.ISB
+        WHERE nombre LIKE @unNombre
+        OR ISBN LIKE @unISBN ";
+    private readonly string _searchLibro
+    =@" SELECT *
+        FROM Libro L 
+        INNER JOIN Titulo T ON Libro.idTitulo = Titulo.idTitulo
+        INNER JOIN Editorial  E ON Libro.idEditorial = Editorial.idEditorial
+        WHERE T.nombre LIKE @unNombre
+        AND  E.nombre LIKE @unEditorial 
+    ";
+    private static readonly string _searchTitulo
+        =@"SELECT *
+        FROM Titulo
+        WHERE nombre LIKE @unNombre
+        OR publicacion LIKE @unPublicacion";
     private readonly string _searchAlumno
         = @"SELECT *
         FROM Alumno
@@ -56,14 +75,6 @@ public class AdoDapper : IAdo
         FROM Editorial
         WHERE nombre LIKE @unNombre
         OR  idEditorial LIKE @unIdEditorial 
-    ";
-    private readonly string _searchLibro
-    =@" SELECT *
-        FROM Libro L 
-        INNER JOIN Titulo T ON Libro.idTitulo = Titulo.idTitulo
-        INNER JOIN Editorial  E ON Libro.idEditorial = Editorial.idEditorial
-        WHERE T.nombre LIKE @unNombre
-        AND  E.nombre LIKE @unEditorial 
     ";
     
     #region AutorAsync
@@ -530,6 +541,18 @@ public class AdoDapper : IAdo
     {
         var parametros = new { unNombre = "%" + busqueda + "%", uneditorial = "%" + busqueda + "%" };
         return await _conexion.QueryAsync<Libro>(_searchLibro, parametros);
+    }
+
+    public async Task<IEnumerable<Titulo>> BuscarTituloAsync(string busqueda)
+    {
+        var parametros = new { unNombre = "%" + busqueda + "%", unPublicacion = "%" + busqueda + "%" };
+        return await _conexion.QueryAsync<Titulo>(_searchTitulo,parametros);
+    }
+
+    public async Task<IEnumerable<FueraCirculacion>> BuscarFueraCirculacionAsync(string busqueda)
+    {
+        var parametros = new { unNombre = "%" + busqueda + "%", unISBN = "%" + busqueda + "%" };
+        return await _conexion.QueryAsync<FueraCirculacion>(_searchFueraCirculacion,parametros);
     }
 
     #endregion

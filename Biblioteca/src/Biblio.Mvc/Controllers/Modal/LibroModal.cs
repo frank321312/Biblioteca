@@ -9,6 +9,7 @@ namespace Biblio.Mvc.Controllers.Modal
         public uint idEditorial { get; set; }
         public List<Titulo> titulos { get; set; } = new List<Titulo>();
         public List<Editorial> editoriales { get; set; } = new List<Editorial>();
+        public List<Libro>libros{ get; set; } = new List<Libro>();
         public LibroModal() {}
     }
 }

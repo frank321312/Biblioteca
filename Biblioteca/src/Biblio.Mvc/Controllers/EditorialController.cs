@@ -37,4 +37,28 @@ public class EditorialController : Controller
             return View("../Editorial/AltaEditorial", editorialModal);
         }
     }
+    [HttpGet]
+    public async Task<IActionResult> BuscarEditorial(string? busqueda)
+    {
+        var _editorial = await Ado.ObtenerEditorialAsync();
+        var editorialModal = new EditorialModal();
+        if (busqueda == null)
+        {
+            editorialModal.editorials = _editorial;
+            return View("../Student/BusquedaAlumno", editorialModal);
+        }
+
+        IEnumerable<Editorial>? editorial = null;
+        if (!string.IsNullOrEmpty(busqueda))
+        {
+            editorial = await Ado.BuscarEditorialAsync(busqueda);
+            editorialModal.editorials = editorial.ToList();
+            if (editorial.Count() == 0)
+                return View("../Student/BusquedaAlumno", editorialModal);
+        }
+        editorial = editorial ?? new List<Editorial>();
+        editorialModal.editorials = editorial.ToList();
+        return View("../Student/BusquedaAlumno", editorialModal);
+    }
 }
+

@@ -36,4 +36,28 @@ public class FueraCirculacionController: Controller
         await Ado.AltaFueraDeCirculacionAsync(outCirculation, libro);
         return RedirectToAction(nameof(ObtenerFueraCirculacion));
     }
+
+    [HttpGet]
+    public async Task<IActionResult> BuscarFueraCirculacion(string? busqueda)
+    {
+        var _fueraDeCirculacion = await Ado.ObtenerFueraDeCirculacionAsync();
+        var fueraDeCirculacionModal = new FueraCirculacionModal();
+        if (busqueda == null)
+        {
+            fueraDeCirculacionModal.fueraCirculacion = _fueraDeCirculacion;
+            return View("../Student/BusquedaAlumno", fueraDeCirculacionModal);
+        }
+
+        IEnumerable<FueraCirculacion>? fuera = null;
+        if (!string.IsNullOrEmpty(busqueda))
+        {
+            fuera = await Ado.BuscarFueraCirculacionAsync(busqueda);
+            fueraDeCirculacionModal.fueraCirculacion = fuera.ToList();
+            if (fuera.Count() == 0)
+                return View("../Student/BusquedaAlumno", fueraDeCirculacionModal);
+        }
+        fuera = fuera ?? new List<FueraCirculacion>();
+        fueraDeCirculacionModal.fueraCirculacion = fuera.ToList();
+        return View("../Student/BusquedaAlumno", fueraDeCirculacionModal);
+    }
 }
