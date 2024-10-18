@@ -8,12 +8,16 @@
         <tr class="bg-dark text-white">
             <th>Año</th>
             <th>Division</th>
+            <th>Detalle</th>
         </tr>
         @foreach (var curso in Model)
         {
             <tr>
                 <td>@curso.anio</td>
                 <td>@curso.Division</td>
+                <td>
+                    <a class="btn btn-info" asp-controller="Curso" asp-action="DetalleDeAlumnos" asp-route-IdCurso="@curso.IdCurso">Ver Alumnos</a>
+                </td>
             </tr>
         }
     </table>

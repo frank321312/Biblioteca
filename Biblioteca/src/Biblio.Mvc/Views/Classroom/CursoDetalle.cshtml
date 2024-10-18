@@ -1,0 +1,33 @@
+@model Biblio.Mvc.Controllers.AlumnoModal
+
+<header>
+    <h1>Alumnos del Curso</h1>
+</header>
+
+    <form class="d-flex mb-3" asp-controller="Alumno" asp-action="BuscarAlumno" method="get">
+        <input class="form-control me-2" type="text" placeholder="Buscar Alumno" aria-label="Buscar Alumno" asp-for="busqueda">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form>
+    <div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <tr class="bg-dark text-white">
+            <th>Dni</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Celular</th>
+            <th>Email</th>
+        </tr>
+        @foreach (var alumno in Model.alumnos)
+        {
+            <tr>
+                <td>@alumno.Dni</td>
+                <td>@alumno.Nombre</td>
+                <td>@alumno.Apellido</td>
+                <td>@alumno.Celular</td>
+                <td>@alumno.Email</td>
+            </tr>
+        }
+    </table>
+    </div>
+
+<a class="btn btn-primary" asp-controller="Curso" asp-action="ObtenerCursos">Volver a Cursos</a>

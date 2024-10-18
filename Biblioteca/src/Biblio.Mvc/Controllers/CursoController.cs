@@ -27,7 +27,7 @@ public class CursoController : Controller
         await Ado.AltaCursoAsync(curso);
         return RedirectToAction(nameof(ObtenerCursos));
     }
-        
+
     [HttpGet]
     public async Task<IActionResult> BuscarCurso(string? busqueda)
     {
@@ -43,5 +43,25 @@ public class CursoController : Controller
         }
         curso = curso ?? new List<Curso>();
         return View("../Classroom/BusquedaCurso", curso);
+    }
+    [HttpGet]
+    public async Task<IActionResult> DetalleDeAlumnos(int IdCurso)
+    {
+        var cursos = await Ado.ObtenerCursoAsync();
+        var orderCursos = cursos.OrderBy(x => x.IdCurso).ToList();
+
+        if (IdCurso == null)
+        {
+            return View("../Classroom/Curso", orderCursos);
+        }
+
+        var alumnos = await Ado.ObtenerAlumnosDelCursoAsync(IdCurso);
+        var orderAlumno = alumnos.OrderBy(x => x.Dni).ToList();
+
+        var alumnoModal = new AlumnoModal
+        {
+            alumnos = orderAlumno,
+        };
+        return View("../Classroom/CursoDetalle", alumnoModal);
     }
 }
