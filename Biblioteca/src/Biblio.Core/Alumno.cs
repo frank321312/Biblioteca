@@ -11,6 +11,9 @@ public class Alumno
     public required uint Celular { get; set; }
     public required string Email { get; set; }
     public required byte IdCurso { get; set; }
+    public byte Anio { get; set; }
+    public  byte Division { get; set; }
+
     List<Solicitud> Solicitudes { get; set; }
     List<Prestamo> Prestamos { get; set; }
     public Alumno()

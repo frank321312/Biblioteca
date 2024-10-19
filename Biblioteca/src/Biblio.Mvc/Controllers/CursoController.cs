@@ -45,23 +45,15 @@ public class CursoController : Controller
         return View("../Classroom/BusquedaCurso", curso);
     }
     [HttpGet]
-    public async Task<IActionResult> DetalleDeAlumnos(int IdCurso)
+    public async Task<IActionResult> DetalleDeAlumnos(int Curso)
     {
-        var cursos = await Ado.ObtenerCursoAsync();
-        var orderCursos = cursos.OrderBy(x => x.IdCurso).ToList();
-
-        if (IdCurso == null)
-        {
-            return View("../Classroom/Curso", orderCursos);
-        }
-
-        var alumnos = await Ado.ObtenerAlumnosDelCursoAsync(IdCurso);
-        var orderAlumno = alumnos.OrderBy(x => x.Dni).ToList();
-
+        var alumnos = await Ado.ObtenerAlumnosAsync();
+        var cursoAlumo=alumnos.Where(x=>x.IdCurso== Curso).ToList();
+        var orderAlumno = cursoAlumo.OrderBy(x => x.Dni).ToList();
         var alumnoModal = new AlumnoModal
         {
             alumnos = orderAlumno,
         };
-        return View("../Classroom/CursoDetalle", alumnoModal);
+        return View("../Student/BusquedaAlumno", alumnoModal);
     }
 }

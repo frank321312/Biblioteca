@@ -48,8 +48,7 @@ public interface IAdo
     Task<IEnumerable<FueraCirculacion>>BuscarFueraCirculacionAsync(string busqueda);
     Task AltaCursoAsync(Curso curso); 
     Task<List<Curso>>ObtenerCursoAsync();
-    Task<IEnumerable<Curso>>BuscarCursoAsync(string busqueda);
-    Task<IEnumerable<Alumno>> ObtenerAlumnosDelCursoAsync(int IdCurso);   
+    Task<IEnumerable<Curso>>BuscarCursoAsync(string busqueda); 
 
     Task AltaAlumnoAsync(Alumno alumno, string pass);
     Task<List<Alumno>> ObtenerAlumnosAsync();    

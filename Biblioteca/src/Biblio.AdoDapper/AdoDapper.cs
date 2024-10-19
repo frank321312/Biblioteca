@@ -76,8 +76,7 @@ public class AdoDapper : IAdo
         WHERE nombre LIKE @unNombre
         OR  idEditorial LIKE @unIdEditorial 
     ";
-    private readonly string _DetalleCurso
-    =@"SELECT * FROM Alumno WHERE idCurso = @unIdCurso";
+
     #region AutorAsync
     public async Task AltaAutorAsync(Autor autor)
     {
@@ -557,12 +556,4 @@ public class AdoDapper : IAdo
         return await _conexion.QueryAsync<FueraCirculacion>(_searchFueraCirculacion,parametros);
     }
 
-
-    #region Detalles
-    public async Task<IEnumerable<Alumno>> ObtenerAlumnosDelCursoAsync(int IdCurso)
-    {
-        var parametros = new { unIdCurso = "%" + IdCurso + "%" };
-        return await _conexion.QueryAsync<Alumno>(_DetalleCurso, parametros );
-    }
-    #endregion
 }

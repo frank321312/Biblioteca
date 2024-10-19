@@ -60,4 +60,5 @@ public class FueraCirculacionController: Controller
         fueraDeCirculacionModal.fueraCirculacion = fuera.ToList();
         return View("../Student/BusquedaAlumno", fueraDeCirculacionModal);
     }
+
 }

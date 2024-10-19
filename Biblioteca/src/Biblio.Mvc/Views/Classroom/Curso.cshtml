@@ -16,7 +16,9 @@
                 <td>@curso.anio</td>
                 <td>@curso.Division</td>
                 <td>
-                    <a class="btn btn-info" asp-controller="Curso" asp-action="DetalleDeAlumnos" asp-route-IdCurso="@curso.IdCurso">Ver Alumnos</a>
+                     <a asp-controller="Curso" asp-action="DetalleDeAlumnos" asp-route-Curso="@curso.IdCurso" class="btn btn-primary">
+                        Ver Alumnos
+                    </a>
                 </td>
             </tr>
         }

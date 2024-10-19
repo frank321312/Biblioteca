@@ -62,4 +62,16 @@ public class LibroController : Controller
         libroModal.libros= libro.ToList();
         return View("../Student/BusquedaAlumno", libroModal);
     }
+    [HttpGet]
+    public async Task<IActionResult> DetallesDeLibros(ulong isbn)
+    {
+        var libros = await Ado.ObtenerLibroAsync();
+        var libroeditorial=libros.Where(x=>x.ISBN== isbn).ToList();
+        var ordelarLibro = libroeditorial.OrderBy(x => x.Titulo).ToList();
+        var libroModal = new LibroModal
+        {
+            libros = ordelarLibro,
+        };
+        return View("../Student/BusquedaAlumno", libroModal);
+    }
 }
