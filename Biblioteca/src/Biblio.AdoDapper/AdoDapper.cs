@@ -35,14 +35,14 @@ public class AdoDapper : IAdo
     private static readonly string _queryAlumno
         = "SELECT nombre ,apellido ,celular ,email ,DNI ,idCurso FROM Alumno ORDER BY Dni ASC";
     private static readonly string _searchFueraCirculacion
-        =@"SELECT  F.numeroCopia, F.ISBN, T.nombre
+        = @"SELECT  F.numeroCopia, F.ISBN, T.nombre
         FROM Libro L
         INNER JOIN Titulo T ON Libro.idTitulo = Titulo.idTitulo
         INNER JOIN FueraDeCirculacion F ON L.ISB = F.ISB
         WHERE nombre LIKE @unNombre
         OR ISBN LIKE @unISBN ";
     private readonly string _searchLibro
-    =@" SELECT *
+    = @" SELECT *
         FROM Libro L 
         INNER JOIN Titulo T ON Libro.idTitulo = Titulo.idTitulo
         INNER JOIN Editorial  E ON Libro.idEditorial = Editorial.idEditorial
@@ -50,7 +50,7 @@ public class AdoDapper : IAdo
         AND  E.nombre LIKE @unEditorial 
     ";
     private static readonly string _searchTitulo
-        =@"SELECT *
+        = @"SELECT *
         FROM Titulo
         WHERE nombre LIKE @unNombre
         OR publicacion LIKE @unPublicacion";
@@ -65,13 +65,13 @@ public class AdoDapper : IAdo
         WHERE nombre LIKE @unNombre
         OR apellido LIKE @unApellido ";
     private readonly string _searchCurso
-    =@" SELECT *
+    = @" SELECT *
         FROM Curso
         WHERE anio LIKE @anio
         OR division LIKE @unDivision 
     ";
     private readonly string _searchEditorial
-    =@" SELECT *
+    = @" SELECT *
         FROM Editorial
         WHERE nombre LIKE @unNombre
         OR  idEditorial LIKE @unIdEditorial 
@@ -519,6 +519,41 @@ public class AdoDapper : IAdo
         return await _conexion.QueryAsync<Alumno>(_searchAlumno, parametros);
     }
     #endregion
+    #region Solicitud
+    public Task AltaSolicitudAsync(Solicitud solicitud)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<List<Solicitud>> ObtenerSolicitudAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IEnumerable<Solicitud>> BuscarSolicitudAsync(string busqueda)
+    {
+        throw new NotImplementedException();
+    }
+
+    #endregion
+    #region Prestamo
+
+    public Task AltaPrestamoAsync(Prestamo prestamo)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<List<Prestamo>> ObtenerPrestamoAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IEnumerable<Prestamo>> BuscarPrestamoAsync(string busqueda)
+    {
+        throw new NotImplementedException();
+    }
+    #endregion
+    #region Busquedas
 
     public async Task<IEnumerable<Autor>> BuscarAutorAsync(string busqueda)
     {
@@ -547,13 +582,15 @@ public class AdoDapper : IAdo
     public async Task<IEnumerable<Titulo>> BuscarTituloAsync(string busqueda)
     {
         var parametros = new { unNombre = "%" + busqueda + "%", unPublicacion = "%" + busqueda + "%" };
-        return await _conexion.QueryAsync<Titulo>(_searchTitulo,parametros);
+        return await _conexion.QueryAsync<Titulo>(_searchTitulo, parametros);
     }
 
     public async Task<IEnumerable<FueraCirculacion>> BuscarFueraCirculacionAsync(string busqueda)
     {
         var parametros = new { unNombre = "%" + busqueda + "%", unISBN = "%" + busqueda + "%" };
-        return await _conexion.QueryAsync<FueraCirculacion>(_searchFueraCirculacion,parametros);
+        return await _conexion.QueryAsync<FueraCirculacion>(_searchFueraCirculacion, parametros);
     }
 
+
+    #endregion
 }

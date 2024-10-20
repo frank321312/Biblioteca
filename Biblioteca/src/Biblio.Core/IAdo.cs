@@ -29,6 +29,14 @@ public interface IAdo
     Task AltaAutorAsync(Autor autor);
     Task<List<Autor>> ObtenerAutoresAsync();
     Task<IEnumerable<Autor>>BuscarAutorAsync(string busqueda);
+    
+    Task AltaSolicitudAsync(Solicitud solicitud);
+    Task<List<Solicitud>> ObtenerSolicitudAsync();
+    Task<IEnumerable<Solicitud>>BuscarSolicitudAsync(string busqueda);
+    
+    Task AltaPrestamoAsync(Prestamo prestamo);
+    Task<List<Prestamo>> ObtenerPrestamoAsync();
+    Task<IEnumerable<Prestamo>>BuscarPrestamoAsync(string busqueda);
 
     Task AltaEditorialAsync(Editorial editorial);
     Task<List<Editorial>> ObtenerEditorialAsync();

@@ -47,7 +47,7 @@ public class FueraCirculacionController: Controller
             fueraDeCirculacionModal.fueraCirculacion = _fueraDeCirculacion;
             return View("../Student/BusquedaAlumno", fueraDeCirculacionModal);
         }
-
+        
         IEnumerable<FueraCirculacion>? fuera = null;
         if (!string.IsNullOrEmpty(busqueda))
         {
