@@ -107,6 +107,22 @@
                                             class="bi bi-plus-circle"></i> Alta</a></li>
                             </ul>
                         </li>
+                            <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarAutorMenu" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Prestamo
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarAutorMenu">
+                                <li><a class="dropdown-item" asp-controller="Solicitud" asp-action="ObtenerSolicitudes"><i
+                                            class="bi bi-list-nested"></i> Ver Solicitudes</a></li>
+                                <li><a class="dropdown-item" asp-controller="Solicitud" asp-action="GetAltaSolicitud"><i
+                                            class="bi bi-plus-circle"></i> Crear Solicitud</a></li>
+                                <li><a class="dropdown-item" asp-controller="Prestamo" asp-action="ObtenerPrestamos"><i
+                                            class="bi bi-list-nested"></i> Ver Prestamos</a></li>
+                                <li><a class="dropdown-item" asp-controller="Prestamo" asp-action="GetAltaPrestamo"><i
+                                            class="bi bi-plus-circle"></i> Pedir Prestamo</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
         </nav>

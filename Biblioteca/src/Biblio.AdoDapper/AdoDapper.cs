@@ -11,14 +11,12 @@ public class AdoDapper : IAdo
     public AdoDapper(IDbConnection conexion) => this._conexion = conexion;
     public AdoDapper(string cadena)
     => _conexion = new MySqlConnection(cadena);
-
+    private static readonly string _querySolicitud="SELECT * FROM Solicitud ORDER BY fechaSolicitud ASC";
+    private static readonly string _queryPrestamo="SELECT * FROM Prestamo ORDER BY fechaEgreso ASC";
     private static readonly string _queryAutores
         = "SELECT * FROM Autor ORDER BY apellido ASC,nombre ASC";
     private static readonly string _queryEditorial
         = "SELECT * FROM Editorial ORDER BY nombre ASC";
-    /// <summary>
-    /// Esta consulta tengo que trar el isbn nombre del titulo y nombre de la editorial
-    /// </summary>
     private static readonly string _queryLibro
         = @"SELECT *
             FROM  Libro
@@ -519,40 +517,70 @@ public class AdoDapper : IAdo
         return await _conexion.QueryAsync<Alumno>(_searchAlumno, parametros);
     }
     #endregion
+
+
+
+
+
+
+
+
+
+
     #region Solicitud
-    public Task AltaSolicitudAsync(Solicitud solicitud)
+    public async Task AltaSolicitudAsync(Solicitud solicitud)
     {
-        throw new NotImplementedException();
+       DynamicParameters parametros = ParametrosParaAltaSolicitud(solicitud);
+        await _conexion.ExecuteAsync("altaSolicitud", parametros, commandType: CommandType.StoredProcedure);
     }
 
-    public Task<List<Solicitud>> ObtenerSolicitudAsync()
+    private static DynamicParameters ParametrosParaAltaSolicitud(Solicitud solicitud)
     {
-        throw new NotImplementedException();
+        var parametros = new DynamicParameters();
+        parametros.Add("@unFechaSolicitud",solicitud.FechaSolicitud);
+        parametros.Add("@unISBN",solicitud.ISBN);
+        parametros.Add("@unDNI", solicitud.Dni);
+        parametros.Add("@unIdSolicitud", direction: ParameterDirection.Output);
+        return parametros;
     }
 
-    public Task<IEnumerable<Solicitud>> BuscarSolicitudAsync(string busqueda)
-    {
-        throw new NotImplementedException();
-    }
-
+    public async  Task<List<Solicitud>> ObtenerSolicitudAsync()
+     => (await _conexion.QueryAsync<Solicitud>(_querySolicitud)).ToList();
     #endregion
+
+
+
+
+
     #region Prestamo
-
-    public Task AltaPrestamoAsync(Prestamo prestamo)
+    private static DynamicParameters ParametrosParaAltaPrestamo(Prestamo prestamo)
     {
-        throw new NotImplementedException();
+        var parametros = new DynamicParameters();
+        parametros.Add("@unfechaRegreso",prestamo.FechaRegreso);
+        parametros.Add("@unfechaEgreso",prestamo.FechaEgreso);
+        parametros.Add("@unNumeroCopia", prestamo.NumeroCopia);
+        parametros.Add("@unDNI", prestamo.Dni);
+        parametros.Add("@unISBN", direction: ParameterDirection.Output);
+        return parametros;
+    }
+    public async Task AltaPrestamoAsync(Prestamo prestamo)
+    {
+        DynamicParameters parametros = ParametrosParaAltaPrestamo(prestamo);
+        await _conexion.ExecuteAsync("altaPrestamo", parametros, commandType: CommandType.StoredProcedure);
+    
     }
 
-    public Task<List<Prestamo>> ObtenerPrestamoAsync()
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<List<Prestamo>> ObtenerPrestamoAsync()
+   =>(await _conexion.QueryAsync<Prestamo>(_queryPrestamo)).ToList();
 
-    public Task<IEnumerable<Prestamo>> BuscarPrestamoAsync(string busqueda)
-    {
-        throw new NotImplementedException();
-    }
     #endregion
+
+
+
+
+
+
+
     #region Busquedas
 
     public async Task<IEnumerable<Autor>> BuscarAutorAsync(string busqueda)
@@ -590,7 +618,6 @@ public class AdoDapper : IAdo
         var parametros = new { unNombre = "%" + busqueda + "%", unISBN = "%" + busqueda + "%" };
         return await _conexion.QueryAsync<FueraCirculacion>(_searchFueraCirculacion, parametros);
     }
-
 
     #endregion
 }

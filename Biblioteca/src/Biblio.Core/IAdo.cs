@@ -32,11 +32,9 @@ public interface IAdo
     
     Task AltaSolicitudAsync(Solicitud solicitud);
     Task<List<Solicitud>> ObtenerSolicitudAsync();
-    Task<IEnumerable<Solicitud>>BuscarSolicitudAsync(string busqueda);
     
     Task AltaPrestamoAsync(Prestamo prestamo);
     Task<List<Prestamo>> ObtenerPrestamoAsync();
-    Task<IEnumerable<Prestamo>>BuscarPrestamoAsync(string busqueda);
 
     Task AltaEditorialAsync(Editorial editorial);
     Task<List<Editorial>> ObtenerEditorialAsync();
@@ -45,15 +43,16 @@ public interface IAdo
     Task AltaLibroAsync(Libro libro);
     Task<List<Libro>>ObtenerLibroAsync();
     Task<IEnumerable<Libro>>BuscarLibroAsync(string busqueda);
+
     Task AltaTituloAsync(Titulo titulo);
     Task<List<Titulo>>ObtenerTituloAsync();
-
     Task<IEnumerable<Titulo>>BuscarTituloAsync(string busqueda);
 
     Task AltaFueraDeCirculacionAsync(FueraCirculacion fueraCirculacion,Libro libro);
     Task<List<FueraCirculacion>> ObtenerFueraDeCirculacionAsync();
     
     Task<IEnumerable<FueraCirculacion>>BuscarFueraCirculacionAsync(string busqueda);
+    
     Task AltaCursoAsync(Curso curso); 
     Task<List<Curso>>ObtenerCursoAsync();
     Task<IEnumerable<Curso>>BuscarCursoAsync(string busqueda); 

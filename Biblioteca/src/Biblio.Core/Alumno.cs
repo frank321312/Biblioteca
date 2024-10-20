@@ -16,10 +16,7 @@ public class Alumno
 
     List<Solicitud> Solicitudes { get; set; }
     List<Prestamo> Prestamos { get; set; }
-    public Alumno()
-    {
-        
-    }
+    public Alumno(){}
 
     [SetsRequiredMembers]
     public Alumno(string Nombre, string Apellido, uint Celular, string Email, uint Dni, byte IdCurso)
