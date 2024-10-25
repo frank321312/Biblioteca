@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblio.Core", "Biblio.Core\Biblio.Core.csproj", "{D5F3EDFB-B8DF-42ED-897F-20FE5EE0928C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblio.AdoDapper", "Biblio.AdoDapper\Biblio.AdoDapper.csproj", "{6FAFFD27-9290-4E56-9BF3-F72229F4767A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblio.Test", "Biblio.Test\Biblio.Test.csproj", "{9DA5C962-60C0-4F75-9CB5-57B759E2889D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblio.Mvc", "Biblio.Mvc\Biblio.Mvc.csproj", "{B26467BC-3E3D-45EC-9375-97F5481A0DBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5F3EDFB-B8DF-42ED-897F-20FE5EE0928C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5F3EDFB-B8DF-42ED-897F-20FE5EE0928C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5F3EDFB-B8DF-42ED-897F-20FE5EE0928C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5F3EDFB-B8DF-42ED-897F-20FE5EE0928C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FAFFD27-9290-4E56-9BF3-F72229F4767A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FAFFD27-9290-4E56-9BF3-F72229F4767A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FAFFD27-9290-4E56-9BF3-F72229F4767A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FAFFD27-9290-4E56-9BF3-F72229F4767A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DA5C962-60C0-4F75-9CB5-57B759E2889D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DA5C962-60C0-4F75-9CB5-57B759E2889D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DA5C962-60C0-4F75-9CB5-57B759E2889D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DA5C962-60C0-4F75-9CB5-57B759E2889D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B26467BC-3E3D-45EC-9375-97F5481A0DBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B26467BC-3E3D-45EC-9375-97F5481A0DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B26467BC-3E3D-45EC-9375-97F5481A0DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B26467BC-3E3D-45EC-9375-97F5481A0DBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,81 @@
+@model Biblio.Mvc.Controllers.Modal.TituloModal
+
+@{
+    ViewData["Title"] = "Alta titulo";
+}
+<h1>Alta Titulo</h1>
+<div class="container">
+    <form asp-action="AltaTitulo" method="post" class="was-validated submit">
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="titulo"><strong>Titulo</strong></label>
+                <input type="text" value="" id="titulo" required asp-for="nombre" placeholder="Titulo" class="form-control">
+                @if (@Model.error) 
+                {
+                    <div class="invalid-feedback">Ya existe un titulo con ese nombre</div>
+                    <div class="valid-feedback">Valido</div>
+                }
+                else
+                {
+                    <div class="valid-feedback">Valido</div>
+                    <div class="invalid-feedback">Debe llenar el campo</div>
+                }
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="publicacion"><strong>Publicacion</strong></label>
+                <input type="number" value="" id="publicacion" required asp-for="Publicacion" placeholder="Año de publicación"
+                    class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="container-select"></div>
+        <input type="hidden" asp-for="autoresSeleccionadosString" id="autores-seleccionados" />
+        <div class="row mb-2">
+            <div class="col-sm-10 col-10">
+                <button type="submit" class="btn btn-success px-4">Agregar</button>
+                <button class="btn btn-success px-4 agregarAutor">Agregar autor</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    agregarSelectAutor(); 
+});
+
+const agregarAutor = document.querySelector(".agregarAutor");
+const container = document.querySelector(".container-select");
+agregarAutor.addEventListener("click", (e) => {
+    e.preventDefault();
+    agregarSelectAutor();
+});
+
+function agregarSelectAutor() {
+    const selectHtml = `
+            <div class="row mb-2">
+                <div class="col-sm-5 col-12">
+                    <label for="select-autor" class="form-label"><strong>Elija el autor</strong></label>
+                    <select asp-for="autoresSeleccionados" id="select-autor" class="form-control select">
+                            @foreach (var autor in Model.autores)
+                            {
+                                <option value="@autor.IdAutor">@autor.Nombre</option>
+                            }
+                    </select>
+                    <div class="valid-feedback">Valido</div>
+                    <div class="invalid-feedback">Debe llenar el campo.</div>
+                </div>
+            </div>
+    `;
+    container.innerHTML += selectHtml;
+}
+
+document.querySelector(".submit").addEventListener("submit", () => {
+    const autoresSelecionados = [];
+    const select = document.querySelectorAll(".select");
+    select.forEach(x => autoresSelecionados.push(Number(x.value)));
+    document.getElementById("autores-seleccionados").value = autoresSelecionados.join(",");
+})
+</script>

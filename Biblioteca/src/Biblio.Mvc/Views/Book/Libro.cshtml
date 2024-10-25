@@ -1,0 +1,27 @@
+@model Biblio.Mvc.Controllers.Modal.LibroModal
+
+<header>
+    <h1>Libro</h1>
+</header>
+<form class="d-flex mb-4" asp-controller="Libro" asp-action="BuscarLibro" method="get">
+    <input class="form-control me-2" value="" type="text" placeholder="Buscar libro" aria-label="Buscar libro"
+        asp-for="busqueda">
+    <button class="btn btn-outline-success" type="submit">Buscar</button>
+</form>
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <tr class="bg-dark text-white">
+            <th>ISBN</th>
+            <th>Titulo</th>
+            <th>Editorial</th>
+        </tr>
+        @foreach (var libro in Model.libros)
+        {
+            <tr>
+                <td>@libro.ISBN</td>
+                <td>@libro.Titulo.nombre</td>
+                <td>@libro.Editorial.Nombre</td>
+            </tr>
+        }
+    </table>
+</div>

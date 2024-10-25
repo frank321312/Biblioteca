@@ -1,0 +1,77 @@
+@model Biblio.Mvc.Controllers.AlumnoModal
+
+@{
+    ViewData["Title"] = "Alta alumno";
+}
+<h1>Alta Alumno</h1>
+<div class="container">
+    <form asp-action="altaAlumno" method="post" class="was-validated">
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="Nombre"><strong>Nombre</strong></label>
+                <input type="text" value="" required asp-for="Nombre" placeholder="Nombre" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="Apellido"><strong>Apellido</strong></label>
+                <input type="text" value="" required asp-for="Apellido" placeholder="Apellido" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="Celular"><strong>Telefono</strong></label>
+                <input type="number" value="" required asp-for="Celular" placeholder="Telefono" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="Email"><strong>Email</strong></label>
+                <input type="email" value="" required asp-for="Email" placeholder="Email" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="Dni"><strong>DNI</strong></label>
+                <input type="number" value="" required asp-for="Dni" placeholder="DNI" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="Pass"><strong>Contraseña</strong></label>
+                <input type="password" value="" required asp-for="Pass" placeholder="Pass" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for=""><strong>Curso</strong></label>
+                <select asp-for="idCurso" class="form-control">
+                    <option>Elija el curso</option>
+                    @foreach (var curso in Model.cursos!)
+                    {
+                        <option value="@curso.IdCurso">@curso.anio - @curso.Division</option>
+                    }
+                </select>
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <button type="submit" class="btn btn-success px-4">Agregar</button>
+            </div>
+        </div>
+    </form>
+</div>

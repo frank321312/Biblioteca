@@ -1,0 +1,76 @@
+
+erDiagram
+Titulo{
+varchar(45) titulo
+smallint_unsigned publicacion
+mediumint_unsigned idTitulo pk
+}
+Libro{
+  mediumint_unsigned idTitulo fk
+  smallint_unsigned idEditorial fk
+  bigint_unsigned ISBN pk
+}
+AutorTitulo{
+  mediumint_unsigned idTitulo "pfk"
+  smallint_unsigned idAutor "pfk"
+}
+Autor{
+smallint_unsigned idAutor pk
+varchar(45) Autor
+varchar(45) apellido
+}
+Editorial{
+ varchar(45) nombre
+ smallint_unsigned idEditorial pk
+}
+Alumno {
+ int_unsigned DNI pk
+ varchar(45) nombre
+ varchar(45) apellido
+ tinyint_unsigned curso
+ int_unsigned celular
+ varchar(45) email
+ char(64) password
+ tinyint_unsigned idCurso fk
+}
+Curso {
+ tinyint_unsigned idCurso pk
+ tinyint_unsigned year
+ tinyint_unsigned division
+}
+FueraDeCirculacion{
+  tinyint_unsigned numeroCopia "pk"
+  bigint_unsigned ISBN "pfk"
+  date fechaEgreso
+}
+Prestamo{
+  tinyint_unsigned numeroCopia "pfk"
+  int_unsigned DNI "pfk"
+  bigint_unsigned ISBN "pfk"
+  datetime fechaEgreso "pk"
+  datetime fechaRegreso
+}
+Solicitud{
+  int_unsigned idSolicitud pk
+  int_unsigned DNI fk
+  bigint_unsigned ISBN fk
+  datetime fechaSolicitud
+}
+Curso ||--|{ Alumno : ""
+Alumno ||--|{ Prestamo : ""
+Alumno ||--|{ Solicitud : ""
+Libro ||--|{ Solicitud : ""
+Libro ||--|{ Prestamo : ""
+Titulo ||--|{ Libro : ""
+Libro ||--|{ FueraDeCirculacion : ""
+Titulo ||--|{ AutorTitulo : ""
+Autor ||--|{ AutorTitulo : ""
+Editorial ||--|{ Libro : ""
+
+https://mermaid.live/edit#pako:eNqNVVFvmzAQ_ivIT6uURA0BSvK2Ja1UqaumpU8T0uRgJ7WKbWRwt4zkv-9sIIFAUB5938d33_nOR4FiSShaIKpWDO8U5pF4Y7lOZBGJT6zid6y-eP6dk9tgJPYUKyfVm4TFOGZSRIJTwjRnIv-tRcZ2ghKHkVLDST8icYzEC9soI-g4Q-Tth2FkHCfJBeGRsFwqhpOKs2G7FuN5_e21zvVVA_VUwnDGCKUgiK6ltVJnUi0OstfZxkXz3my0HcIphY-JtIqn0ozZJktIvlEUgsMXUledaC6kY0Ra1NXrs6X0S_e7gl6LfUsl1iqTl9IxTXSC1YUM5ZglELOBwLtzUpxlf6QifbqMLI2y7SoUUR6KIaatpYOaoeyLE_bJMjukoP6kqcIrumQqBt9mdu18dD4SmlMllzJl2PS-mo_ekWvMD8E5dbYUyl5juEZsU_5QNMsxlzclqpU6_Wtgt7jIGa-cPO4gv2wU0YZ_Uotbp2sJDxoeBSk6Fhg5geX1dx0OvMoSaic-6TW6fjiMx4fCqeZ4AaaN5epYgfV1XoHPNmvc7p0b4Y54tSMquOT2ftkdrCsajdV0LsFujQHC-an3OkEjBFMEj47AErfNi1D-TjmNkKEQusU6ye36AiqGBOu9iNFii5OMjpBOTWuq1X-Kplj8khLOudJwpNbC9_JHYf8XloIWBfqLFuPQCyYzd-6709D35mE4G6E9hH03nHjzqXc_94JwNnWD4wj9s6ru5N73ggcvcP3ZPHhwQ__4HwijVRk 
+
+Link de conversion de tipos de datos de MySQL a C#
+
+https://stackoverflow.com/questions/1163924/c-sharp-datatypes-vs-mysql-datatypes
+
+2.3.27

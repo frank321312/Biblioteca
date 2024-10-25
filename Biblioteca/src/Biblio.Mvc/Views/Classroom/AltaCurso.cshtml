@@ -1,0 +1,31 @@
+@model Biblio.Mvc.Controllers.Modal.CursoModal
+
+@{
+    ViewData["Title"] = "Alta Curso";
+}
+<h1>Alta Curso</h1>
+<div class="container">
+    <form asp-action="AltaCurso" method="post" class="was-validated">
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="Anio"><strong>Año</strong></label>
+                <input type="number"  value="" required asp-for="Anio" placeholder="Año" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="Division"><strong>Division</strong></label>
+                <input type="number"  value="" required asp-for="Division" placeholder="Division" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <button type="submit" class="btn btn-success px-4">Agregar</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,49 @@
+@model Biblio.Mvc.Controllers.Modal.LibroModal
+
+@{
+    ViewData["Title"] = "Alta libro";
+}
+<h1>Alta Libro</h1>
+<div class="container">
+    <form asp-action="AltaLibro" method="post" class="was-validated">
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="ISBN"><strong>ISBN</strong></label>
+                <input type="text" value="" required asp-for="ISBN" placeholder="ISBN" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="select-title" class="form-label"><strong>Elija el titulo</strong></label>
+                <select asp-for="idTitulo" id="select-title" class="form-control">
+                    @foreach (var item in Model.titulos)
+                    {
+                        <option value="@item.IdTitulo">@item.nombre</option>
+                    }
+                </select>
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="select-editorial" class="form-label"><strong>Elija la editorial</strong></label>
+                <select asp-for="idEditorial" id="select-editorial" class="form-control">
+                    @foreach (var item in Model.editoriales)
+                    {
+                        <option value="@item.IdEditorial">@item.Nombre</option>
+                    }
+                </select>
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <button type="submit" class="btn btn-success px-4">Agregar</button>
+            </div>
+        </div>
+    </form>
+</div>

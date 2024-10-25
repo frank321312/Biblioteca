@@ -1,0 +1,32 @@
+@model Biblio.Mvc.Controllers.Modal.FueraCirculacionModal
+@* @model IEnumerable<Biblio.Core.FueraCirculacion> *@
+
+<header>
+    <h1>Fuera de circulacion</h1>
+</header>
+<form class="d-flex mb-4" asp-controller="FueraCirculacion" asp-action="BuscarFueraCirculacion" method="get">
+    <input class="form-control me-2" value="" type="text" placeholder="Buscar Autor" aria-label="Buscar Autor"
+        asp-for="busqueda">
+    <button class="btn btn-outline-success" type="submit">Buscar</button>
+</form>
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <tr class="bg-dark text-white">
+            <th>ISBN</th>
+            <th>Titulo</th>
+            <th>Editorial</th>
+            <th>numeroCopia</th>
+            <th>fechaEgreso</th>
+        </tr>
+        @foreach (var outCirculation in Model.libros)
+        {
+            <tr>
+                <td>@outCirculation.ISBN</td>
+                <td>@outCirculation.Titulo.nombre</td>
+                <td>@outCirculation.Editorial.Nombre</td>
+                <td>@outCirculation.FueraCirculacion.NumeroCopia</td>
+                <td>@outCirculation.FueraCirculacion.FechaEgreso</td>
+            </tr>
+        }
+    </table>
+</div>

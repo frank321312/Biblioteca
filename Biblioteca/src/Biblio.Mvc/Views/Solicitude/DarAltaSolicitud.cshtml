@@ -1,0 +1,31 @@
+@model Biblio.Mvc.Controllers.Modal.SolicitudModal
+
+@{
+    ViewData["Title"] = "Pedir Prestamo";
+}
+<h1>Pedir Prestamo</h1>
+<div class="container">
+    <form asp-action="AltaAutor" method="post" class="was-validated">
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="Nombre"><strong>Libro</strong></label>
+                <input type="text"  value="" required asp-for="busqueda" placeholder="Isbn" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <label for="Apellido"><strong>DNI</strong></label>
+                <input type="text"  value="" required asp-for="Dni" placeholder="Apellido" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo.</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
+                <button type="submit" class="btn btn-success px-4" >Agregar</button>
+            </div>
+        </div>
+    </form>
+</div>
