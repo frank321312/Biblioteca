@@ -14,6 +14,7 @@ public class AlumnoModal
     public  byte Division { get; set; }
     public List<Curso>? cursos { get; set; }
     public List<Alumno> alumnos { get; set; }
+    public List<Prestamo> Prestamos{ get; set; }
     public string busqueda { get; set; } = string.Empty;
     // public List<Solicitud>? Solicitudes { get; set; }
     // public List<Prestamo>? Prestamos { get; set; }

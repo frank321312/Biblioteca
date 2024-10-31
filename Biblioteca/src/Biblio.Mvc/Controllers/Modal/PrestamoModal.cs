@@ -11,5 +11,6 @@ public class PrestamoModal
     public  DateTime FechaRegreso { get; set; }
     public List<Prestamo> Prestamos{ get; set; }=new List<Prestamo>();
     public List<Libro> Libros { get; set; }=new List<Libro>();
+    public List<Alumno> alumnos { get; set; }=new List<Alumno>();
     public PrestamoModal(){}
 }

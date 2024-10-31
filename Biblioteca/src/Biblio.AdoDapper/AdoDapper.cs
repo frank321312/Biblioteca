@@ -657,6 +657,5 @@ public class AdoDapper : IAdo
         var parametros = new { unNombre = "%" + busqueda + "%", unISBN = "%" + busqueda + "%" };
         return await _conexion.QueryAsync<FueraCirculacion>(_searchFueraCirculacion, parametros);
     }
-
     #endregion
 }

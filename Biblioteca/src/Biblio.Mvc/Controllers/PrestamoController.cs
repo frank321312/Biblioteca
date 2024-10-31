@@ -34,4 +34,22 @@ public class PrestamoController:Controller
         return RedirectToAction(nameof(ObtenerPrestamos));
     }
 
+    [HttpGet]
+    public async Task<IActionResult> DetalleDePrestamos(uint dni ,uint isbn)
+    {
+        var prestamos = await Ado.ObtenerPrestamoAsync();
+        var PrestamoAlumo=prestamos.Where(x=>x.Dni== dni).ToList();
+        var alumnos = await Ado.ObtenerAlumnosAsync();
+        var alumno = alumnos.Find(x => x.Dni== dni);
+        
+        var Titulo=await Ado.ObtenerLibroPorISBNAsync(isbn);
+        var orderprestamos = PrestamoAlumo.OrderBy(x => x.Dni).ToList();
+        var prestamoModal = new AlumnoModal
+        {
+            Prestamos=orderprestamos,
+            alumnos = alumnos,
+            Nombre=alumno.Nombre,
+        };
+        return View("../Loan/DetallePrestamos", prestamoModal);
+    }
 }
