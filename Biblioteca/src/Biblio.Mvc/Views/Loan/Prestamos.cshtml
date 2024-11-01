@@ -8,7 +8,7 @@
         <tr class="bg-dark text-white">
             <th>ISBN</th>
             <th>Copia</th>
-            <th>Numero De Copia</th>
+            <th></th>
         </tr>
         @foreach (var prestamo in Model.Prestamos)
         {
@@ -17,7 +17,7 @@
                 <td>@prestamo.NumeroCopia</td>
 
                 <td>
-                    <a asp-controller="Prestamo" asp-action="VerPrestamos" asp-route-Prestamo="@prestamo.Dni,@prestamo.ISBN" class="btn btn-primary">
+                    <a asp-controller="Prestamo" asp-action="VerPrestamos" asp-route-cadena="@prestamo.Dni,@prestamo.ISBN" class="btn btn-primary">
                             Ver Detalle
                     </a>
                 </td>

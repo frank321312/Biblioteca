@@ -192,9 +192,9 @@ public class AdoDapper : IAdo
 
 
     private static readonly string _queryLibroISBN
-        = @"SELECT  ISBN,
-                    Libro.idTitulo, publicacion, titulo,
-                    Libro.idEditorial, nombre
+        = @"SELECT  Libro.ISBN,
+                    Libro.idTitulo, Titulo.publicacion, Titulo.nombre,
+                    Libro.idEditorial
             FROM    Libro
             INNER JOIN Titulo ON Libro.idTitulo = Titulo.idTitulo
             INNER JOIN Editorial ON Libro.idEditorial = Editorial.idEditorial
@@ -599,7 +599,7 @@ public class AdoDapper : IAdo
         parametros.Add("@unfechaEgreso", prestamo.FechaEgreso);
         parametros.Add("@unNumeroCopia", prestamo.NumeroCopia);
         parametros.Add("@unDNI", prestamo.Dni);
-        parametros.Add("@unISBN", direction: ParameterDirection.Output);
+        parametros.Add("@unISBN", prestamo.ISBN);
         return parametros;
     }
     public async Task AltaPrestamoAsync(Prestamo prestamo)
@@ -656,6 +656,11 @@ public class AdoDapper : IAdo
     {
         var parametros = new { unNombre = "%" + busqueda + "%", unISBN = "%" + busqueda + "%" };
         return await _conexion.QueryAsync<FueraCirculacion>(_searchFueraCirculacion, parametros);
+    }
+
+    public Task ModicarFechaPrestamo(Prestamo prestamo)
+    {
+        throw new NotImplementedException();
     }
     #endregion
 }

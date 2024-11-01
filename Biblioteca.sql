@@ -92,7 +92,7 @@ CONSTRAINT FK_Libro_FueraDeCirculacion FOREIGN KEY(ISBN)
 CREATE TABLE Prestamo 
 (
 fechaEgreso DATETIME NOT NULL, 
-fechaRegreso DATETIME NOT NULL,
+fechaRegreso DATETIME,
 ISBN BIGINT UNSIGNED NOT NULL,
 DNI INT UNSIGNED NOT NULL, 
 numeroCopia TINYINT UNSIGNED NOT NULL,
@@ -205,7 +205,7 @@ END
 $$
 
 DELIMITER $$
-CREATE PROCEDURE altaPrestamo(IN unfechaRegreso DATETIME,
+CREATE PROCEDURE altaPrestamo(IN unfechaRegreso DATETIME ,
                               IN unfechaEgreso DATETIME,
                               IN unISBN INT UNSIGNED,
                               IN unDNI INT UNSIGNED,

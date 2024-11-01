@@ -20,7 +20,7 @@ public class AlumnoModal
     // public List<Prestamo>? Prestamos { get; set; }
     // public List<Alumno>? alumnos;
     
-    public AlumnoModal() {}
+    // public AlumnoModal() {}
     public void SetCursos(List<Curso> cursos)
         => this.cursos = cursos;
 }

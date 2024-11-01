@@ -61,6 +61,7 @@ public interface IAdo
     Task<List<Alumno>> ObtenerAlumnosAsync();    
     Task<IEnumerable<Alumno>>BuscarAlumnoAsync(string busqueda);
     Task<Libro?> ObtenerLibroPorISBNAsync(ulong isbn);
+    Task ModicarFechaPrestamo(Prestamo prestamo);
     Task<List<Libro?>>ObtenerLibroFueraDeCirculacionAsync(string busqueda);
     Task<List<Libro?>>ObtenerLibroPorBusquedaAsync(string busqueda);
     #endregion
