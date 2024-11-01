@@ -1,24 +1,23 @@
 @model Biblio.Mvc.Controllers.Modal.PrestamoModal
 
 <header>
-    <h1>Modal</h1>
+    <h1>Prestamos</h1>
 </header>
 <div class="table-responsive">
     <table class="table table-striped table-hover">
         <tr class="bg-dark text-white">
             <th>ISBN</th>
-            <th>Libro</th>
+            <th>Copia</th>
             <th>Numero De Copia</th>
-            <th>Alumno</th>
         </tr>
         @foreach (var prestamo in Model.Prestamos)
         {
             <tr>
                 <td>@prestamo.ISBN</td>
                 <td>@prestamo.NumeroCopia</td>
-                @* <td>@prestamo.alumno</td> *@
+
                 <td>
-                    <a asp-controller="Prestamo" asp-action="DetalleDePrestamos" asp-route-Prestamo="@prestamo.Dni" class="btn btn-primary">
+                    <a asp-controller="Prestamo" asp-action="VerPrestamos" asp-route-Prestamo="@prestamo.Dni,@prestamo.ISBN" class="btn btn-primary">
                             Ver Detalle
                     </a>
                 </td>
