@@ -68,8 +68,11 @@ public class PrestamoController : Controller
         var lista = cadena.Split(",");
         var isbn = Convert.ToUInt32(lista[1]);
         var numeroCopia = Convert.ToUInt32(lista[0]);
-
-
-        return View("../Loan/DetallePrestamos");
+        await Ado.ActualizarFechaPrestamo(isbn,numeroCopia);
+        var prestamo = new AlumnoModal
+        {
+            
+        };
+        return View("../Loan/DetallePrestamos",prestamo);
     }
 }
