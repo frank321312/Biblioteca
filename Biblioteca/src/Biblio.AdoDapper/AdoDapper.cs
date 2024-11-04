@@ -85,6 +85,9 @@ public class AdoDapper : IAdo
             INNER JOIN FueraDeCirculacion ON Libro.ISBN = FueraDeCirculacion.ISBN
             ORDER BY FueraDeCirculacion.fechaEgreso ASC";
 
+    private static readonly string _actualizarPrestamo
+    = @"UPDATE Prestamo SET fechaRegreso=@unFecha WHERE ISBN = @unIsbn AND numeroCopia=@unNumeroCopia ";
+
     #region AutorAsync
     public async Task AltaAutorAsync(Autor autor)
     {
@@ -658,9 +661,11 @@ public class AdoDapper : IAdo
         return await _conexion.QueryAsync<FueraCirculacion>(_searchFueraCirculacion, parametros);
     }
 
-    public Task ModicarFechaPrestamo(Prestamo prestamo)
+    public async Task  ActualizarFechaPrestamo(uint isbn,uint numeroCopia)
     {
-        throw new NotImplementedException();
+        DateTime FechaEgreso= DateTime.Now;
+        var parametros = new { unIsbn = isbn, unFecha = FechaEgreso,unNumeroCopia=numeroCopia };
+        await _conexion.QueryAsync<Prestamo>(_actualizarPrestamo, parametros);
     }
     #endregion
 }
