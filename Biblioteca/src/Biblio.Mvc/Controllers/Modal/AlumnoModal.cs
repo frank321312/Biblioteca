@@ -12,6 +12,8 @@ public class AlumnoModal
     public byte idCurso { get; set; }
     public byte Anio { get; set; }
     public  byte Division { get; set; }
+    public Alumno? alumno { get; set; }
+    public Curso? curso { get; set; }
     public List<Curso>? cursos { get; set; }
     public List<Alumno> alumnos { get; set; }
     public List<Prestamo> Prestamos{ get; set; }

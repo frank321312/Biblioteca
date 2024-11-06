@@ -50,15 +50,18 @@ public class PrestamoController : Controller
         var prestamos = await Ado.ObtenerPrestamoAsync();
         var PrestamoAlumo = prestamos.Where(x => x.Dni == dni).ToList();
         var alumnos = await Ado.ObtenerAlumnosAsync();
-        var alumno = alumnos.Find(x => x.Dni == dni);
-
+        var alumnoObj = alumnos.Find(x => x.Dni == dni);
+        // System.Console.WriteLine(alumno.Apellido);
         var titulo = await Ado.ObtenerLibroPorISBNAsync(isbn);
         var orderprestamos = PrestamoAlumo.OrderBy(x => x.Dni).ToList();
+        var curso = await Ado.ObtenerCursoPorId(alumnoObj.IdCurso);
         var alumnoModal = new AlumnoModal
         {
             Prestamos = orderprestamos,
             alumnos = alumnos,
-            Nombre = titulo.Titulo.nombre
+            Nombre = titulo.Titulo.nombre,
+            curso = curso,
+            alumno = alumnoObj            
         };
         return View("../Loan/DetallePrestamos", alumnoModal);
     }

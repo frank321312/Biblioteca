@@ -30,6 +30,9 @@ public class AdoDapper : IAdo
         = "SELECT * FROM FueraDeCirculacion ORDER BY fechaEgreso ASC";
     private static readonly string _queryCurso
         = "SELECT * FROM Curso ORDER BY IdCurso ASC";
+
+    private static readonly string _queryCursoPorId
+        = @"SELECT * FROM Curso WHERE idCurso = @unIdCurso ORDER BY IdCurso ASC";
     private static readonly string _queryAlumno
         = "SELECT nombre ,apellido ,celular ,email ,DNI ,idCurso FROM Alumno ORDER BY Dni ASC";
     private static readonly string _searchFueraCirculacion
@@ -558,6 +561,12 @@ public class AdoDapper : IAdo
         var parametros = new { unNombre = "%" + busqueda + "%", unApellido = "%" + busqueda + "%" };
         return await _conexion.QueryAsync<Alumno>(_searchAlumno, parametros);
     }
+
+    public async Task<Curso?> ObtenerCursoPorId(int idCurso)
+    {
+        var parametros = new { unIdCurso = idCurso };
+        return await _conexion.QueryFirstOrDefaultAsync<Curso>(_queryCursoPorId, parametros);
+    }
     #endregion
 
 
@@ -609,7 +618,6 @@ public class AdoDapper : IAdo
     {
         DynamicParameters parametros = ParametrosParaAltaPrestamo(prestamo);
         await _conexion.ExecuteAsync("altaPrestamo", parametros, commandType: CommandType.StoredProcedure);
-
     }
 
     public async Task<List<Prestamo>> ObtenerPrestamoAsync()

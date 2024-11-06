@@ -1,0 +1,46 @@
+@model Biblio.Mvc.Controllers.AlumnoModal
+
+<header>
+    <h1>Detalles</h1>
+</header>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <tr class="bg-dark text-white">
+            @* <th>Titulo</th> *@
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>DNI</th>
+            <td>Curso</td>
+        </tr>
+
+        <td>@Model.alumno.Nombre</td>
+        <td>@Model.alumno.Apellido</td>
+        <td>@Model.alumno.Email</td>
+        <td>@Model.alumno.Dni</td>
+        <td>@Model.curso.anio - @Model.curso.Division</td>
+    </table>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <tr class="bg-dark text-white">
+            <th>ISBN</th>
+            <th>Numero copia</th>
+            <th>Fecha egreso</th>
+            <th>Fecha regreso</th>
+            <th></th>
+        </tr>
+
+        @foreach (var prestamo in Model.Prestamos)
+        {
+            <tr>
+                <td>@prestamo.ISBN</td>
+                <td>@prestamo.NumeroCopia</td>
+                <td>@prestamo.FechaEgreso</td>
+                <td>@prestamo.FechaRegreso</td>
+            </tr>
+        }
+    </table>
+</div>
