@@ -16,6 +16,14 @@
         </div>
         <div class="row mb-2">
             <div class="col-sm-5 col-12">
+                <label for="Dni"><strong>Dni</strong></label>
+                <input type="text"  value="" required asp-for="ISBN" placeholder="Dni" class="form-control">
+                <div class="valid-feedback">Valido</div>
+                <div class="invalid-feedback">Debe llenar el campo</div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-12">
                 <label for="Apellido"><strong>N°Copia</strong></label>
                 <input type="text"  value="" required asp-for="NumeroCopia" placeholder="Apellido" class="form-control">
                 <div class="valid-feedback">Valido</div>
